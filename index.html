@@ -67,7 +67,7 @@
           }
         },
         "alumniOf": [
-          { "@type": "Organization", "name": "Clearco", "url": "https://clearcompany.com/" },
+          { "@type": "Organization", "name": "Clearco", "url": "https://clearcompany.com/", "description": "HR & people software" },
           { "@type": "Organization", "name": "Expensya", "url": "https://www.expensya.com" },
           { "@type": "Organization", "name": "Blauwtrust Groep", "url": "https://www.blauwtrustgroep.com/" }
         ]
@@ -124,7 +124,7 @@
               <span class="term__dot term__dot--red"></span>
               <span class="term__dot term__dot--yellow"></span>
               <span class="term__dot term__dot--green"></span>
-              <span class="term__title">fraud-detection · live</span>
+              <span class="term__title">hf-software-services · v1</span>
             </div>
             <div class="term__body">
               <div id="termOutput" class="term__output"></div>
@@ -210,6 +210,21 @@
         <h2 id="work-h" class="h2">Selected work</h2>
 
         <article class="case">
+          <h3 class="h3">Rebuilding a compensation platform with AI agents &amp; spec-driven development</h3>
+          <p class="case__ctx"><em>Context: legacy compensation management system requiring a full rewrite, delivered with a fully AI-integrated engineering workflow.</em></p>
+          <dl class="case__grid">
+            <dt>Problem</dt>
+            <dd>The existing system was too brittle to extend and too risky to refactor incrementally — it needed to be replaced without losing years of embedded business logic, and delivered fast.</dd>
+            <dt>What I did</dt>
+            <dd>
+              Rebuilt the platform from scratch using <strong>spec-driven development</strong> — writing detailed functional and technical specs first, then using AI coding agents (GitHub Copilot) to accelerate implementation against those specs. Wired <strong>GitHub CI/CD</strong> so every pull request gets automatic AI code review and can auto-merge when checks pass. Connected <strong>Jira and Confluence via MCP</strong> so tickets were created, updated, and documented automatically from the development workflow — keeping the board and wiki in sync without manual overhead. The result was a clean .NET backend with well-defined domain boundaries and a fully traceable, documented codebase.
+            </dd>
+            <dt>Result</dt>
+            <dd>Full platform delivered significantly faster than a conventional rewrite, with automated test coverage, living documentation in Confluence, and a Jira board that stayed current throughout — without any manual ticket management.</dd>
+          </dl>
+        </article>
+
+        <article class="case">
           <h3 class="h3">Catching fraud in near-real-time</h3>
           <p class="case__ctx"><em>Context: Mastercard transaction stream at a corporate-spend platform.</em></p>
           <dl class="case__grid">
@@ -265,24 +280,6 @@
           suspension feature serving 1,000+ corporate users.
         </p>
 
-        <article class="case">
-          <h3 class="h3">Rebuilding a compensation platform from scratch with AI agents</h3>
-          <p class="case__ctx"><em>Context: legacy compensation management system requiring a full rewrite.</em></p>
-          <dl class="case__grid">
-            <dt>Problem</dt>
-            <dd>The existing system was too brittle to extend and too risky to refactor incrementally — it needed to be replaced without losing business logic baked in over years.</dd>
-            <dt>What I did</dt>
-            <dd>
-              Rebuilt the platform from scratch using <strong>spec-driven development</strong>: I wrote detailed
-              functional and technical specs first, then used AI coding agents to accelerate
-              implementation against those specs — keeping a human in the loop for architecture
-              decisions and review. The result was a clean .NET backend with well-defined
-              domain boundaries and a testable, documented codebase.
-            </dd>
-            <dt>Result</dt>
-            <dd>Full platform delivered significantly faster than a conventional rewrite, with higher spec coverage and a codebase the team could immediately understand and extend.</dd>
-          </dl>
-        </article>
       </section>
 
       <hr class="rule" />
@@ -360,8 +357,8 @@
             <p class="prev-label">Previously at</p>
             <ul class="prev-list">
               <li>
-                <a href="https://clearcompany.com/" target="_blank" rel="noopener">Clearco</a>
-                <span class="prev-desc">— US-based fintech · revenue financing platform · remote</span>
+        <a href="https://clearcompany.com/" target="_blank" rel="noopener">Clearco</a>
+                <span class="prev-desc">— US-based HR &amp; people software platform · remote</span>
               </li>
               <li>
                 <a href="https://www.expensya.com" target="_blank" rel="noopener">Expensya</a>
@@ -560,17 +557,17 @@
         var termCursor = document.getElementById('termCursor');
         if (termOutput) {
           var lines = [
-            { t: '$ fraud-scan --stream live', c: 't-cmd' },
+            { t: '$ hf init --client new --mode ai-first', c: 't-cmd' },
             { t: '', c: '' },
-            { t: 'scanning TX-4829-A...', c: 't-dim' },
-            { t: '  + rule-engine   pass', c: 't-ok' },
-            { t: '  ~ ml-model      flagged [0.84]', c: 't-warn' },
-            { t: '  ! llm-analyst   fraud confirmed', c: 't-err' },
+            { t: '  ✓ spec-driven development', c: 't-ok' },
+            { t: '  ✓ AI agents + GitHub Copilot', c: 't-ok' },
+            { t: '  ✓ CI/CD · auto PR review + auto merge', c: 't-ok' },
+            { t: '  ✓ Jira · Confluence linked via MCP', c: 't-ok' },
             { t: '', c: '' },
-            { t: 'card suspended \u00b7 case #8471', c: 't-accent' },
-            { t: '\u20ac3,000+ recovered \u00b7 79.3% accuracy', c: 't-metric' },
+            { t: 'HF Software Services · ready to build', c: 't-accent' },
+            { t: '.NET · AWS · TypeScript · UTC+1', c: 't-metric' },
           ];
-          var delays = [0, 700, 1100, 1700, 2400, 3100, 3700, 4000, 4350];
+          var delays = [0, 600, 1000, 1500, 2000, 2500, 3000, 3400, 3750];
           function runTerm() {
             termOutput.innerHTML = '';
             if (termCursor) termCursor.style.display = 'none';
