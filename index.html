@@ -76,6 +76,7 @@
   </head>
   <body>
     <div id="progress" aria-hidden="true"></div>
+    <div id="cursor-glow" aria-hidden="true"></div>
     <a class="skip" href="#main">Skip to content</a>
 
     <header class="nav">
@@ -103,7 +104,7 @@
               Available for new engagements
             </div>
             <p class="eyebrow">SOFTWARE ENGINEER · .NET · AWS · API SYSTEMS</p>
-            <h1 class="h1">Hamza Faidi</h1>
+            <h1 class="h1 h1--shimmer">Hamza Faidi</h1>
             <p class="lede">
               I design and ship the backend systems that products depend on —
               APIs, cloud infrastructure, and the integrations that have to work.
@@ -511,9 +512,47 @@
           new IntersectionObserver(function (entries) {
             if (entries[0].isIntersecting && !counted) {
               counted = true;
+              metricsEl.classList.add('is-counted');
               if (!reduce) metricsEl.querySelectorAll('[data-count]').forEach(animateCount);
             }
           }, { threshold: 0.3 }).observe(metricsEl);
+        }
+
+        // Cursor glow
+        var glow = document.getElementById('cursor-glow');
+        if (glow && !reduce) {
+          var glowX = window.innerWidth / 2, glowY = window.innerHeight / 2;
+          var rawX = glowX, rawY = glowY, shown = false;
+          document.addEventListener('mousemove', function (e) {
+            rawX = e.clientX; rawY = e.clientY;
+            if (!shown) { shown = true; glow.style.opacity = '1'; }
+          }, { passive: true });
+          (function tick() {
+            glowX += (rawX - glowX) * 0.07;
+            glowY += (rawY - glowY) * 0.07;
+            glow.style.transform = 'translate(' + (glowX - 350) + 'px,' + (glowY - 350) + 'px)';
+            requestAnimationFrame(tick);
+          })();
+        }
+
+        // Active nav section tracker
+        var navLinks = document.querySelectorAll('.nav__links a[href^="#"]');
+        var sections = [];
+        navLinks.forEach(function (a) {
+          var id = a.getAttribute('href').slice(1);
+          var el = document.getElementById(id);
+          if (el) sections.push({ el: el, a: a });
+        });
+        if ('IntersectionObserver' in window && sections.length) {
+          var navIo = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                navLinks.forEach(function (a) { a.classList.remove('is-active'); });
+                sections.forEach(function (s) { if (s.el === e.target) s.a.classList.add('is-active'); });
+              }
+            });
+          }, { rootMargin: '-25% 0px -65% 0px', threshold: 0 });
+          sections.forEach(function (s) { navIo.observe(s.el); });
         }
 
         // Terminal animation
