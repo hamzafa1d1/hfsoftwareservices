@@ -70,6 +70,7 @@
     </script>
   </head>
   <body>
+    <div id="progress" aria-hidden="true"></div>
     <a class="skip" href="#main">Skip to content</a>
 
     <header class="nav">
@@ -90,23 +91,41 @@
     <main id="main">
       <!-- Hero -->
       <section id="top" class="section section--hero reveal">
-        <p class="eyebrow">BACKEND &amp; CLOUD CONSULTANT · FINTECH-GRADE</p>
-        <h1 class="h1">Hamza Faidi</h1>
-        <p class="lede">
-          I build and stabilize the backend systems that financial products depend on —
-          .NET / C#, AWS, and the payment integrations that can't afford to fail.
-        </p>
-        <p class="sub">
-          4 years across high-stakes fintech and SaaS — Mastercard card systems, fraud
-          detection, payment-provider integrations, and zero-downtime production
-          migrations. I work through my registered company and invoice cleanly worldwide.
-        </p>
-
-        <div class="cta-row">
-          <a class="btn btn--primary" href="#contact">Book a call <span aria-hidden="true">→</span></a>
-          <a class="btn btn--ghost" href="#work">View selected work</a>
+        <div class="hero__layout">
+          <div class="hero__copy">
+            <div class="avail">
+              <span class="avail__dot"></span>
+              Available for new engagements
+            </div>
+            <p class="eyebrow">BACKEND &amp; CLOUD CONSULTANT · FINTECH-GRADE</p>
+            <h1 class="h1">Hamza Faidi</h1>
+            <p class="lede">
+              I build and stabilize the backend systems that financial products depend on —
+              .NET / C#, AWS, and the payment integrations that can't afford to fail.
+            </p>
+            <p class="sub">
+              4 years across high-stakes fintech and SaaS — Mastercard card systems, fraud
+              detection, payment-provider integrations, and zero-downtime production
+              migrations. I work through my registered company and invoice cleanly worldwide.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn--primary" href="#contact">Book a call <span aria-hidden="true">→</span></a>
+              <a class="btn btn--ghost" href="#work">View selected work</a>
+            </div>
+          </div>
+          <aside class="hero__terminal" aria-hidden="true">
+            <div class="term__bar">
+              <span class="term__dot term__dot--red"></span>
+              <span class="term__dot term__dot--yellow"></span>
+              <span class="term__dot term__dot--green"></span>
+              <span class="term__title">fraud-detection · live</span>
+            </div>
+            <div class="term__body">
+              <div id="termOutput" class="term__output"></div>
+              <span id="termCursor" class="term__cursor"></span>
+            </div>
+          </aside>
         </div>
-
         <ul class="trust-strip" aria-label="Credentials">
           <li>AWS Certified — Solutions Architect Associate</li>
           <li>HashiCorp Certified — Terraform Associate</li>
@@ -121,19 +140,19 @@
       <section class="section reveal" aria-label="Proof and metrics">
         <ul class="metrics">
           <li>
-            <div class="metric__num">€3,000<span class="metric__plus">+</span></div>
+            <div class="metric__num"><span class="count" data-prefix="€" data-count="3000" data-suffix="+">€3,000+</span></div>
             <div class="metric__label">fraudulent charges recovered by a fraud-detection system I built</div>
           </li>
           <li>
-            <div class="metric__num">~79<span class="metric__plus">%</span></div>
+            <div class="metric__num"><span class="count" data-prefix="~" data-count="79" data-suffix="%">~79%</span></div>
             <div class="metric__label">fraud-detection accuracy in production, halving manual reviews</div>
           </li>
           <li>
-            <div class="metric__num">0</div>
+            <div class="metric__num"><span class="count" data-count="0">0</span></div>
             <div class="metric__label">downtime on a live production DB migration (&lt;2% CPU at peak)</div>
           </li>
           <li>
-            <div class="metric__num">~30<span class="metric__plus">%</span></div>
+            <div class="metric__num"><span class="count" data-prefix="~" data-count="30" data-suffix="%">~30%</span></div>
             <div class="metric__label">faster feature delivery after a provider-agnostic payments refactor</div>
           </li>
         </ul>
@@ -250,22 +269,22 @@
           <div class="stack__row">
             <p class="stack__label">Languages &amp; frameworks</p>
             <ul class="chips">
-              <li>C# / ASP.NET Core</li>
-              <li>TypeScript / Node.js</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/csharp/2DD4BF" alt="" loading="lazy" width="15" height="15">C# / ASP.NET Core</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/typescript/2DD4BF" alt="" loading="lazy" width="15" height="15">TypeScript / Node.js</li>
             </ul>
           </div>
           <div class="stack__row">
             <p class="stack__label">Cloud &amp; infra</p>
             <ul class="chips">
-              <li>AWS</li>
-              <li>Azure (Logic Apps, Queue Storage, Key Vault)</li>
-              <li>Terraform</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/amazonaws/2DD4BF" alt="" loading="lazy" width="15" height="15">AWS</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/microsoftazure/2DD4BF" alt="" loading="lazy" width="15" height="15">Azure (Logic Apps, Queue Storage, Key Vault)</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/terraform/2DD4BF" alt="" loading="lazy" width="15" height="15">Terraform</li>
             </ul>
           </div>
           <div class="stack__row">
             <p class="stack__label">Data</p>
             <ul class="chips">
-              <li>SQL Server</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/microsoftsqlserver/2DD4BF" alt="" loading="lazy" width="15" height="15">SQL Server</li>
               <li>Distributed systems</li>
               <li>Payments</li>
             </ul>
@@ -273,8 +292,8 @@
           <div class="stack__row">
             <p class="stack__label">Frontend (when needed)</p>
             <ul class="chips">
-              <li>React</li>
-              <li>Angular</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/react/2DD4BF" alt="" loading="lazy" width="15" height="15">React</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/angular/2DD4BF" alt="" loading="lazy" width="15" height="15">Angular</li>
             </ul>
           </div>
         </div>
@@ -388,30 +407,96 @@
     </footer>
 
     <script>
-      // Quiet fade-in on scroll, respects prefers-reduced-motion.
       (function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Scroll progress bar
+        var bar = document.getElementById('progress');
+        if (bar) {
+          window.addEventListener('scroll', function () {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            if (h > 0) bar.style.width = (window.scrollY / h * 100) + '%';
+          }, { passive: true });
+        }
+
+        // Reveal on scroll
         var els = document.querySelectorAll('.reveal');
         if (reduce || !('IntersectionObserver' in window)) {
-          els.forEach(function (el) {
-            el.classList.add('is-visible');
-          });
-          return;
+          els.forEach(function (el) { el.classList.add('is-visible'); });
+        } else {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+              });
+            },
+            { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+          );
+          els.forEach(function (el) { io.observe(el); });
         }
-        var io = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-visible');
-                io.unobserve(e.target);
-              }
+
+        // Metric counter animation
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        function animateCount(el) {
+          var target = parseInt(el.dataset.count, 10);
+          var prefix = el.dataset.prefix || '';
+          var suffix = el.dataset.suffix || '';
+          var start = null;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / 1600, 1);
+            var val = Math.round(easeOut(p) * target);
+            el.textContent = prefix + (target >= 1000 ? val.toLocaleString() : val) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        var counted = false;
+        var metricsEl = document.querySelector('.metrics');
+        if (metricsEl && 'IntersectionObserver' in window) {
+          new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting && !counted) {
+              counted = true;
+              if (!reduce) metricsEl.querySelectorAll('[data-count]').forEach(animateCount);
+            }
+          }, { threshold: 0.3 }).observe(metricsEl);
+        }
+
+        // Terminal animation
+        var termOutput = document.getElementById('termOutput');
+        var termCursor = document.getElementById('termCursor');
+        if (termOutput) {
+          var lines = [
+            { t: '$ fraud-scan --stream live', c: 't-cmd' },
+            { t: '', c: '' },
+            { t: 'scanning TX-4829-A...', c: 't-dim' },
+            { t: '  + rule-engine   pass', c: 't-ok' },
+            { t: '  ~ ml-model      flagged [0.84]', c: 't-warn' },
+            { t: '  ! llm-analyst   fraud confirmed', c: 't-err' },
+            { t: '', c: '' },
+            { t: 'card suspended \u00b7 case #8471', c: 't-accent' },
+            { t: '\u20ac3,000+ recovered \u00b7 79.3% accuracy', c: 't-metric' },
+          ];
+          var delays = [0, 700, 1100, 1700, 2400, 3100, 3700, 4000, 4350];
+          function runTerm() {
+            termOutput.innerHTML = '';
+            if (termCursor) termCursor.style.display = 'none';
+            lines.forEach(function (line, i) {
+              setTimeout(function () {
+                var el = document.createElement('div');
+                el.className = line.c;
+                el.textContent = line.t;
+                termOutput.appendChild(el);
+              }, reduce ? 0 : delays[i]);
             });
-          },
-          { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
-        );
-        els.forEach(function (el) {
-          io.observe(el);
-        });
+            if (!reduce) {
+              var last = delays[delays.length - 1] + 400;
+              setTimeout(function () { if (termCursor) termCursor.style.display = 'inline-block'; }, last);
+              setTimeout(runTerm, last + 3200);
+            }
+          }
+          runTerm();
+        }
       })();
     </script>
   </body>
