@@ -1,19 +1,19 @@
 :root {
-  --bg: #0b0d10;
-  --bg-soft: #101317;
-  --text: #e8eaed;
-  --muted: #9aa3ad;
-  --rule: #1c2026;
+  --bg: #080a0d;
+  --bg-soft: #0d1014;
+  --text: #eaecef;
+  --muted: #8a96a2;
+  --rule: #161c23;
   --accent: #2dd4bf;
   --accent-ink: #04201c;
-  --max: 760px;
+  --max: 780px;
   --glow: rgba(45, 212, 191, 0.45);
   --glow-soft: rgba(45, 212, 191, 0.18);
   --blue: #60a5fa;
   --violet: #a78bfa;
 
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Manrope', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
 }
@@ -38,9 +38,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.65;
-  font-feature-settings: 'cv11', 'ss01';
+  font-size: 16.5px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -118,7 +117,10 @@ button:focus-visible {
   line-height: 1;
 }
 .nav__name {
+  font-family: var(--font-display);
   font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .nav__links {
@@ -183,35 +185,49 @@ main {
 /* Type */
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  margin: 0 0 22px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin: 0 0 20px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 .h1 {
-  font-size: clamp(40px, 6vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  margin: 0 0 24px;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: clamp(56px, 10vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 28px;
+  font-weight: 800;
 }
 
 .h2 {
-  font-size: clamp(24px, 3vw, 30px);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   margin: 0 0 24px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .h3 {
+  font-family: var(--font-display);
   font-size: 19px;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   margin: 0 0 10px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text);
 }
 
@@ -235,6 +251,26 @@ main {
 
 .muted {
   color: var(--muted);
+}
+
+.sec-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-tag::before {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 /* Buttons */
@@ -335,10 +371,10 @@ main {
   gap: 8px;
 }
 .metric__num {
-  font-family: var(--font-mono);
-  font-size: clamp(28px, 4vw, 38px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6.5vw, 66px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
   color: var(--accent);
   line-height: 1;
 }
@@ -365,29 +401,32 @@ main {
 /* Pillars */
 .pillars {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 28px;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
   margin-top: 8px;
 }
 .pillar {
-  padding: 0;
-  border-top: 1px solid var(--rule);
-  padding-top: 22px;
+  padding: 22px;
+  background: var(--bg-soft);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  transition: border-color 220ms ease;
 }
 .pillar:first-child {
-  border-top: none;
-  padding-top: 0;
+  /* inherits card style */
 }
 .pillar__tag {
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  margin: 0 0 8px;
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.6;
+  letter-spacing: 0.12em;
+  margin: 0 0 10px;
 }
 .pillar p {
   margin: 0;
   color: var(--muted);
+  font-size: 15px;
 }
 
 /* Case studies */
@@ -559,6 +598,7 @@ main {
   padding: 0;
   margin: 0 0 14px;
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 10px;
 }
 .creds li {
@@ -589,10 +629,19 @@ main {
 
 /* Closing */
 .closing {
-  margin-top: 56px;
+  margin-top: 64px;
   text-align: center;
-  border-top: 1px solid var(--rule);
-  padding-top: 48px;
+  position: relative;
+  padding-top: 56px;
+}
+.closing::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 16px var(--glow-soft);
 }
 .closing .h2 {
   margin-bottom: 12px;
@@ -757,8 +806,8 @@ main {
 
 /* ─── Hero dot-grid background ─── */
 .section--hero {
-  background-image: radial-gradient(circle, rgba(45, 212, 191, 0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: radial-gradient(circle, rgba(45, 212, 191, 0.11) 1px, transparent 1px);
+  background-size: 30px 30px;
   border-radius: 16px;
   margin-top: 8px;
 }
@@ -840,7 +889,7 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
 
 /* ── H1 gradient shimmer ─── */
 .h1--shimmer {
-  background: linear-gradient(110deg, #e8eaed 15%, var(--accent) 38%, var(--blue) 52%, var(--violet) 64%, #e8eaed 78%);
+  background: linear-gradient(110deg, #eaecef 15%, var(--accent) 38%, var(--blue) 52%, var(--violet) 64%, #eaecef 78%);
   background-size: 280% 100%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -884,6 +933,24 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
 }
 @media (prefers-reduced-motion: reduce) {
   .section--hero::before { animation: none; }
+}
+
+/* ── Hero ghost-text watermark ─── */
+.section--hero::after {
+  content: 'HF';
+  position: absolute;
+  bottom: -50px;
+  right: -10px;
+  font-family: var(--font-display);
+  font-size: clamp(200px, 38vw, 420px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(45, 212, 191, 0.044);
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+  user-select: none;
 }
 
 /* ── Glassmorphism metric cards ─── */
@@ -1021,4 +1088,4 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
 }
 
 /* ── Pillar hover ─── */
-.pillar:hover { background: rgba(45,212,191,0.025) !important; border-radius: 8px; }
+.pillar:hover { background: rgba(45,212,191,0.03) !important; border-color: rgba(45,212,191,0.28) !important; }
