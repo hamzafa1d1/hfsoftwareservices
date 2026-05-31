@@ -793,6 +793,70 @@ main {
   }
 }
 
+/* ─── Stack Marquee ─── */
+.stack-marquee {
+  position: relative;
+  overflow: hidden;
+  margin: 24px 0 36px;
+}
+.stack-marquee::before,
+.stack-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 110px;
+  z-index: 2;
+  pointer-events: none;
+}
+.stack-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg) 25%, transparent);
+}
+.stack-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg) 25%, transparent);
+}
+.stack-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  padding: 10px 0;
+  will-change: transform;
+}
+.stack-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  margin-right: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid rgba(141, 174, 191, 0.26);
+  border-radius: 100px;
+  white-space: nowrap;
+  box-shadow:
+    0 1px 4px rgba(141, 174, 191, 0.10),
+    0 4px 16px rgba(141, 174, 191, 0.08);
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+.stack-pill:hover {
+  border-color: rgba(141, 174, 191, 0.55);
+  box-shadow:
+    0 2px 8px rgba(141, 174, 191, 0.22),
+    0 0 0 3px rgba(141, 174, 191, 0.10);
+}
+.stack-pill svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
 
 /* About two-column layout */
 .about__layout {
