@@ -327,6 +327,25 @@ main {
   border-radius: 6px;
 }
 
+/* Specialism pills */
+.spec-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 0 0 28px;
+}
+.spec-pills span {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--accent);
+  background: rgba(224,122,95,0.08);
+  border: 1px solid rgba(224,122,95,0.22);
+  border-radius: 100px;
+  padding: 4px 11px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
 .cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -1115,6 +1134,9 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
 /* ── Active nav link ─── */
 .nav__links a { position: relative; }
 .nav__links a.is-active { color: var(--text) !important; }
+.nav__links a.btn--primary,
+.nav__links a.btn--primary:hover,
+.nav__links a.btn--primary:focus-visible { color: var(--accent-ink) !important; }
 .nav__links a.is-active::after {
   content: '';
   position: absolute;
