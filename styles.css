@@ -205,11 +205,12 @@ main {
 
 .h1 {
   font-family: var(--font-display);
-  font-size: clamp(44px, 7vw, 68px);
-  line-height: 0.97;
+  font-size: clamp(32px, 3.5vw, 44px);
+  line-height: 1;
   letter-spacing: -0.04em;
   margin: 0 0 28px;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .h2 {
@@ -923,11 +924,18 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
   }
 }
 
+/* ── Full-page particle canvas ─── */
+#vanta-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+}
+
 /* ── Aurora hero overlay — replaced by Vanta ─── */
 .section--hero {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
 }
 /* aurora ::before removed — Vanta canvas is the background */
 

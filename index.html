@@ -80,6 +80,7 @@
   </head>
   <body>
     <div id="progress" aria-hidden="true"></div>
+    <div id="vanta-bg" aria-hidden="true"></div>
     <div id="cursor-glow" aria-hidden="true"></div>
     <a class="skip" href="#main">Skip to content</a>
 
@@ -620,17 +621,17 @@
           runTerm();
         }
 
-        // ── Vanta NET particle background ──────────────────────────
-        var heroEl = document.querySelector('.section--hero');
-        if (heroEl && typeof VANTA !== 'undefined' && !reduce) {
+        // ── Vanta NET particle background (full page) ──────────────────────────
+        var vantaBg = document.getElementById('vanta-bg');
+        if (vantaBg && typeof VANTA !== 'undefined' && !reduce) {
           VANTA.NET({
-            el: heroEl,
+            el: vantaBg,
             THREE: THREE,
             color: 0x2dd4bf,
             backgroundColor: 0x080a0d,
-            points: 9,
-            maxDistance: 22,
-            spacing: 18,
+            points: 6,
+            maxDistance: 24,
+            spacing: 22,
             showDots: true,
             mouseControls: true,
             touchControls: false,
