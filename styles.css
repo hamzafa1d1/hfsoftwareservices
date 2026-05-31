@@ -123,8 +123,30 @@ button:focus-visible {
 .nav__links a:focus-visible {
   color: var(--text);
 }
-.nav__links .btn {
+.nav__links .btn:not(.btn--primary) {
   color: var(--text);
+}
+
+/* Availability pill in nav */
+.nav__avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #5C8A52;
+  border: 1px solid rgba(107,158,94,0.28);
+  border-radius: 100px;
+  padding: 4px 10px 4px 8px;
+  background: rgba(107,158,94,0.07);
+  white-space: nowrap;
+  user-select: none;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 640px) {
+  .nav__avail-text { display: none; }
+  .nav__avail { padding: 4px 6px; }
 }
 
 @media (max-width: 520px) {

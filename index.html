@@ -89,7 +89,11 @@
           <a href="#work">Work</a>
           <a href="#stack">Stack</a>
           <a href="#about">About</a>
-          <a class="btn btn--sm" href="#contact">Book a call</a>
+          <span class="nav__avail" aria-label="Available for new engagements">
+            <span class="avail__dot"></span>
+            <span class="nav__avail-text">Available</span>
+          </span>
+          <a id="nav-cta" class="btn btn--sm btn--primary" href="#contact">Book a call</a>
         </nav>
       </div>
     </header>
@@ -99,10 +103,6 @@
       <section id="top" class="section section--hero reveal">
         <div class="hero__layout">
           <div class="hero__copy">
-            <div class="avail">
-              <span class="avail__dot"></span>
-              Available for new engagements
-            </div>
             <p class="eyebrow">SOFTWARE ENGINEER · .NET · AWS · API SYSTEMS</p>
             <h1 class="h1 h1--shimmer">Hamza Faidi</h1>
             <p class="lede">
@@ -778,6 +778,26 @@
               delay: 0.45,
               duration: 0.65,
               easing: [0.22, 1, 0.36, 1],
+            });
+          }
+
+          // ── Nav CTA entrance + hover glow ───────────────────────────
+          var navCta = document.getElementById('nav-cta');
+          if (navCta) {
+            animate(navCta, { scale: [0.88, 1], opacity: [0, 1] }, {
+              delay: 0.9, duration: 0.5, easing: [0.22, 1, 0.36, 1]
+            });
+            navCta.addEventListener('mouseenter', function() {
+              Motion.animate(navCta, {
+                scale: 1.07,
+                boxShadow: '0 6px 22px rgba(224,122,95,0.45), 0 0 0 3px rgba(224,122,95,0.18)'
+              }, { duration: 0.22, easing: [0.22, 1, 0.36, 1] });
+            });
+            navCta.addEventListener('mouseleave', function() {
+              Motion.animate(navCta, {
+                scale: 1,
+                boxShadow: '0 0px 0px rgba(224,122,95,0), 0 0 0 0px rgba(224,122,95,0)'
+              }, { duration: 0.38, easing: [0.22, 1, 0.36, 1] });
             });
           }
         } else if (reduce) {
