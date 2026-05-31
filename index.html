@@ -299,7 +299,7 @@
           </article>
 
         </div>
-        <p class="pillars-hint" aria-hidden="true">drag or scroll to explore →</p>
+        <p class="pillars-hint" aria-hidden="true">scroll · drag · auto-advances</p>
       </section>
 
       <hr class="rule" />
@@ -807,70 +807,145 @@
           });
         }
 
-        // ── 3D pillar card carousel ───────────────────────────────
+        // ── Curved infinite arc carousel ─────────────────────────
         var pillarsTrack = document.querySelector('.pillars-track');
-        var pillarCards = pillarsTrack ? Array.prototype.slice.call(pillarsTrack.querySelectorAll('.pillar')) : [];
+        var pillarCards = pillarsTrack
+          ? Array.prototype.slice.call(pillarsTrack.querySelectorAll('.pillar'))
+          : [];
 
-        function applyPillarRotations() {
-          if (!pillarsTrack || reduce) return;
-          var trackRect = pillarsTrack.getBoundingClientRect();
-          var trackCenterX = trackRect.left + trackRect.width / 2;
-          pillarCards.forEach(function(card) {
-            if (card._hovered) return;
-            var rect = card.getBoundingClientRect();
-            var cardCenterX = rect.left + rect.width / 2;
-            var offset = (cardCenterX - trackCenterX) / (trackRect.width * 0.5);
-            var clamp = Math.max(-1, Math.min(1, offset));
-            var ry = clamp * -18;
-            var sc = 1 - Math.abs(clamp) * 0.05;
-            card._baseRy = ry;
-            card.style.transform = 'perspective(960px) rotateY(' + ry + 'deg) scale(' + sc + ')';
-            card.style.opacity = String(1 - Math.abs(clamp) * 0.22);
-          });
-        }
+        if (pillarsTrack && pillarCards.length) {
+          var N = pillarCards.length;
 
-        if (pillarsTrack && pillarCards.length && !reduce) {
-          pillarsTrack.addEventListener('scroll', applyPillarRotations, { passive: true });
-          var pillarsSection = pillarsTrack.closest('section');
-          if (pillarsSection) {
-            var pIo = new IntersectionObserver(function(entries) {
-              if (entries[0].isIntersecting) { applyPillarRotations(); pIo.disconnect(); }
-            }, { threshold: 0.1 });
-            pIo.observe(pillarsSection);
-          }
-          pillarCards.forEach(function(card) {
-            card.addEventListener('mouseenter', function() { card._hovered = true; });
-            card.addEventListener('mousemove', function(e) {
-              var rect = card.getBoundingClientRect();
-              var cx = rect.left + rect.width / 2;
-              var cy = rect.top + rect.height / 2;
-              var dx = (e.clientX - cx) / (rect.width / 2);
-              var dy = (e.clientY - cy) / (rect.height / 2);
-              var rx = -dy * 7;
-              var ry = (card._baseRy || 0) + dx * 10;
-              card.style.transform = 'perspective(960px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale(1.04)';
-              card.style.opacity = '1';
-            }, { passive: true });
-            card.addEventListener('mouseleave', function() {
-              card._hovered = false;
-              card.style.transition = 'transform 400ms cubic-bezier(0.23,1,0.32,1), opacity 300ms ease, box-shadow 300ms ease';
-              applyPillarRotations();
-              setTimeout(function() { card.style.transition = ''; }, 420);
+          if (reduce) {
+            // Accessible static layout
+            pillarsTrack.style.height = 'auto';
+            pillarsTrack.style.overflow = 'visible';
+            pillarsTrack.style.display = 'flex';
+            pillarsTrack.style.flexDirection = 'column';
+            pillarsTrack.style.gap = '16px';
+            pillarCards.forEach(function(c) {
+              c.style.position = 'relative';
+              c.style.left = 'auto';
+              c.style.top = 'auto';
+              c.style.width = '100%';
             });
-          });
-          // Drag-to-scroll
-          var isDragging = false, dragStartX = 0, dragScrollLeft = 0;
-          pillarsTrack.addEventListener('mousedown', function(e) {
-            isDragging = true; dragStartX = e.clientX; dragScrollLeft = pillarsTrack.scrollLeft;
-            pillarsTrack.style.userSelect = 'none';
-          });
-          window.addEventListener('mousemove', function(e) {
-            if (!isDragging) return;
-            pillarsTrack.scrollLeft = dragScrollLeft - (e.clientX - dragStartX);
-          }, { passive: true });
-          window.addEventListener('mouseup', function() {
-            isDragging = false; pillarsTrack.style.userSelect = '';
-          });
+          } else {
+            var isMobile = window.innerWidth < 640;
+            var CARD_R    = isMobile ? 380 : 640;
+            var CARD_STEP = isMobile ? 52  : 38; // degrees per slot
+            var cOff = 0;   // continuous offset in slot units
+            var vOff = 0;   // velocity (slot units / frame @ 60fps)
+            var rafId = 0, lastRafT = 0;
+
+            function wrapSlot(raw) {
+              var mod = raw - Math.floor(raw / N) * N;
+              return mod > N / 2 ? mod - N : mod;
+            }
+
+            function positionCards() {
+              pillarCards.forEach(function(card, i) {
+                var wrapped = wrapSlot(i - cOff);
+                var ang = wrapped * CARD_STEP;
+                var rad = ang * Math.PI / 180;
+                var tx = CARD_R * Math.sin(rad);
+                var tz = CARD_R * (Math.cos(rad) - 1);
+                var ry = -ang;
+                var dist = Math.abs(wrapped);
+                var sc  = 1 - dist * 0.08;
+                var op  = Math.max(0, 1 - dist * 0.4);
+                var hy  = card._hy || 0;
+                card.style.zIndex  = String(Math.round(10 - dist * 4));
+                card.style.opacity = String(Math.round(op * 100) / 100);
+                card.style.transform =
+                  'translateX(' + tx + 'px)' +
+                  ' translateY(' + (-hy) + 'px)' +
+                  ' translateZ(' + tz + 'px)' +
+                  ' rotateY(' + ry + 'deg)' +
+                  ' scale(' + sc + ')';
+              });
+            }
+
+            function arcLoop(t) {
+              var dt = lastRafT ? Math.min((t - lastRafT) / 16.67, 4) : 1;
+              lastRafT = t;
+              cOff  += vOff * dt;
+              vOff  *= Math.pow(0.88, dt);
+              // Snap toward nearest integer slot when coasting
+              if (Math.abs(vOff) < 0.004) {
+                var snap = Math.round(cOff);
+                cOff += (snap - cOff) * 0.065 * dt;
+              }
+              // Tween hover lift
+              pillarCards.forEach(function(c) {
+                c._hy = (c._hy || 0) + ((c._isHovered ? 10 : 0) - (c._hy || 0)) * 0.13 * dt;
+              });
+              positionCards();
+              rafId = requestAnimationFrame(arcLoop);
+            }
+            rafId = requestAnimationFrame(arcLoop);
+
+            // Wheel
+            pillarsTrack.addEventListener('wheel', function(e) {
+              e.preventDefault();
+              var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+              vOff += delta * 0.005;
+              vOff  = Math.max(-0.65, Math.min(0.65, vOff));
+            }, { passive: false });
+
+            // Pointer drag
+            var drag = null;
+            pillarsTrack.addEventListener('pointerdown', function(e) {
+              drag = { x: e.clientX, off: cOff };
+              vOff = 0;
+              pillarsTrack.setPointerCapture(e.pointerId);
+            });
+            pillarsTrack.addEventListener('pointermove', function(e) {
+              if (!drag) return;
+              cOff = drag.off - (e.clientX - drag.x) / 130;
+            });
+            pillarsTrack.addEventListener('pointerup', function(e) {
+              if (!drag) return;
+              vOff = -(e.clientX - drag.x) / 130 / 9;
+              drag = null;
+            });
+            pillarsTrack.addEventListener('pointercancel', function() { drag = null; });
+
+            // Hover highlight via Motion.animate
+            pillarCards.forEach(function(card) {
+              card.addEventListener('mouseenter', function() {
+                card._isHovered = true;
+                if (typeof Motion !== 'undefined') {
+                  Motion.animate(card, {
+                    boxShadow: '0 28px 72px rgba(224,122,95,0.30), 0 0 0 1.5px rgba(224,122,95,0.52)',
+                    borderColor: 'rgba(224,122,95,0.48)'
+                  }, { duration: 0.38, easing: [0.22, 1, 0.36, 1] });
+                }
+              });
+              card.addEventListener('mouseleave', function() {
+                card._isHovered = false;
+                if (typeof Motion !== 'undefined') {
+                  Motion.animate(card, {
+                    boxShadow: '0 4px 12px rgba(224,122,95,0)',
+                    borderColor: 'rgba(224,122,95,0.12)'
+                  }, { duration: 0.55, easing: [0.22, 1, 0.36, 1] });
+                }
+              });
+            });
+
+            // Gentle auto-advance every 4s
+            var autoAdv = setInterval(function() {
+              if (!drag && Math.abs(vOff) < 0.008) vOff = 0.022;
+            }, 4000);
+
+            document.addEventListener('visibilitychange', function() {
+              if (document.hidden) {
+                clearInterval(autoAdv); cancelAnimationFrame(rafId);
+              } else {
+                rafId = requestAnimationFrame(arcLoop);
+                autoAdv = setInterval(function() { if (!drag && Math.abs(vOff) < 0.008) vOff = 0.022; }, 4000);
+              }
+            });
+          }
         }
 
       })();

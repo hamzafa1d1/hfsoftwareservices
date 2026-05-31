@@ -522,49 +522,43 @@ main {
   margin-top: 6px;
 }
 
-/* 3D Pillars scroll track */
+/* Curved infinite arc carousel */
 .pillars-track {
-  display: flex;
-  gap: 18px;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
   cursor: grab;
-  padding: 28px 2px 36px;
-  margin: 14px -2px 0;
-  scrollbar-width: none;
-  /* slight perspective container */
-  perspective: 1200px;
+  margin: 24px 0 0;
+  perspective: 880px;
+  perspective-origin: 50% 48%;
+  touch-action: none;
+  user-select: none;
 }
-.pillars-track::-webkit-scrollbar { display: none; }
 .pillars-track:active { cursor: grabbing; }
 
 .pillar {
-  flex: 0 0 300px;
-  scroll-snap-align: start;
+  position: absolute;
+  width: 300px;
+  left: calc(50% - 150px);
+  top: 20px;
   padding: 28px 24px 26px;
-  background: rgba(237, 232, 213, 0.75);
-  border: 1px solid rgba(224, 122, 95, 0.1);
+  background: rgba(237, 232, 213, 0.85);
+  border: 1px solid rgba(224, 122, 95, 0.12);
   border-radius: 16px;
-  position: relative;
   overflow: hidden;
-  will-change: transform;
-  transition: box-shadow 300ms ease, opacity 300ms ease;
+  will-change: transform, opacity;
   backface-visibility: hidden;
 }
 .pillar::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(224, 122, 95, 0.65) 50%, transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(224, 122, 95, 0.7) 50%, transparent);
   opacity: 0;
-  transition: opacity 300ms ease;
+  transition: opacity 350ms ease;
 }
 .pillar:hover::before { opacity: 1; }
-.pillar:hover {
-  box-shadow: 0 24px 64px rgba(44, 36, 22, 0.12), 0 0 0 1px rgba(224, 122, 95, 0.14);
-}
 
 .pillar__icon {
   display: block;
@@ -602,7 +596,8 @@ main {
 }
 
 @media (max-width: 640px) {
-  .pillar { flex: 0 0 82vw; }
+  .pillars-track { height: 460px; }
+  .pillar { width: 84vw; left: 8vw; }
 }
 
 /* Case studies */
