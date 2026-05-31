@@ -519,22 +519,60 @@ main {
   margin-top: 6px;
 }
 
-/* Pillars */
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 16px;
-  margin-top: 8px;
+/* 3D Pillars scroll track */
+.pillars-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  padding: 28px 2px 36px;
+  margin: 14px -2px 0;
+  scrollbar-width: none;
+  /* slight perspective container */
+  perspective: 1200px;
 }
+.pillars-track::-webkit-scrollbar { display: none; }
+.pillars-track:active { cursor: grabbing; }
+
 .pillar {
-  padding: 22px;
-  background: var(--bg-soft);
-  border: 1px solid var(--rule);
-  border-radius: 12px;
-  transition: border-color 220ms ease;
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  padding: 28px 24px 26px;
+  background: rgba(10, 13, 16, 0.85);
+  border: 1px solid rgba(45, 212, 191, 0.1);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  transition: box-shadow 300ms ease, opacity 300ms ease;
+  backface-visibility: hidden;
 }
-.pillar:first-child {
-  /* inherits card style */
+.pillar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.65) 50%, transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.pillar:hover::before { opacity: 1; }
+.pillar:hover {
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(45, 212, 191, 0.14);
+}
+
+.pillar__icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.pillar__icon svg {
+  width: 100%;
+  height: 100%;
 }
 .pillar__tag {
   font-family: var(--font-mono);
@@ -548,6 +586,20 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: 15px;
+}
+
+.pillars-hint {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  opacity: 0.38;
+  letter-spacing: 0.1em;
+  text-align: right;
+  margin: 4px 0 0;
+}
+
+@media (max-width: 640px) {
+  .pillar { flex: 0 0 82vw; }
 }
 
 /* Case studies */
@@ -1173,5 +1225,4 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
 }
 
-/* ── Pillar hover ─── */
-.pillar:hover { background: rgba(45,212,191,0.03) !important; border-color: rgba(45,212,191,0.28) !important; }
+/* ── Pillar hover — handled via 3D tilt JS ─── */

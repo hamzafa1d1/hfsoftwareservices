@@ -211,8 +211,27 @@
         <h2 id="what-h" class="h2">What I do</h2>
         <p class="muted">I work across the full stack of backend concerns. Three areas I've gone deep in:</p>
 
-        <div class="pillars">
-          <article class="pillar">
+        <div class="pillars-track" role="list">
+
+          <article class="pillar" role="listitem">
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Server blades -->
+                <rect x="4" y="7" width="24" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="4" y="18" width="24" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="4" y="29" width="24" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                <!-- Status LEDs -->
+                <circle cx="9" cy="10.5" r="1.5" fill="currentColor" opacity="0.8"/>
+                <circle cx="9" cy="21.5" r="1.5" fill="currentColor" opacity="0.65"/>
+                <circle cx="9" cy="32.5" r="1.5" fill="currentColor" opacity="0.4"/>
+                <!-- Activity bars -->
+                <line x1="14" y1="10.5" x2="24" y2="10.5" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                <line x1="14" y1="21.5" x2="20" y2="21.5" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                <!-- API out arrow -->
+                <line x1="28" y1="21.5" x2="39" y2="21.5" stroke="currentColor" stroke-width="1.5"/>
+                <polyline points="35,17.5 39,21.5 35,25.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+              </svg>
+            </span>
             <p class="pillar__tag">PILLAR 01</p>
             <h3 class="h3">Backend systems &amp; API design</h3>
             <p>
@@ -222,7 +241,24 @@
               fintech integrations (Mastercard, Adyen) but also general SaaS platform work.
             </p>
           </article>
-          <article class="pillar">
+
+          <article class="pillar" role="listitem">
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Cloud shape -->
+                <path d="M10 28 C10 28 7 27.5 7 23.5 C7 20 10 18 13.5 18.5 C14 15 16.5 12 20 12 C24 12 26.5 14.5 27 18 C30 18 33 20.5 33 24 C33 27.5 30 28 30 28 Z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Trunk -->
+                <line x1="20" y1="28" x2="20" y2="33" stroke="currentColor" stroke-width="1.4"/>
+                <!-- Branches -->
+                <line x1="20" y1="33" x2="11" y2="39" stroke="currentColor" stroke-width="1.3"/>
+                <line x1="20" y1="33" x2="20" y2="40" stroke="currentColor" stroke-width="1.3"/>
+                <line x1="20" y1="33" x2="29" y2="39" stroke="currentColor" stroke-width="1.3"/>
+                <!-- Nodes -->
+                <circle cx="11" cy="39" r="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="20" cy="40" r="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="29" cy="39" r="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              </svg>
+            </span>
             <p class="pillar__tag">PILLAR 02</p>
             <h3 class="h3">Cloud infrastructure &amp; reliability</h3>
             <p>
@@ -231,7 +267,28 @@
               database migrations on live production systems.
             </p>
           </article>
-          <article class="pillar">
+
+          <article class="pillar" role="listitem">
+            <span class="pillar__icon" aria-hidden="true">
+              <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Central node -->
+                <circle cx="22" cy="22" r="4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <!-- Outer nodes -->
+                <circle cx="7"  cy="9"  r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="37" cy="9"  r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="5"  cy="31" r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="39" cy="31" r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="22" cy="41" r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <!-- Connections -->
+                <line x1="17.8" y1="18.8" x2="9.5"  y2="11.5" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <line x1="26.2" y1="18.8" x2="34.5" y2="11.5" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <line x1="17.5" y1="24.5" x2="7.5"  y2="29"   stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <line x1="26.5" y1="24.5" x2="36.5" y2="29"   stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <line x1="22"   y1="26.5" x2="22"   y2="38.5" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                <!-- Centre fill dot -->
+                <circle cx="22" cy="22" r="1.5" fill="currentColor" opacity="0.5"/>
+              </svg>
+            </span>
             <p class="pillar__tag">PILLAR 03</p>
             <h3 class="h3">Intelligent automation &amp; risk systems</h3>
             <p>
@@ -240,7 +297,9 @@
               rule-based card management serving thousands of users.
             </p>
           </article>
+
         </div>
+        <p class="pillars-hint" aria-hidden="true">drag or scroll to explore →</p>
       </section>
 
       <hr class="rule" />
@@ -692,6 +751,72 @@
           }, { passive: true });
           heroSection.addEventListener('mouseleave', function() {
             termInner.style.transform = 'rotateX(3deg) rotateY(-6deg)';
+          });
+        }
+
+        // ── 3D pillar card carousel ───────────────────────────────
+        var pillarsTrack = document.querySelector('.pillars-track');
+        var pillarCards = pillarsTrack ? Array.prototype.slice.call(pillarsTrack.querySelectorAll('.pillar')) : [];
+
+        function applyPillarRotations() {
+          if (!pillarsTrack || reduce) return;
+          var trackRect = pillarsTrack.getBoundingClientRect();
+          var trackCenterX = trackRect.left + trackRect.width / 2;
+          pillarCards.forEach(function(card) {
+            if (card._hovered) return;
+            var rect = card.getBoundingClientRect();
+            var cardCenterX = rect.left + rect.width / 2;
+            var offset = (cardCenterX - trackCenterX) / (trackRect.width * 0.5);
+            var clamp = Math.max(-1, Math.min(1, offset));
+            var ry = clamp * -18;
+            var sc = 1 - Math.abs(clamp) * 0.05;
+            card._baseRy = ry;
+            card.style.transform = 'perspective(960px) rotateY(' + ry + 'deg) scale(' + sc + ')';
+            card.style.opacity = String(1 - Math.abs(clamp) * 0.22);
+          });
+        }
+
+        if (pillarsTrack && pillarCards.length && !reduce) {
+          pillarsTrack.addEventListener('scroll', applyPillarRotations, { passive: true });
+          var pillarsSection = pillarsTrack.closest('section');
+          if (pillarsSection) {
+            var pIo = new IntersectionObserver(function(entries) {
+              if (entries[0].isIntersecting) { applyPillarRotations(); pIo.disconnect(); }
+            }, { threshold: 0.1 });
+            pIo.observe(pillarsSection);
+          }
+          pillarCards.forEach(function(card) {
+            card.addEventListener('mouseenter', function() { card._hovered = true; });
+            card.addEventListener('mousemove', function(e) {
+              var rect = card.getBoundingClientRect();
+              var cx = rect.left + rect.width / 2;
+              var cy = rect.top + rect.height / 2;
+              var dx = (e.clientX - cx) / (rect.width / 2);
+              var dy = (e.clientY - cy) / (rect.height / 2);
+              var rx = -dy * 7;
+              var ry = (card._baseRy || 0) + dx * 10;
+              card.style.transform = 'perspective(960px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale(1.04)';
+              card.style.opacity = '1';
+            }, { passive: true });
+            card.addEventListener('mouseleave', function() {
+              card._hovered = false;
+              card.style.transition = 'transform 400ms cubic-bezier(0.23,1,0.32,1), opacity 300ms ease, box-shadow 300ms ease';
+              applyPillarRotations();
+              setTimeout(function() { card.style.transition = ''; }, 420);
+            });
+          });
+          // Drag-to-scroll
+          var isDragging = false, dragStartX = 0, dragScrollLeft = 0;
+          pillarsTrack.addEventListener('mousedown', function(e) {
+            isDragging = true; dragStartX = e.clientX; dragScrollLeft = pillarsTrack.scrollLeft;
+            pillarsTrack.style.userSelect = 'none';
+          });
+          window.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            pillarsTrack.scrollLeft = dragScrollLeft - (e.clientX - dragStartX);
+          }, { passive: true });
+          window.addEventListener('mouseup', function() {
+            isDragging = false; pillarsTrack.style.userSelect = '';
           });
         }
 
