@@ -356,20 +356,150 @@ main {
   border-radius: 50%;
 }
 
-/* Metrics */
-.metrics {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Brain metrics hub layout */
+.brain-metrics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px 24px;
+  grid-template-columns: 1fr 120px 1fr;
+  align-items: center;
+  gap: 0;
 }
-.metrics li {
+
+.bm-col {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 44px;
 }
+
+.bm-col--left {
+  align-items: flex-end;
+  text-align: right;
+  padding-right: 40px;
+}
+
+.bm-col--right {
+  align-items: flex-start;
+  text-align: left;
+  padding-left: 40px;
+}
+
+/* Spoke connectors: arrow pointing toward brain (left col) and away from brain (right col) */
+.bm-item {
+  position: relative;
+  max-width: 260px;
+}
+
+.bm-col--left .bm-item::after {
+  content: '→';
+  position: absolute;
+  right: -28px;
+  top: 6px;
+  font-size: 13px;
+  color: rgba(45, 212, 191, 0.6);
+  line-height: 1;
+}
+
+.bm-col--right .bm-item::before {
+  content: '→';
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  font-size: 13px;
+  color: rgba(45, 212, 191, 0.6);
+  line-height: 1;
+}
+
+/* Connector hairline */
+.bm-col--left .bm-item::before {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: 13px;
+  width: 14px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(45, 212, 191, 0.35));
+}
+
+.bm-col--right .bm-item::after {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: 13px;
+  width: 14px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(45, 212, 191, 0.35), transparent);
+}
+
+/* Brain hub */
+.bm-hub {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bm-hub__glow {
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.09) 0%, transparent 70%);
+  pointer-events: none;
+  animation: brain-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes brain-pulse {
+  from { opacity: 0.6; transform: scale(0.95); }
+  to   { opacity: 1;   transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bm-hub__glow { animation: none; }
+}
+
+.bm-brain-svg {
+  width: 100px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(45, 212, 191, 0.22));
+}
+
+/* Metric stagger on scroll */
+.bm-item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.brain-metrics.is-counted .bm-col--left .bm-item:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+.brain-metrics.is-counted .bm-col--left .bm-item:nth-child(2) { opacity: 1; transform: none; transition-delay: 100ms; }
+.brain-metrics.is-counted .bm-col--right .bm-item:nth-child(1) { opacity: 1; transform: none; transition-delay: 200ms; }
+.brain-metrics.is-counted .bm-col--right .bm-item:nth-child(2) { opacity: 1; transform: none; transition-delay: 300ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bm-item { opacity: 1; transform: none; }
+}
+
+/* Mobile: single-column, brain on top */
+@media (max-width: 640px) {
+  .brain-metrics {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .bm-hub { order: -1; justify-content: flex-start; }
+  .bm-col--left,
+  .bm-col--right {
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .bm-col--left .bm-item::after,
+  .bm-col--left .bm-item::before,
+  .bm-col--right .bm-item::before,
+  .bm-col--right .bm-item::after { display: none; }
+}
+
 .metric__num {
   font-family: var(--font-display);
   font-size: clamp(36px, 4.5vw, 52px);
@@ -386,16 +516,7 @@ main {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.45;
-}
-@media (max-width: 720px) {
-  .metrics {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 420px) {
-  .metrics {
-    grid-template-columns: 1fr;
-  }
+  margin-top: 6px;
 }
 
 /* Pillars */
@@ -827,16 +948,6 @@ main {
   margin-top: 8px;
 }
 
-/* ─── Metric cards ─── */
-.metrics li {
-  background: var(--bg-soft);
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 20px;
-  transition: border-color 200ms ease;
-}
-.metrics li:hover { border-color: rgba(45, 212, 191, 0.3); }
-
 /* ─── Case study hover ─── */
 .case {
   transition: background-color 200ms ease;
@@ -961,40 +1072,7 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
   .hero__copy > *, .hero__terminal { opacity: 1; transform: none; }
 }
 
-/* ── Glassmorphism metric cards ─── */
-.metrics li {
-  background: rgba(10, 13, 16, 0.75) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(45,212,191,0.10) !important;
-  border-radius: 14px !important;
-  padding: 20px !important;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 280ms ease, transform 280ms ease, box-shadow 280ms ease !important;
-}
-.metrics li::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(45,212,191,0.7) 50%, transparent);
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
-.metrics li:hover { border-color: rgba(45,212,191,0.32) !important; transform: translateY(-3px) !important; box-shadow: 0 14px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(45,212,191,0.08) !important; }
-.metrics li:hover::after { opacity: 1; }
 .metric__num { text-shadow: 0 0 26px rgba(45,212,191,0.5); }
-
-/* ── Metric children stagger ─── */
-.metrics li { opacity: 0; transform: translateY(10px); transition: opacity 450ms ease, transform 450ms ease, border-color 280ms ease, box-shadow 280ms ease; }
-.metrics.is-counted li:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
-.metrics.is-counted li:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
-.metrics.is-counted li:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
-.metrics.is-counted li:nth-child(4) { opacity: 1; transform: none; transition-delay: 240ms; }
-@media (prefers-reduced-motion: reduce) {
-  .metrics li { opacity: 1; transform: none; }
-}
 
 /* ── Nav logo pulse ─── */
 .nav__mark {

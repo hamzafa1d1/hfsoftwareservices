@@ -149,24 +149,58 @@
 
       <!-- Metrics -->
       <section class="section reveal" aria-label="Proof and metrics">
-        <ul class="metrics">
-          <li>
-            <div class="metric__num"><span class="count" data-prefix="~" data-count="60" data-suffix="%">~60%</span></div>
-            <div class="metric__label">faster platform delivery using AI agents &amp; spec-driven dev</div>
-          </li>
-          <li>
-            <div class="metric__num"><span class="count" data-count="94" data-suffix="%">94%</span></div>
-            <div class="metric__label">fraud-detection precision in production — false positives halved</div>
-          </li>
-          <li>
-            <div class="metric__num"><span class="count" data-count="100" data-suffix="+">100+</span></div>
-            <div class="metric__label">virtual cards auto-renewed before expiry — zero revenue loss</div>
-          </li>
-          <li>
-            <div class="metric__num"><span class="count" data-count="1000" data-suffix="+">1,000+</span></div>
-            <div class="metric__label">corporate accounts protected across fraud &amp; card automation systems</div>
-          </li>
-        </ul>
+        <div class="brain-metrics">
+
+          <!-- Left metrics -->
+          <div class="bm-col bm-col--left">
+            <div class="bm-item">
+              <div class="metric__num"><span class="count" data-prefix="~" data-count="60" data-suffix="%">~60%</span></div>
+              <div class="metric__label">faster platform delivery using AI agents &amp; spec-driven dev</div>
+            </div>
+            <div class="bm-item">
+              <div class="metric__num"><span class="count" data-count="94" data-suffix="%">94%</span></div>
+              <div class="metric__label">fraud-detection precision in production — false positives halved</div>
+            </div>
+          </div>
+
+          <!-- Brain hub -->
+          <div class="bm-hub" aria-hidden="true">
+            <div class="bm-hub__glow"></div>
+            <svg class="bm-brain-svg" viewBox="0 0 96 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Left hemisphere -->
+              <path d="M48 10 C42 8 26 10 16 22 C7 34 9 50 18 56 C24 60 34 63 44 63" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Right hemisphere -->
+              <path d="M48 10 C54 8 70 10 80 22 C89 34 87 50 78 56 C72 60 62 63 52 63" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Brainstem -->
+              <path d="M44 63 C44 69 52 69 52 63" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Centre fissure (dashed) -->
+              <line x1="48" y1="10" x2="48" y2="63" stroke="#2dd4bf" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.28"/>
+              <!-- Left gyri -->
+              <path d="M23 26 C27 23 33 29 28 34" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round" opacity="0.62"/>
+              <path d="M15 40 C19 37 25 43 21 48" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round" opacity="0.62"/>
+              <path d="M21 53 C25 50 31 55 27 58" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+              <!-- Right gyri -->
+              <path d="M73 26 C69 23 63 29 68 34" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round" opacity="0.62"/>
+              <path d="M81 40 C77 37 71 43 75 48" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round" opacity="0.62"/>
+              <path d="M75 53 C71 50 65 55 69 58" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
+              <!-- Centre glow dot -->
+              <circle cx="48" cy="37" r="2.5" fill="#2dd4bf" opacity="0.45"/>
+            </svg>
+          </div>
+
+          <!-- Right metrics -->
+          <div class="bm-col bm-col--right">
+            <div class="bm-item">
+              <div class="metric__num"><span class="count" data-count="100" data-suffix="+">100+</span></div>
+              <div class="metric__label">virtual cards auto-renewed before expiry — zero revenue loss</div>
+            </div>
+            <div class="bm-item">
+              <div class="metric__num"><span class="count" data-count="1000" data-suffix="+">1,000+</span></div>
+              <div class="metric__label">corporate accounts protected across fraud &amp; card automation systems</div>
+            </div>
+          </div>
+
+        </div>
       </section>
 
       <hr class="rule" />
@@ -533,7 +567,7 @@
           requestAnimationFrame(step);
         }
         var counted = false;
-        var metricsEl = document.querySelector('.metrics');
+        var metricsEl = document.querySelector('.brain-metrics');
         if (metricsEl && 'IntersectionObserver' in window) {
           new IntersectionObserver(function (entries) {
             if (entries[0].isIntersecting && !counted) {
