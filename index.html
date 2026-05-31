@@ -186,41 +186,77 @@
             <path class="bm-spoke bm-spoke--4" d="M448,128 C505,128 540,178 590,178"
                   stroke="rgba(141,174,191,0.55)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
 
-            <!-- Brain outer glow ring -->
-            <ellipse cx="400" cy="115" rx="68" ry="60"
-                     stroke="rgba(141,174,191,0.07)" stroke-width="26" fill="none" filter="url(#bm-glow)"/>
+            <defs>
+              <marker id="bm-arr" viewBox="0 0 10 7" refX="9" refY="3.5"
+                      markerUnits="strokeWidth" markerWidth="5" markerHeight="5" orient="auto">
+                <path d="M0,0.5 L9,3.5 L0,6.5 Z" fill="rgba(141,174,191,0.55)"/>
+              </marker>
+              <filter id="bm-glow">
+                <feGaussianBlur stdDeviation="6" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <radialGradient id="bm-brain-grad" cx="50%" cy="42%" r="60%">
+                <stop offset="0%"  stop-color="rgba(141,174,191,0.22)"/>
+                <stop offset="55%" stop-color="rgba(141,174,191,0.08)"/>
+                <stop offset="100%" stop-color="rgba(141,174,191,0)"/>
+              </radialGradient>
+              <linearGradient id="bm-brain-stroke" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#A8C4D2"/>
+                <stop offset="100%" stop-color="#7798A8"/>
+              </linearGradient>
+            </defs>
 
-            <!-- Left hemisphere -->
-            <path d="M400,63 C389,60 358,63 338,88
-                     C320,112 323,144 342,151
-                     C353,156 372,163 392,163"
-                  stroke="#8DAEBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Right hemisphere -->
-            <path d="M400,63 C411,60 442,63 462,88
-                     C480,112 477,144 458,151
-                     C447,156 428,163 408,163"
-                  stroke="#8DAEBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Soft halo behind brain -->
+            <ellipse cx="400" cy="115" rx="74" ry="64" fill="url(#bm-brain-grad)"/>
+
+            <!-- Left hemisphere outline (cleaner, more iconic) -->
+            <path d="M400,62
+                     C383,55 360,58 346,72
+                     C332,78 326,92 334,102
+                     C322,108 322,124 334,132
+                     C328,144 340,156 354,154
+                     C360,164 380,170 394,162"
+                  stroke="url(#bm-brain-stroke)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+            <!-- Right hemisphere outline -->
+            <path d="M400,62
+                     C417,55 440,58 454,72
+                     C468,78 474,92 466,102
+                     C478,108 478,124 466,132
+                     C472,144 460,156 446,154
+                     C440,164 420,170 406,162"
+                  stroke="url(#bm-brain-stroke)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+            <!-- Central fissure -->
+            <path d="M400,64 C398,90 402,130 400,162"
+                  stroke="#8DAEBF" stroke-width="1.1" stroke-linecap="round" opacity="0.45" stroke-dasharray="2 4"/>
+
+            <!-- Left inner gyri (smooth concentric curls) -->
+            <path d="M384,82 C372,82 360,90 358,102" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.70" fill="none"/>
+            <path d="M378,100 C366,102 354,112 356,124" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.65" fill="none"/>
+            <path d="M380,124 C366,128 358,138 364,150" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.55" fill="none"/>
+            <path d="M386,142 C378,148 378,156 388,160" stroke="#8DAEBF" stroke-width="1.2" stroke-linecap="round" opacity="0.45" fill="none"/>
+
+            <!-- Right inner gyri (mirrored) -->
+            <path d="M416,82 C428,82 440,90 442,102" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.70" fill="none"/>
+            <path d="M422,100 C434,102 446,112 444,124" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.65" fill="none"/>
+            <path d="M420,124 C434,128 442,138 436,150" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.55" fill="none"/>
+            <path d="M414,142 C422,148 422,156 412,160" stroke="#8DAEBF" stroke-width="1.2" stroke-linecap="round" opacity="0.45" fill="none"/>
+
             <!-- Brainstem -->
-            <path d="M392,163 C392,176 408,176 408,163"
-                  stroke="#8DAEBF" stroke-width="1.6" stroke-linecap="round"/>
-            <!-- Centre fissure -->
-            <line x1="400" y1="67" x2="400" y2="163"
-                  stroke="#8DAEBF" stroke-width="0.9" stroke-dasharray="3 5" opacity="0.22"/>
-            <!-- Corpus callosum -->
-            <path d="M383,110 C391,106 409,106 417,110"
-                  stroke="#8DAEBF" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+            <path d="M392,162 C394,172 406,172 408,162"
+                  stroke="url(#bm-brain-stroke)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
 
-            <!-- Left gyri -->
-            <path d="M352,94  C360,88  372,100 362,110" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M337,120 C345,114 357,126 349,136" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M347,146 C356,140 367,149 359,154" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.40"/>
-            <!-- Right gyri -->
-            <path d="M448,94  C440,88  428,100 438,110" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M463,120 C455,114 443,126 451,136" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M453,146 C444,140 433,149 441,154" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.40"/>
+            <!-- Neural node dots -->
+            <circle cx="372" cy="92"  r="1.6" fill="#8DAEBF" opacity="0.70"/>
+            <circle cx="362" cy="116" r="1.6" fill="#8DAEBF" opacity="0.70"/>
+            <circle cx="370" cy="140" r="1.6" fill="#8DAEBF" opacity="0.60"/>
+            <circle cx="428" cy="92"  r="1.6" fill="#8DAEBF" opacity="0.70"/>
+            <circle cx="438" cy="116" r="1.6" fill="#8DAEBF" opacity="0.70"/>
+            <circle cx="430" cy="140" r="1.6" fill="#8DAEBF" opacity="0.60"/>
 
             <!-- Pulsing centre dot -->
-            <circle class="bm-brain-dot" cx="400" cy="113" r="3.5" fill="#8DAEBF" opacity="0.45"/>
+            <circle class="bm-brain-dot" cx="400" cy="112" r="3.2" fill="#8DAEBF" opacity="0.60"/>
 
             <!-- Spoke-exit junction dots -->
             <circle cx="352" cy="76"  r="2" fill="#8DAEBF" opacity="0.32"/>
