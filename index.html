@@ -33,7 +33,7 @@
     />
     <meta name="twitter:image" content="https://hfsoftware.dev/hamza.png" />
 
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23F4F1DE'/%3E%3Ctext x='16' y='21' font-family='ui-monospace,SFMono-Regular,Menlo,monospace' font-size='14' font-weight='700' text-anchor='middle' fill='%23E07A5F'%3EHF%3C/text%3E%3C/svg%3E" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FAFAF7'/%3E%3Ctext x='16' y='21' font-family='ui-monospace,SFMono-Regular,Menlo,monospace' font-size='14' font-weight='700' text-anchor='middle' fill='%238DAEBF'%3EHF%3C/text%3E%3C/svg%3E" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -162,7 +162,7 @@
             <defs>
               <marker id="bm-arr" viewBox="0 0 10 7" refX="9" refY="3.5"
                       markerUnits="strokeWidth" markerWidth="5" markerHeight="5" orient="auto">
-                <path d="M0,0.5 L9,3.5 L0,6.5 Z" fill="rgba(224,122,95,0.52)"/>
+                <path d="M0,0.5 L9,3.5 L0,6.5 Z" fill="rgba(141,174,191,0.55)"/>
               </marker>
               <filter id="bm-glow">
                 <feGaussianBlur stdDeviation="6" result="b"/>
@@ -171,67 +171,67 @@
             </defs>
 
             <!-- Spoke base hairlines (always visible, faint) -->
-            <path d="M352,76 C295,76 260,56 210,56" stroke="rgba(224,122,95,0.10)" stroke-width="1.2"/>
-            <path d="M352,128 C295,128 260,178 210,178" stroke="rgba(224,122,95,0.10)" stroke-width="1.2"/>
-            <path d="M448,76 C505,76 540,56 590,56" stroke="rgba(224,122,95,0.10)" stroke-width="1.2"/>
-            <path d="M448,128 C505,128 540,178 590,178" stroke="rgba(224,122,95,0.10)" stroke-width="1.2"/>
+            <path d="M352,76 C295,76 260,56 210,56" stroke="rgba(141,174,191,0.14)" stroke-width="1.2"/>
+            <path d="M352,128 C295,128 260,178 210,178" stroke="rgba(141,174,191,0.14)" stroke-width="1.2"/>
+            <path d="M448,76 C505,76 540,56 590,56" stroke="rgba(141,174,191,0.14)" stroke-width="1.2"/>
+            <path d="M448,128 C505,128 540,178 590,178" stroke="rgba(141,174,191,0.14)" stroke-width="1.2"/>
 
             <!-- Animated spoke flows -->
             <path class="bm-spoke bm-spoke--1" d="M352,76 C295,76 260,56 210,56"
-                  stroke="rgba(224,122,95,0.48)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
+                  stroke="rgba(141,174,191,0.55)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
             <path class="bm-spoke bm-spoke--2" d="M352,128 C295,128 260,178 210,178"
-                  stroke="rgba(224,122,95,0.48)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
+                  stroke="rgba(141,174,191,0.55)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
             <path class="bm-spoke bm-spoke--3" d="M448,76 C505,76 540,56 590,56"
-                  stroke="rgba(224,122,95,0.48)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
+                  stroke="rgba(141,174,191,0.55)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
             <path class="bm-spoke bm-spoke--4" d="M448,128 C505,128 540,178 590,178"
-                  stroke="rgba(224,122,95,0.48)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
+                  stroke="rgba(141,174,191,0.55)" stroke-width="1.2" marker-end="url(#bm-arr)"/>
 
             <!-- Brain outer glow ring -->
             <ellipse cx="400" cy="115" rx="68" ry="60"
-                     stroke="rgba(224,122,95,0.055)" stroke-width="26" fill="none" filter="url(#bm-glow)"/>
+                     stroke="rgba(141,174,191,0.07)" stroke-width="26" fill="none" filter="url(#bm-glow)"/>
 
             <!-- Left hemisphere -->
             <path d="M400,63 C389,60 358,63 338,88
                      C320,112 323,144 342,151
                      C353,156 372,163 392,163"
-                  stroke="#E07A5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  stroke="#8DAEBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             <!-- Right hemisphere -->
             <path d="M400,63 C411,60 442,63 462,88
                      C480,112 477,144 458,151
                      C447,156 428,163 408,163"
-                  stroke="#E07A5F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  stroke="#8DAEBF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             <!-- Brainstem -->
             <path d="M392,163 C392,176 408,176 408,163"
-                  stroke="#E07A5F" stroke-width="1.6" stroke-linecap="round"/>
+                  stroke="#8DAEBF" stroke-width="1.6" stroke-linecap="round"/>
             <!-- Centre fissure -->
             <line x1="400" y1="67" x2="400" y2="163"
-                  stroke="#E07A5F" stroke-width="0.9" stroke-dasharray="3 5" opacity="0.22"/>
+                  stroke="#8DAEBF" stroke-width="0.9" stroke-dasharray="3 5" opacity="0.22"/>
             <!-- Corpus callosum -->
             <path d="M383,110 C391,106 409,106 417,110"
-                  stroke="#E07A5F" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
+                  stroke="#8DAEBF" stroke-width="1.1" stroke-linecap="round" opacity="0.28"/>
 
             <!-- Left gyri -->
-            <path d="M352,94  C360,88  372,100 362,110" stroke="#E07A5F" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M337,120 C345,114 357,126 349,136" stroke="#E07A5F" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M347,146 C356,140 367,149 359,154" stroke="#E07A5F" stroke-width="1.3" stroke-linecap="round" opacity="0.40"/>
+            <path d="M352,94  C360,88  372,100 362,110" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
+            <path d="M337,120 C345,114 357,126 349,136" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
+            <path d="M347,146 C356,140 367,149 359,154" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.40"/>
             <!-- Right gyri -->
-            <path d="M448,94  C440,88  428,100 438,110" stroke="#E07A5F" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M463,120 C455,114 443,126 451,136" stroke="#E07A5F" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
-            <path d="M453,146 C444,140 433,149 441,154" stroke="#E07A5F" stroke-width="1.3" stroke-linecap="round" opacity="0.40"/>
+            <path d="M448,94  C440,88  428,100 438,110" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
+            <path d="M463,120 C455,114 443,126 451,136" stroke="#8DAEBF" stroke-width="1.4" stroke-linecap="round" opacity="0.60"/>
+            <path d="M453,146 C444,140 433,149 441,154" stroke="#8DAEBF" stroke-width="1.3" stroke-linecap="round" opacity="0.40"/>
 
             <!-- Pulsing centre dot -->
-            <circle class="bm-brain-dot" cx="400" cy="113" r="3.5" fill="#E07A5F" opacity="0.45"/>
+            <circle class="bm-brain-dot" cx="400" cy="113" r="3.5" fill="#8DAEBF" opacity="0.45"/>
 
             <!-- Spoke-exit junction dots -->
-            <circle cx="352" cy="76"  r="2" fill="#E07A5F" opacity="0.32"/>
-            <circle cx="352" cy="128" r="2" fill="#E07A5F" opacity="0.32"/>
-            <circle cx="448" cy="76"  r="2" fill="#E07A5F" opacity="0.32"/>
-            <circle cx="448" cy="128" r="2" fill="#E07A5F" opacity="0.32"/>
+            <circle cx="352" cy="76"  r="2" fill="#8DAEBF" opacity="0.32"/>
+            <circle cx="352" cy="128" r="2" fill="#8DAEBF" opacity="0.32"/>
+            <circle cx="448" cy="76"  r="2" fill="#8DAEBF" opacity="0.32"/>
+            <circle cx="448" cy="128" r="2" fill="#8DAEBF" opacity="0.32"/>
             <!-- Endpoint terminal dots -->
-            <circle cx="210" cy="56"  r="2.5" fill="#E07A5F" opacity="0.26"/>
-            <circle cx="210" cy="178" r="2.5" fill="#E07A5F" opacity="0.26"/>
-            <circle cx="590" cy="56"  r="2.5" fill="#E07A5F" opacity="0.26"/>
-            <circle cx="590" cy="178" r="2.5" fill="#E07A5F" opacity="0.26"/>
+            <circle cx="210" cy="56"  r="2.5" fill="#8DAEBF" opacity="0.26"/>
+            <circle cx="210" cy="178" r="2.5" fill="#8DAEBF" opacity="0.26"/>
+            <circle cx="590" cy="56"  r="2.5" fill="#8DAEBF" opacity="0.26"/>
+            <circle cx="590" cy="178" r="2.5" fill="#8DAEBF" opacity="0.26"/>
           </svg>
 
           <!-- Left metrics -->
@@ -449,7 +449,7 @@
             <p class="stack__label">Languages &amp; frameworks</p>
             <ul class="chips">
               <li><img class="chip-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="" loading="lazy" width="15" height="15">C# / ASP.NET Core</li>
-              <li><img class="chip-icon" src="https://cdn.simpleicons.org/typescript/E07A5F" alt="" loading="lazy" width="15" height="15">TypeScript / Node.js</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/typescript/8DAEBF" alt="" loading="lazy" width="15" height="15">TypeScript / Node.js</li>
             </ul>
           </div>
           <div class="stack__row">
@@ -457,7 +457,7 @@
             <ul class="chips">
               <li><img class="chip-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="" loading="lazy" width="15" height="15">AWS</li>
               <li><img class="chip-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg" alt="" loading="lazy" width="15" height="15">Azure (Logic Apps, Queue Storage, Key Vault)</li>
-              <li><img class="chip-icon" src="https://cdn.simpleicons.org/terraform/E07A5F" alt="" loading="lazy" width="15" height="15">Terraform</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/terraform/8DAEBF" alt="" loading="lazy" width="15" height="15">Terraform</li>
             </ul>
           </div>
           <div class="stack__row">
@@ -471,8 +471,8 @@
           <div class="stack__row">
             <p class="stack__label">Frontend (when needed)</p>
             <ul class="chips">
-              <li><img class="chip-icon" src="https://cdn.simpleicons.org/react/E07A5F" alt="" loading="lazy" width="15" height="15">React</li>
-              <li><img class="chip-icon" src="https://cdn.simpleicons.org/angular/E07A5F" alt="" loading="lazy" width="15" height="15">Angular</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/react/8DAEBF" alt="" loading="lazy" width="15" height="15">React</li>
+              <li><img class="chip-icon" src="https://cdn.simpleicons.org/angular/8DAEBF" alt="" loading="lazy" width="15" height="15">Angular</li>
             </ul>
           </div>
         </div>
@@ -793,13 +793,13 @@
             navCta.addEventListener('mouseenter', function() {
               Motion.animate(navCta, {
                 scale: 1.07,
-                boxShadow: '0 6px 22px rgba(224,122,95,0.45), 0 0 0 3px rgba(224,122,95,0.18)'
+                boxShadow: '0 6px 22px rgba(141,174,191,0.45), 0 0 0 3px rgba(141,174,191,0.20)'
               }, { duration: 0.22, easing: [0.22, 1, 0.36, 1] });
             });
             navCta.addEventListener('mouseleave', function() {
               Motion.animate(navCta, {
                 scale: 1,
-                boxShadow: '0 0px 0px rgba(224,122,95,0), 0 0 0 0px rgba(224,122,95,0)'
+                boxShadow: '0 0px 0px rgba(141,174,191,0), 0 0 0 0px rgba(141,174,191,0)'
               }, { duration: 0.38, easing: [0.22, 1, 0.36, 1] });
             });
           }
@@ -993,8 +993,8 @@
                 card._isHovered = true;
                 if (typeof Motion !== 'undefined') {
                   Motion.animate(card, {
-                    boxShadow: '0 28px 72px rgba(224,122,95,0.30), 0 0 0 1.5px rgba(224,122,95,0.52)',
-                    borderColor: 'rgba(224,122,95,0.48)'
+                    boxShadow: '0 28px 72px rgba(141,174,191,0.30), 0 0 0 1.5px rgba(141,174,191,0.52)',
+                    borderColor: 'rgba(141,174,191,0.48)'
                   }, { duration: 0.38, easing: [0.22, 1, 0.36, 1] });
                 }
               });
@@ -1002,8 +1002,8 @@
                 card._isHovered = false;
                 if (typeof Motion !== 'undefined') {
                   Motion.animate(card, {
-                    boxShadow: '0 4px 12px rgba(224,122,95,0)',
-                    borderColor: 'rgba(224,122,95,0.12)'
+                    boxShadow: '0 4px 12px rgba(141,174,191,0)',
+                    borderColor: 'rgba(141,174,191,0.18)'
                   }, { duration: 0.55, easing: [0.22, 1, 0.36, 1] });
                 }
               });
@@ -1149,8 +1149,8 @@
                 card._isHovered = true;
                 if (typeof Motion !== 'undefined') {
                   Motion.animate(card, {
-                    boxShadow: '0 28px 72px rgba(224,122,95,0.30), 0 0 0 1.5px rgba(224,122,95,0.52)',
-                    borderColor: 'rgba(224,122,95,0.48)'
+                    boxShadow: '0 28px 72px rgba(141,174,191,0.30), 0 0 0 1.5px rgba(141,174,191,0.52)',
+                    borderColor: 'rgba(141,174,191,0.48)'
                   }, { duration: 0.38, easing: [0.22, 1, 0.36, 1] });
                 }
               });
@@ -1158,8 +1158,8 @@
                 card._isHovered = false;
                 if (typeof Motion !== 'undefined') {
                   Motion.animate(card, {
-                    boxShadow: '0 4px 12px rgba(224,122,95,0)',
-                    borderColor: 'rgba(224,122,95,0.12)'
+                    boxShadow: '0 4px 12px rgba(141,174,191,0)',
+                    borderColor: 'rgba(141,174,191,0.18)'
                   }, { duration: 0.55, easing: [0.22, 1, 0.36, 1] });
                 }
               });
