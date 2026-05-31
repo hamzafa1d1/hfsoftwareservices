@@ -835,6 +835,7 @@
             var CARD_STEP = isMobile ? 52  : 38; // degrees per slot
             var cOff = 0;   // continuous offset in slot units
             var vOff = 0;   // velocity (slot units / frame @ 60fps)
+            var mouseLean = 0, mouseLeanTarget = 0; // mouse-position visual lean
             var rafId = 0, lastRafT = 0;
 
             function wrapSlot(raw) {
@@ -844,7 +845,7 @@
 
             function positionCards() {
               pillarCards.forEach(function(card, i) {
-                var wrapped = wrapSlot(i - cOff);
+                var wrapped = wrapSlot(i - (cOff + mouseLean));
                 var ang = wrapped * CARD_STEP;
                 var rad = ang * Math.PI / 180;
                 var tx = CARD_R * Math.sin(rad);
@@ -875,6 +876,9 @@
                 var snap = Math.round(cOff);
                 cOff += (snap - cOff) * 0.065 * dt;
               }
+              // Tween mouse lean — resets when no drag and vOff is live
+              var leanDamp = (Math.abs(vOff) > 0.012 || drag) ? 0 : 1;
+              mouseLean += (mouseLeanTarget * leanDamp - mouseLean) * 0.07 * dt;
               // Tween hover lift
               pillarCards.forEach(function(c) {
                 c._hy = (c._hy || 0) + ((c._isHovered ? 10 : 0) - (c._hy || 0)) * 0.13 * dt;
@@ -884,31 +888,43 @@
             }
             rafId = requestAnimationFrame(arcLoop);
 
-            // Wheel
+            // Wheel — reduced sensitivity
             pillarsTrack.addEventListener('wheel', function(e) {
               e.preventDefault();
               var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-              vOff += delta * 0.005;
-              vOff  = Math.max(-0.65, Math.min(0.65, vOff));
+              vOff += delta * 0.0018;
+              vOff  = Math.max(-0.22, Math.min(0.22, vOff));
             }, { passive: false });
 
-            // Pointer drag
+            // Pointer drag — reduced sensitivity
             var drag = null;
             pillarsTrack.addEventListener('pointerdown', function(e) {
               drag = { x: e.clientX, off: cOff };
               vOff = 0;
+              mouseLeanTarget = 0;
               pillarsTrack.setPointerCapture(e.pointerId);
             });
             pillarsTrack.addEventListener('pointermove', function(e) {
               if (!drag) return;
-              cOff = drag.off - (e.clientX - drag.x) / 130;
+              cOff = drag.off - (e.clientX - drag.x) / 220;
             });
             pillarsTrack.addEventListener('pointerup', function(e) {
               if (!drag) return;
-              vOff = -(e.clientX - drag.x) / 130 / 9;
+              vOff = -(e.clientX - drag.x) / 220 / 12;
               drag = null;
             });
             pillarsTrack.addEventListener('pointercancel', function() { drag = null; });
+
+            // Mouse-position lean — shift visual focus left / right
+            pillarsTrack.addEventListener('mousemove', function(e) {
+              if (drag) return;
+              var rect = pillarsTrack.getBoundingClientRect();
+              var norm = (e.clientX - rect.left) / rect.width * 2 - 1; // -1 → 1
+              mouseLeanTarget = norm * 0.42;
+            });
+            pillarsTrack.addEventListener('mouseleave', function() {
+              mouseLeanTarget = 0;
+            });
 
             // Hover highlight via Motion.animate
             pillarCards.forEach(function(card) {
@@ -934,7 +950,7 @@
 
             // Gentle auto-advance every 4s
             var autoAdv = setInterval(function() {
-              if (!drag && Math.abs(vOff) < 0.008) vOff = 0.022;
+              if (!drag && Math.abs(vOff) < 0.008) vOff = 0.014;
             }, 4000);
 
             document.addEventListener('visibilitychange', function() {
@@ -942,7 +958,7 @@
                 clearInterval(autoAdv); cancelAnimationFrame(rafId);
               } else {
                 rafId = requestAnimationFrame(arcLoop);
-                autoAdv = setInterval(function() { if (!drag && Math.abs(vOff) < 0.008) vOff = 0.022; }, 4000);
+                autoAdv = setInterval(function() { if (!drag && Math.abs(vOff) < 0.008) vOff = 0.014; }, 4000);
               }
             });
           }
