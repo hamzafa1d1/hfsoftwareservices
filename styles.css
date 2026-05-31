@@ -750,6 +750,12 @@ main {
 .hero__terminal {
   position: sticky;
   top: 72px;
+}
+.term__3d {
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+}
+.term__inner {
   border: 1px solid var(--rule);
   border-radius: 12px;
   overflow: hidden;
@@ -757,7 +763,18 @@ main {
   font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.7;
-  box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.06), 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: rotateX(3deg) rotateY(-6deg);
+  transform-style: preserve-3d;
+  transition: transform 350ms cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(45,212,191,0.1),
+    0 0 60px rgba(45,212,191,0.06);
+}
+@media (hover: none) {
+  .term__inner { transform: none; }
+  .term__3d { perspective: none; }
 }
 .term__bar {
   background: #161a1f;
@@ -804,10 +821,8 @@ main {
 }
 @keyframes blink-cur { 50% { opacity: 0; } }
 
-/* ─── Hero dot-grid background ─── */
+/* ─── Hero dot-grid background — replaced by Vanta canvas ─── */
 .section--hero {
-  background-image: radial-gradient(circle, rgba(45, 212, 191, 0.11) 1px, transparent 1px);
-  background-size: 30px 30px;
   border-radius: 16px;
   margin-top: 8px;
 }
@@ -908,32 +923,13 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
   }
 }
 
-/* ── Aurora hero overlay ─── */
+/* ── Aurora hero overlay — replaced by Vanta ─── */
 .section--hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
 }
-.section--hero::before {
-  content: '';
-  position: absolute;
-  inset: -60px;
-  background:
-    radial-gradient(ellipse 55% 45% at 80% 10%, rgba(45,212,191,0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 10% 90%, rgba(96,165,250,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 35% at 90% 75%, rgba(167,139,250,0.05) 0%, transparent 50%);
-  animation: aurora 16s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: -1;
-}
-@keyframes aurora {
-  0%   { transform: scale(1)    translate(0px, 0px);    opacity: 1;   }
-  50%  { transform: scale(1.05) translate(-14px, 8px);  opacity: 0.75; }
-  100% { transform: scale(1.02) translate(12px, -10px); opacity: 1;   }
-}
-@media (prefers-reduced-motion: reduce) {
-  .section--hero::before { animation: none; }
-}
+/* aurora ::before removed — Vanta canvas is the background */
 
 /* ── Hero ghost-text watermark ─── */
 .section--hero::after {
@@ -951,6 +947,20 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
   z-index: 0;
   line-height: 1;
   user-select: none;
+}
+
+/* ── 3D terminal tilt — handled inline above in terminal section ─── */
+
+/* ── Hero copy — will be animated by Motion.js (start hidden) ─── */
+.hero__copy > * {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.hero__terminal {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__copy > *, .hero__terminal { opacity: 1; transform: none; }
 }
 
 /* ── Glassmorphism metric cards ─── */
@@ -1045,8 +1055,8 @@ main, header, footer, #cursor-glow, #progress { position: relative; z-index: 1; 
 }
 
 /* ── CRT scanlines on terminal ─── */
-.hero__terminal { position: relative; }
-.hero__terminal::after {
+.term__inner { position: relative; }
+.term__inner::after {
   content: '';
   position: absolute;
   inset: 0;
