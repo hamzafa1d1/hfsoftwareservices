@@ -1032,68 +1032,135 @@ main {
   perspective-origin: 50% 50%;
 }
 .term__inner {
-  border: 1px solid var(--rule);
-  border-radius: 12px;
+  border: 1px solid rgba(141,174,191,0.18);
+  border-radius: 14px;
   overflow: hidden;
-  background: #141D24;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(141,174,191,0.10), transparent 55%),
+    linear-gradient(180deg, #131C23 0%, #0E1519 100%);
   font-family: var(--font-mono);
   font-size: 12.5px;
-  line-height: 1.7;
+  line-height: 1.75;
   transform: rotateX(3deg) rotateY(-6deg);
   transform-style: preserve-3d;
   transition: transform 350ms cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform;
   box-shadow:
-    0 30px 80px rgba(28, 43, 53, 0.12),
-    0 0 0 1px rgba(141,174,191,0.12),
-    0 0 60px rgba(141,174,191,0.07);
+    0 30px 80px rgba(28, 43, 53, 0.14),
+    0 0 0 1px rgba(141,174,191,0.10),
+    0 0 60px rgba(141,174,191,0.08);
 }
 @media (hover: none) {
   .term__inner { transform: none; }
   .term__3d { perspective: none; }
 }
 .term__bar {
-  background: #1B2830;
-  border-bottom: 1px solid var(--rule);
+  background: linear-gradient(180deg, #1F2C35 0%, #182229 100%);
+  border-bottom: 1px solid rgba(141,174,191,0.14);
   padding: 10px 14px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
+  position: relative;
 }
 .term__dot {
   width: 11px; height: 11px;
   border-radius: 50%;
   flex-shrink: 0;
+  box-shadow: inset 0 0 0 0.5px rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.06);
 }
 .term__dot--red    { background: #ff5f57; }
 .term__dot--yellow { background: #febc2e; }
 .term__dot--green  { background: #28c840; }
 .term__title {
-  margin-left: 8px;
+  flex: 1;
+  text-align: center;
   font-size: 11px;
-  color: #7A9BAB;
-  letter-spacing: 0.05em;
+  color: #8AA6B6;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
+.term__title-icon {
+  color: #28c840;
+  font-size: 10px;
+  text-shadow: 0 0 6px rgba(40,200,64,0.7);
+}
+.term__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #8DAEBF;
+  background: rgba(141,174,191,0.10);
+  border: 1px solid rgba(141,174,191,0.22);
+  padding: 2px 7px 2px 6px;
+  border-radius: 100px;
+  margin-left: 4px;
+}
+.term__live-dot {
+  width: 5px; height: 5px;
+  background: #28c840;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(40,200,64,0.8);
+  animation: term-live-pulse 1.6s ease-in-out infinite;
+}
+@keyframes term-live-pulse {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.4; }
+}
+
 .term__body {
   padding: 16px 18px 20px;
-  min-height: 200px;
+  min-height: 230px;
+  color: #D9D4CE;
 }
-.term__output { min-height: 180px; }
-.t-cmd    { color: #D9D4CE; }
-.t-dim    { color: #7A9BAB; }
+.term__output { margin-bottom: 4px; }
+.term__output > * {
+  animation: term-line-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes term-line-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.term__line { display: block; line-height: 1.75; }
+.term__prompt {
+  margin-right: 6px;
+  white-space: nowrap;
+}
+.term__typing {
+  color: #EFEAE3;
+}
+
+.t-cmd-line { line-height: 1.75; }
+.t-cmd    { color: #EFEAE3; }
+.t-out    { color: #C7D2DB; padding-left: 2px; }
+.t-dim    { color: #6B8090; }
 .t-ok     { color: #8EBF7A; }
 .t-warn   { color: #f59e0b; }
 .t-err    { color: #f87171; }
 .t-accent { color: #8DAEBF; }
-.t-metric { color: #9BB5C2; font-weight: 600; }
+.t-metric { color: #B5D4E0; font-weight: 600; }
+.t-user   { color: #8EBF7A; font-weight: 600; }
+.t-host   { color: #8DAEBF; font-weight: 600; }
+.t-path   { color: #F0B05A; }
+.t-prompt { color: #8DAEBF; font-weight: 700; }
+
 .term__cursor {
-  display: none;
+  display: inline-block;
   width: 8px; height: 14px;
   background: var(--accent);
   border-radius: 1px;
-  vertical-align: middle;
-  margin-top: 2px;
-  animation: blink-cur 1.1s step-end infinite;
+  vertical-align: -2px;
+  margin-left: 1px;
+  box-shadow: 0 0 8px rgba(141,174,191,0.55);
+  animation: blink-cur 1.05s steps(2, end) infinite;
 }
 @keyframes blink-cur { 50% { opacity: 0; } }
 

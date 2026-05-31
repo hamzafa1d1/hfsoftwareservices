@@ -129,16 +129,27 @@
           <aside class="hero__terminal" aria-hidden="true">
             <div class="term__3d">
               <div class="term__inner">
-            <div class="term__bar">
-              <span class="term__dot term__dot--red"></span>
-              <span class="term__dot term__dot--yellow"></span>
-              <span class="term__dot term__dot--green"></span>
-              <span class="term__title">hf-software-services · v1</span>
-            </div>
-            <div class="term__body">
-              <div id="termOutput" class="term__output"></div>
-              <span id="termCursor" class="term__cursor"></span>
-            </div>
+                <div class="term__bar">
+                  <span class="term__dot term__dot--red"></span>
+                  <span class="term__dot term__dot--yellow"></span>
+                  <span class="term__dot term__dot--green"></span>
+                  <span class="term__title">
+                    <span class="term__title-icon" aria-hidden="true">⏻</span>
+                    hamza@hf-software ~ — zsh
+                  </span>
+                  <span class="term__live" aria-hidden="true"><span class="term__live-dot"></span>LIVE</span>
+                </div>
+                <div class="term__body">
+                  <div id="termOutput" class="term__output"></div>
+                  <div class="term__line term__line--active">
+                    <span class="term__prompt">
+                      <span class="t-user">hamza</span><span class="t-dim">@</span><span class="t-host">hf-software</span>
+                      <span class="t-dim">:</span><span class="t-path">~/services</span>
+                      <span class="t-prompt">❯</span>
+                    </span>
+                    <span id="termTyping" class="term__typing"></span><span id="termCursor" class="term__cursor"></span>
+                  </div>
+                </div>
               </div>
             </div>
           </aside>
@@ -874,40 +885,108 @@
           sections.forEach(function (s) { navIo.observe(s.el); });
         }
 
-        // Terminal animation
+        // Terminal animation — typewriter prompt + streamed output
         var termOutput = document.getElementById('termOutput');
+        var termTyping = document.getElementById('termTyping');
         var termCursor = document.getElementById('termCursor');
-        if (termOutput) {
-          var lines = [
-            { t: '$ hf init --client new --mode ai-first', c: 't-cmd' },
-            { t: '', c: '' },
-            { t: '  ✓ AI agents · MCP server development', c: 't-ok' },
-            { t: '  ✓ dev & test automation pipelines', c: 't-ok' },
-            { t: '  ✓ Jira · Confluence via MCP integrations', c: 't-ok' },
-            { t: '  ✓ CI/CD · auto PR review · zero-downtime', c: 't-ok' },
-            { t: '', c: '' },
-            { t: 'HF Software Services · ready to build', c: 't-accent' },
-            { t: '.NET · AWS · TypeScript · UTC+1', c: 't-metric' },
+        if (termOutput && termTyping) {
+          // Build a small "session" of commands + responses. Each step is either:
+          //   { type: 'cmd', text: '...' }          → typed into the active prompt
+          //   { type: 'out', html: '...', cls: '' } → appended above the prompt
+          //   { type: 'wait', ms: N }               → pause
+          //   { type: 'prompt' }                    → push current line to history, start fresh
+          var PROMPT_HTML = '<span class="t-user">hamza</span><span class="t-dim">@</span><span class="t-host">hf-software</span><span class="t-dim">:</span><span class="t-path">~/services</span> <span class="t-prompt">❯</span> ';
+          var script = [
+            { type: 'cmd', text: 'whoami --stack' },
+            { type: 'wait', ms: 250 },
+            { type: 'out', html: '<span class="t-accent">Hamza Faidi</span> <span class="t-dim">·</span> backend &amp; cloud engineer <span class="t-dim">·</span> Tunis, UTC+1' },
+            { type: 'out', html: '<span class="t-dim">↳</span> <span class="t-metric">.NET · C# · AWS · TypeScript · Terraform</span>' },
+            { type: 'prompt' },
+            { type: 'wait', ms: 300 },
+            { type: 'cmd', text: 'ai-agents deploy --mcp jira,confluence' },
+            { type: 'wait', ms: 400 },
+            { type: 'out', html: '<span class="t-ok">✓</span> MCP servers online <span class="t-dim">(jira, confluence, slack)</span>' },
+            { type: 'out', html: '<span class="t-ok">✓</span> agents armed for dev &amp; test automation' },
+            { type: 'prompt' },
+            { type: 'wait', ms: 300 },
+            { type: 'cmd', text: 'ship --zero-downtime ./prod' },
+            { type: 'wait', ms: 500 },
+            { type: 'out', html: '<span class="t-ok">✓</span> migration 100% <span class="t-dim">[████████████████]</span> <span class="t-metric">0 dropped requests</span>' },
+            { type: 'out', html: '<span class="t-ok">✓</span> fraud precision <span class="t-metric">94%</span> <span class="t-dim">· false positives ↓ 50%</span>' },
+            { type: 'out', html: '<span class="t-ok">✓</span> 1,000+ corporate accounts protected' },
+            { type: 'prompt' },
+            { type: 'wait', ms: 400 },
+            { type: 'cmd', text: 'status' },
+            { type: 'wait', ms: 250 },
+            { type: 'out', html: '<span class="t-accent">●</span> available <span class="t-dim">·</span> accepting new contracts <span class="t-dim">·</span> EU + US hours' },
+            { type: 'out', html: '<span class="t-dim">↳ book a call to start →</span> <span class="t-prompt">hamza.faidi.software.eng@gmail.com</span>' },
+            { type: 'prompt' },
           ];
-          var delays = [0, 600, 1000, 1500, 2000, 2500, 3000, 3400, 3750];
-          function runTerm() {
-            termOutput.innerHTML = '';
-            if (termCursor) termCursor.style.display = 'none';
-            lines.forEach(function (line, i) {
+
+          var rafReduce = reduce;
+
+          function appendOutput(html, cls) {
+            var el = document.createElement('div');
+            el.className = 't-out ' + (cls || '');
+            el.innerHTML = html;
+            termOutput.appendChild(el);
+          }
+
+          function pushPromptToHistory(typedText) {
+            var line = document.createElement('div');
+            line.className = 't-cmd-line';
+            line.innerHTML = PROMPT_HTML + '<span class="t-cmd">' + escapeHtml(typedText) + '</span>';
+            termOutput.appendChild(line);
+            termTyping.textContent = '';
+          }
+
+          function escapeHtml(s) {
+            return s.replace(/[&<>]/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;'})[c]; });
+          }
+
+          function typeText(text, cb) {
+            if (rafReduce) { termTyping.textContent = text; cb(); return; }
+            var i = 0;
+            (function tick() {
+              termTyping.textContent = text.slice(0, ++i);
+              if (i < text.length) {
+                // slightly variable typing speed
+                setTimeout(tick, 22 + Math.random() * 55);
+              } else {
+                setTimeout(cb, 220);
+              }
+            })();
+          }
+
+          function runScript(idx) {
+            if (idx >= script.length) {
+              // restart loop after a pause
               setTimeout(function () {
-                var el = document.createElement('div');
-                el.className = line.c;
-                el.textContent = line.t;
-                termOutput.appendChild(el);
-              }, reduce ? 0 : delays[i]);
-            });
-            if (!reduce) {
-              var last = delays[delays.length - 1] + 400;
-              setTimeout(function () { if (termCursor) termCursor.style.display = 'inline-block'; }, last);
-              setTimeout(runTerm, last + 3200);
+                termOutput.innerHTML = '';
+                termTyping.textContent = '';
+                runScript(0);
+              }, rafReduce ? 0 : 4500);
+              return;
+            }
+            var step = script[idx];
+            var next = function () { runScript(idx + 1); };
+
+            if (step.type === 'cmd') {
+              typeText(step.text, next);
+            } else if (step.type === 'out') {
+              appendOutput(step.html, step.cls);
+              setTimeout(next, rafReduce ? 0 : 120);
+            } else if (step.type === 'wait') {
+              setTimeout(next, rafReduce ? 0 : step.ms);
+            } else if (step.type === 'prompt') {
+              pushPromptToHistory(termTyping.textContent);
+              setTimeout(next, rafReduce ? 0 : 200);
+            } else {
+              next();
             }
           }
-          runTerm();
+
+          runScript(0);
         }
 
         // ── Motion.js staggered hero entrance ───────────────────────
