@@ -369,76 +369,72 @@
         <p class="sec-tag" aria-hidden="true">02 / WORK</p>
         <h2 id="work-h" class="h2">Selected work</h2>
 
-        <article class="case">
-          <h3 class="h3">Rebuilding a compensation platform with AI agents &amp; spec-driven development</h3>
-          <p class="case__ctx"><em>Context: legacy compensation management system requiring a full rewrite, delivered with a fully AI-integrated engineering workflow.</em></p>
-          <dl class="case__grid">
-            <dt>Problem</dt>
-            <dd>The existing system was too brittle to extend and too risky to refactor incrementally — it needed to be replaced without losing years of embedded business logic, and delivered fast.</dd>
-            <dt>What I did</dt>
-            <dd>
-              Rebuilt the platform from scratch using <strong>spec-driven development</strong> — writing detailed functional and technical specs first, then using AI coding agents (GitHub Copilot) to accelerate implementation against those specs. Wired <strong>GitHub CI/CD</strong> so every pull request gets automatic AI code review and can auto-merge when checks pass. Connected <strong>Jira and Confluence via MCP</strong> so tickets were created, updated, and documented automatically from the development workflow — keeping the board and wiki in sync without manual overhead. The result was a clean .NET backend with well-defined domain boundaries and a fully traceable, documented codebase.
-            </dd>
-            <dt>Result</dt>
-            <dd>Full platform delivered significantly faster than a conventional rewrite, with automated test coverage, living documentation in Confluence, and a Jira board that stayed current throughout — without any manual ticket management.</dd>
-          </dl>
-        </article>
+        <div class="work-wrap">
+          <div class="work-track" role="list" aria-label="Case studies">
 
-        <article class="case">
-          <h3 class="h3">Catching fraud in near-real-time</h3>
-          <p class="case__ctx"><em>Context: Mastercard transaction stream at a corporate-spend platform.</em></p>
-          <dl class="case__grid">
-            <dt>Problem</dt>
-            <dd>Suspicious transactions were caught too slowly, and manual review didn't scale.</dd>
-            <dt>What I did</dt>
-            <dd>
-              Built a multi-layer, agentic fraud-detection system combining layered LLM
-              analysis to flag activity in near-real-time — .NET backend with an Angular
-              review UI.
-            </dd>
-            <dt>Result</dt>
-            <p>~79% detection accuracy in production, manual reviews halved, €3,000+ in fraudulent charges recovered — all on a .NET backend with no dedicated ML team.</p>
-          </dl>
-        </article>
+            <article class="work-card" role="listitem">
+              <span class="work-card__tag">AI AGENTS &middot; .NET</span>
+              <h3 class="work-card__title">Comp-platform rebuild with AI agents</h3>
+              <p class="work-card__body">Legacy compensation system replaced using spec-driven dev + GitHub Copilot. Jira &amp; Confluence kept in sync automatically via MCP&nbsp;&mdash;&nbsp;no manual ticket work.</p>
+              <div class="work-card__result">
+                <span class="work-card__result-label">Outcome</span>
+                <span class="work-card__result-value">Full rewrite delivered fast &middot; living docs in Confluence &middot; zero manual ticket management</span>
+              </div>
+            </article>
 
-        <article class="case">
-          <h3 class="h3">Migrating a live database with zero downtime</h3>
-          <p class="case__ctx"><em>Context: legacy codebase being moved to a Domain-Driven Design architecture.</em></p>
-          <dl class="case__grid">
-            <dt>Problem</dt>
-            <dd>A complex schema migration had to happen on a production system that couldn't go down.</dd>
-            <dt>What I did</dt>
-            <dd>
-              Authored cautious SQL scripts to avoid resource locking, prepared and
-              monitored migration jobs with detailed logging to catch failures early.
-            </dd>
-            <dt>Result</dt>
-            <dd>Completed with zero downtime and &lt;2% CPU overhead during peak load.</dd>
-          </dl>
-        </article>
+            <article class="work-card" role="listitem">
+              <span class="work-card__tag">FINTECH &middot; FRAUD</span>
+              <h3 class="work-card__title">Fraud detection at Mastercard scale</h3>
+              <p class="work-card__body">Multi-layer LLM pipeline flagging suspicious Mastercard transactions on a corporate-spend platform in near-real-time. .NET backend, Angular review&nbsp;UI.</p>
+              <div class="work-card__result">
+                <span class="work-card__result-label">Outcome</span>
+                <span class="work-card__result-value">~79% accuracy &middot; manual reviews halved &middot; &euro;3,000+ recovered</span>
+              </div>
+            </article>
 
-        <article class="case">
-          <h3 class="h3">Making payments provider-agnostic</h3>
-          <p class="case__ctx"><em>Context: a payments layer tightly coupled to one processor.</em></p>
-          <dl class="case__grid">
-            <dt>Problem</dt>
-            <dd>Adding or swapping payment providers was slow and risky.</dd>
-            <dt>What I did</dt>
-            <dd>
-              Refactored the payments layer to be provider-agnostic and integrated Adyen
-              cleanly, applying Observer / Factory / Decorator patterns for
-              maintainability.
-            </dd>
-            <dt>Result</dt>
-            <dd>~30% faster feature delivery and ~20% faster onboarding for new work on the system.</dd>
-          </dl>
-        </article>
+            <article class="work-card" role="listitem">
+              <span class="work-card__tag">BACKEND &middot; SQL</span>
+              <h3 class="work-card__title">Zero-downtime live DB migration</h3>
+              <p class="work-card__body">Complex schema migration on a live production system transitioning to a DDD architecture &mdash; no service window, cautious locking-aware SQL scripts with detailed&nbsp;logging.</p>
+              <div class="work-card__result">
+                <span class="work-card__result-label">Outcome</span>
+                <span class="work-card__result-value">0 downtime &middot; &lt;2% CPU overhead at peak load</span>
+              </div>
+            </article>
 
-        <p class="case__also">
-          <em>Also:</em> Mastercard virtual-card renewal automation (100+ cards renewed
-          before expiry, protecting interchange revenue) and an automated credit-card
-          suspension feature serving 1,000+ corporate users.
-        </p>
+            <article class="work-card" role="listitem">
+              <span class="work-card__tag">PAYMENTS &middot; .NET</span>
+              <h3 class="work-card__title">Provider-agnostic payments layer</h3>
+              <p class="work-card__body">Decoupled a tightly-coupled payments layer and integrated Adyen cleanly using Observer / Factory / Decorator patterns for long-term&nbsp;maintainability.</p>
+              <div class="work-card__result">
+                <span class="work-card__result-label">Outcome</span>
+                <span class="work-card__result-value">~30% faster feature delivery &middot; ~20% faster onboarding</span>
+              </div>
+            </article>
+
+            <article class="work-card" role="listitem">
+              <span class="work-card__tag">FINTECH &middot; AUTOMATION</span>
+              <h3 class="work-card__title">Virtual-card renewal automation</h3>
+              <p class="work-card__body">Automated renewal of expiring Mastercard virtual cards on a corporate-spend platform, protecting interchange revenue with no manual&nbsp;intervention.</p>
+              <div class="work-card__result">
+                <span class="work-card__result-label">Outcome</span>
+                <span class="work-card__result-value">100+ cards renewed before expiry &middot; interchange revenue protected</span>
+              </div>
+            </article>
+
+            <article class="work-card" role="listitem">
+              <span class="work-card__tag">FINTECH &middot; PLATFORM</span>
+              <h3 class="work-card__title">Automated card suspension system</h3>
+              <p class="work-card__body">Built an automated credit-card suspension feature handling complex multi-condition business rules at scale for a corporate card&nbsp;platform.</p>
+              <div class="work-card__result">
+                <span class="work-card__result-label">Outcome</span>
+                <span class="work-card__result-value">Serving 1,000+ corporate users reliably</span>
+              </div>
+            </article>
+
+          </div>
+          <p class="pillars-hint" aria-hidden="true">drag &nbsp;&middot;&nbsp; scroll &nbsp;&middot;&nbsp; swipe</p>
+        </div>
 
       </section>
 
@@ -885,6 +881,147 @@
           heroSection.addEventListener('mouseleave', function() {
             termInner.style.transform = 'rotateX(3deg) rotateY(-6deg)';
           });
+        }
+
+        // ── Work cards arc carousel ───────────────────────────────
+        var workTrack  = document.querySelector('.work-track');
+        var workCards  = workTrack
+          ? Array.prototype.slice.call(workTrack.querySelectorAll('.work-card'))
+          : [];
+
+        if (workTrack && workCards.length) {
+          var wN = workCards.length;
+
+          if (reduce) {
+            workTrack.style.height = 'auto';
+            workTrack.style.overflow = 'visible';
+            workTrack.style.display = 'flex';
+            workTrack.style.flexDirection = 'column';
+            workTrack.style.gap = '16px';
+            workCards.forEach(function(c) {
+              c.style.position = 'relative';
+              c.style.left = 'auto';
+              c.style.top  = 'auto';
+              c.style.width = '100%';
+            });
+          } else {
+            var wMobile   = window.innerWidth < 640;
+            var wR        = wMobile ? 380 : 640;
+            var wSTEP     = wMobile ? 52  : 38;
+            var wCOff = 0, wVOff = 0;
+            var wLean = 0, wLeanT = 0;
+            var wRafId = 0, wLastT = 0, wDrag = null;
+
+            function wWrapSlot(raw) {
+              var mod = raw - Math.floor(raw / wN) * wN;
+              return mod > wN / 2 ? mod - wN : mod;
+            }
+
+            function wPosition() {
+              workCards.forEach(function(card, i) {
+                var wrapped = wWrapSlot(i - (wCOff + wLean));
+                var ang = wrapped * wSTEP;
+                var rad = ang * Math.PI / 180;
+                var tx  = wR * Math.sin(rad);
+                var tz  = wR * (Math.cos(rad) - 1);
+                var dist = Math.abs(wrapped);
+                var sc  = 1 - dist * 0.08;
+                var op  = Math.max(0, 1 - dist * 0.4);
+                var hy  = card._hy || 0;
+                card.style.zIndex     = String(Math.round(10 - dist * 4));
+                card.style.opacity    = String(Math.round(op * 100) / 100);
+                card.style.transform  =
+                  'translateX(' + tx + 'px)' +
+                  ' translateY(' + (-hy) + 'px)' +
+                  ' translateZ(' + tz + 'px)' +
+                  ' rotateY(' + (-ang) + 'deg)' +
+                  ' scale(' + sc + ')';
+              });
+            }
+
+            function wLoop(t) {
+              var dt = wLastT ? Math.min((t - wLastT) / 16.67, 4) : 1;
+              wLastT = t;
+              wCOff += wVOff * dt;
+              wVOff *= Math.pow(0.88, dt);
+              if (Math.abs(wVOff) < 0.004) {
+                var snap = Math.round(wCOff);
+                wCOff += (snap - wCOff) * 0.065 * dt;
+              }
+              var lDamp = (Math.abs(wVOff) > 0.012 || wDrag) ? 0 : 1;
+              wLean += (wLeanT * lDamp - wLean) * 0.07 * dt;
+              workCards.forEach(function(c) {
+                c._hy = (c._hy || 0) + ((c._isHovered ? 10 : 0) - (c._hy || 0)) * 0.13 * dt;
+              });
+              wPosition();
+              wRafId = requestAnimationFrame(wLoop);
+            }
+            wRafId = requestAnimationFrame(wLoop);
+
+            workTrack.addEventListener('wheel', function(e) {
+              e.preventDefault();
+              var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+              wVOff += delta * 0.0018;
+              wVOff  = Math.max(-0.22, Math.min(0.22, wVOff));
+            }, { passive: false });
+
+            workTrack.addEventListener('pointerdown', function(e) {
+              wDrag = { x: e.clientX, off: wCOff };
+              wVOff = 0; wLeanT = 0;
+              workTrack.setPointerCapture(e.pointerId);
+            });
+            workTrack.addEventListener('pointermove', function(e) {
+              if (!wDrag) return;
+              wCOff = wDrag.off - (e.clientX - wDrag.x) / 220;
+            });
+            workTrack.addEventListener('pointerup', function(e) {
+              if (!wDrag) return;
+              wVOff = -(e.clientX - wDrag.x) / 220 / 12;
+              wDrag = null;
+            });
+            workTrack.addEventListener('pointercancel', function() { wDrag = null; });
+
+            workTrack.addEventListener('mousemove', function(e) {
+              if (wDrag) return;
+              var rect = workTrack.getBoundingClientRect();
+              wLeanT = ((e.clientX - rect.left) / rect.width * 2 - 1) * 0.42;
+            });
+            workTrack.addEventListener('mouseleave', function() { wLeanT = 0; });
+
+            workCards.forEach(function(card) {
+              card.addEventListener('mouseenter', function() {
+                card._isHovered = true;
+                if (typeof Motion !== 'undefined') {
+                  Motion.animate(card, {
+                    boxShadow: '0 28px 72px rgba(224,122,95,0.30), 0 0 0 1.5px rgba(224,122,95,0.52)',
+                    borderColor: 'rgba(224,122,95,0.48)'
+                  }, { duration: 0.38, easing: [0.22, 1, 0.36, 1] });
+                }
+              });
+              card.addEventListener('mouseleave', function() {
+                card._isHovered = false;
+                if (typeof Motion !== 'undefined') {
+                  Motion.animate(card, {
+                    boxShadow: '0 4px 12px rgba(224,122,95,0)',
+                    borderColor: 'rgba(224,122,95,0.12)'
+                  }, { duration: 0.55, easing: [0.22, 1, 0.36, 1] });
+                }
+              });
+            });
+
+            var wAutoAdv = setInterval(function() {
+              if (!wDrag && Math.abs(wVOff) < 0.008) wVOff = 0.014;
+            }, 4200);
+
+            document.addEventListener('visibilitychange', function() {
+              if (document.hidden) {
+                clearInterval(wAutoAdv); cancelAnimationFrame(wRafId);
+              } else {
+                wRafId = requestAnimationFrame(wLoop);
+                wAutoAdv = setInterval(function() { if (!wDrag && Math.abs(wVOff) < 0.008) wVOff = 0.014; }, 4200);
+              }
+            });
+          }
         }
 
         // ── Curved infinite arc carousel ─────────────────────────

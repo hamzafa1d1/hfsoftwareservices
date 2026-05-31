@@ -597,6 +597,112 @@ main {
   .pillar { width: 84vw; left: 8vw; }
 }
 
+/* Work carousel cards */
+.work-wrap {
+  overflow: hidden;
+  margin: 24px 0 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.work-track {
+  position: relative;
+  height: 340px;
+  overflow: visible;
+  cursor: grab;
+  perspective: 880px;
+  perspective-origin: 50% 44%;
+  touch-action: none;
+  user-select: none;
+}
+.work-track:active { cursor: grabbing; }
+
+.work-card {
+  position: absolute;
+  width: 340px;
+  left: calc(50% - 170px);
+  top: 16px;
+  padding: 26px 24px 24px;
+  background: rgba(237, 232, 213, 0.88);
+  border: 1px solid rgba(224, 122, 95, 0.12);
+  border-radius: 16px;
+  overflow: visible;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.work-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(224, 122, 95, 0.7) 50%, transparent);
+  opacity: 0;
+  border-radius: 16px 16px 0 0;
+  transition: opacity 350ms ease;
+}
+.work-card:hover::before { opacity: 1; }
+
+.work-card__tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.65;
+  letter-spacing: 0.12em;
+}
+
+.work-card__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0;
+}
+
+.work-card__body {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+  flex: 1;
+}
+
+.work-card__result {
+  border-top: 1px dashed rgba(224,122,95,0.25);
+  padding-top: 10px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.work-card__result-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.work-card__result-value {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .work-wrap { -webkit-mask-image: none; mask-image: none; }
+  .work-track { height: 380px; }
+  .work-card { width: 84vw; left: 8vw; }
+}
+
 /* Case studies */
 .case {
   border-top: 1px solid var(--rule);
