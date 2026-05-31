@@ -10,7 +10,7 @@
   --glow: rgba(141, 174, 191, 0.35);
   --glow-soft: rgba(141, 174, 191, 0.15);
   --blue: #9BB5C2;
-  --violet: #9B8EA8;
+  --violet: #7A9BAB;
 
   --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
   --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
@@ -836,7 +836,7 @@ main {
 .prev-list a {
   font-weight: 500;
   color: var(--text);
-  border-bottom: 1px solid rgba(44, 36, 22, 0.12);
+  border-bottom: 1px solid rgba(28, 43, 53, 0.12);
 }
 .prev-list a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .prev-desc {
