@@ -103,7 +103,7 @@
       <section id="top" class="section section--hero reveal">
         <div class="hero__layout">
           <div class="hero__copy">
-            <p class="eyebrow">BACKEND · AI AGENTS · MCP · .NET · AWS</p>
+            <p class="eyebrow">SOFTWARE ENGINEER · AI AGENTS · .NET CORE · REACT · AWS · AZURE · CI/CD</p>
             <h1 class="h1 h1--shimmer">Hamza Faidi</h1>
             <p class="lede">
               I build the backend systems and AI agents that product teams ship with confidence —
@@ -1013,6 +1013,21 @@
               wLeanT = ((e.clientX - rect.left) / rect.width * 2 - 1) * 0.42;
             });
             workTrack.addEventListener('mouseleave', function() { wLeanT = 0; });
+
+            var wDragMoved = false;
+            workTrack.addEventListener('pointermove', function(e) {
+              if (wDrag && Math.abs(e.clientX - wDrag.x) > 6) wDragMoved = true;
+            });
+            workTrack.addEventListener('pointerup', function() { setTimeout(function() { wDragMoved = false; }, 0); });
+
+            workCards.forEach(function(card, i) {
+              card.addEventListener('click', function() {
+                if (wDragMoved) return;
+                var wrapped = wWrapSlot(i - wCOff);
+                wVOff = 0;
+                wCOff += wrapped;
+              });
+            });
 
             workCards.forEach(function(card) {
               card.addEventListener('mouseenter', function() {
