@@ -266,22 +266,24 @@ main {
 
 .sec-tag {
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #4A6B7B;
   text-transform: uppercase;
-  opacity: 0.55;
-  margin: 0 0 10px;
+  opacity: 1;
+  margin: 0 0 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .sec-tag::before {
   content: '';
-  width: 14px;
-  height: 1px;
+  width: 22px;
+  height: 2px;
   background: var(--accent);
   flex-shrink: 0;
+  border-radius: 1px;
 }
 
 /* Buttons */
