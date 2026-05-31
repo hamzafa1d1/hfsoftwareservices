@@ -735,6 +735,59 @@
           });
         }
 
+        // ── Motion.js scroll-linked section page-flip ───────────────
+        if (typeof Motion !== 'undefined' && !reduce) {
+          var flipSections = document.querySelectorAll('main .section');
+          // Pre-mark all sections visible so the IO-based reveal doesn't fight Motion
+          flipSections.forEach(function(sec) {
+            sec.classList.add('is-visible');
+            sec.style.transition = 'none';
+            sec.style.willChange = 'transform, opacity';
+          });
+
+          // Non-hero sections: entrance lift + exit fold
+          document.querySelectorAll('main .section:not(.section--hero)').forEach(function(sec) {
+            Motion.scroll(function(progress) {
+              var op, rx, sc, ty;
+              if (progress < 0.2) {
+                var t = progress / 0.2;
+                var e = 1 - (1 - t) * (1 - t); // ease-out quad
+                op = 0.1 + e * 0.9;
+                sc = 0.96 + e * 0.04;
+                ty = (1 - e) * 22;
+                rx = 0;
+              } else if (progress > 0.78) {
+                var t2 = (progress - 0.78) / 0.22;
+                var e2 = t2 * t2; // ease-in quad
+                op = 1 - e2 * 0.5;
+                rx = -(e2 * 3);
+                sc = 1 - e2 * 0.025;
+                ty = 0;
+              } else {
+                op = 1; rx = 0; sc = 1; ty = 0;
+              }
+              sec.style.opacity = op;
+              sec.style.transform = 'rotateX(' + rx + 'deg) scale(' + sc + ') translateY(' + ty + 'px)';
+            }, { target: sec, offset: ['start end', 'end start'] });
+          });
+
+          // Hero: only exit fold as it scrolls off the top
+          var heroFlip = document.querySelector('.section--hero');
+          if (heroFlip) {
+            Motion.scroll(function(progress) {
+              if (progress > 0.25) {
+                var t3 = (progress - 0.25) / 0.75;
+                var e3 = t3 * t3;
+                heroFlip.style.opacity = 1 - e3 * 0.45;
+                heroFlip.style.transform = 'rotateX(' + (-e3 * 2.5) + 'deg) scale(' + (1 - e3 * 0.02) + ')';
+              } else {
+                heroFlip.style.opacity = '1';
+                heroFlip.style.transform = 'none';
+              }
+            }, { target: heroFlip, offset: ['start start', 'end start'] });
+          }
+        }
+
         // ── 3D terminal tilt on mousemove ────────────────────────────
         var termInner = document.querySelector('.term__inner');
         var heroSection = document.querySelector('.section--hero');

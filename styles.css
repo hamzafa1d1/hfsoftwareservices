@@ -155,10 +155,13 @@ main {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 24px;
+  perspective: 1600px;
+  perspective-origin: 50% 0%;
 }
 
 .section {
   padding: 72px 0;
+  transform-origin: top center;
 }
 .section--hero {
   padding-top: 88px;
