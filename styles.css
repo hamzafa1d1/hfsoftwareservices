@@ -485,12 +485,18 @@ main {
 }
 
 /* Curved infinite arc carousel */
+.pillars-wrap {
+  overflow: hidden;
+  margin: 24px 0 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+
 .pillars-track {
   position: relative;
-  height: 400px;
-  overflow: hidden;
+  height: 420px;
+  overflow: visible;
   cursor: grab;
-  margin: 24px 0 0;
   perspective: 880px;
   perspective-origin: 50% 48%;
   touch-action: none;
@@ -558,6 +564,7 @@ main {
 }
 
 @media (max-width: 640px) {
+  .pillars-wrap { -webkit-mask-image: none; mask-image: none; }
   .pillars-track { height: 460px; }
   .pillar { width: 84vw; left: 8vw; }
 }
