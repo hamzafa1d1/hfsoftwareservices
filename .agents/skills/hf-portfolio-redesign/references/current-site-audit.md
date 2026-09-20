@@ -20,7 +20,7 @@ Source of truth: `index.html` (1,410 lines) + `styles.css` (1,586 lines), static
 3. 01 / SERVICES "What I do" — 3D auto-advancing carousel: Backend & API design · Cloud infra & reliability · Intelligent automation & risk systems
 4. 02 / WORK "Selected work" — arc carousel, 6 cards: Comp-platform rebuild with AI agents · Fraud detection (Mastercard) · MT940 bank statement integration · Provider-agnostic payments layer · Virtual-card renewal automation · Automated card suspension
 5. 03 / STACK — pill list: C#/ASP.NET Core, TypeScript/Node, AWS, Azure, Terraform, SQL Server, Distributed systems, Payments, React, Angular
-6. 04 / ABOUT — photo (hamza.png, 1.8 MB PNG, 1024²) + bio (Tunis, SUARL, Sup'Com, teaching, UTC+1, EN C1 / FR) + "Previously at" Clearco · Expensya · Blauwtrust Groep + engagement facts
+6. 04 / ABOUT — photo (hamza.png, 1.8 MB PNG, 1024²) + bio (Tunis, SUARL, Sup'Com, teaching, UTC+1, EN C1 / FR) + "Previously at" Clearco (Dec 2025 — present) · Expensya + engagement facts
 7. 05 / CREDENTIALS & CONTACT — cert marquee (AWS SAA, AWS CCP, Terraform Associate, TOEIC C1) → Credly links · closing CTA "Need a senior backend engineer?" · Email · Book a call (mailto) · LinkedIn · Credly
 8. Company note band (SUARL legal name) + footer
 

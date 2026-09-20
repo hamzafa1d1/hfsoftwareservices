@@ -10,7 +10,7 @@ You are a senior product designer and front-end engineer redesigning a one-page 
 
 ## Who this is for
 
-**Owner:** Hamza Faidi, software engineer in Tunis, trading as HF Software Services (registered SUARL, exports services, clean invoicing, MSA-friendly). 4 years in fintech and SaaS. Stack: .NET/C#, AWS, Azure, Terraform, TypeScript/Node, SQL Server, React/Angular. Since 2025: AI agents, MCP servers, spec-driven development, Jira/Confluence automation via MCP, LLM pipelines in production (fraud detection), test-automation background. Certifications: AWS Solutions Architect Associate, AWS Cloud Practitioner, HashiCorp Terraform Associate, TOEIC C1. Engineering degree from Sup'Com (EUR-ACE, EU Master's-equivalent). Works EU hours (UTC+1), English C1 and French. Formerly at Clearco (US HR software), Expensya (SaaS expense management, now Medius), Blauwtrust Groep (Dutch financial services).
+**Owner:** Hamza Faidi, software engineer in Tunis, trading as HF Software Services (registered SUARL, exports services, clean invoicing, MSA-friendly). 4 years in fintech and SaaS. Stack: .NET/C#, AWS, Azure, Terraform, TypeScript/Node, SQL Server, React/Angular. Since 2025: AI agents, MCP servers, spec-driven development, Jira/Confluence automation via MCP, LLM pipelines in production (fraud detection), test-automation background. Certifications: AWS Solutions Architect Associate, AWS Cloud Practitioner, HashiCorp Terraform Associate, TOEIC C1. Engineering degree from Sup'Com (EUR-ACE, EU Master's-equivalent). Works EU hours (UTC+1), English C1 and French. Formerly at Clearco (US HR software, Dec 2025 — present), Expensya (SaaS expense management, now Medius).
 
 **Buyer:** founders, ops leads and engineering managers at SMB and startup product companies. They want AI agents and automations that survive production, integrated with their existing tools. They have been burned by demos. They fear a freelancer disappearing, template work, and no accountability. They arrive from an Upwork profile, a LinkedIn share, or a referral, usually on a phone, and decide in under 10 seconds whether to keep reading.
 
@@ -33,7 +33,7 @@ Words allowed in the hero: production, tested, measured, integrated, owned, hour
 
 1. **Nav** — wordmark "HF Software Services", anchors (Work · Offers · Process · FAQ), live availability pill with text ("Taking 1 new build in {{MONTH}}"), primary CTA button. On mobile the CTA collapses into a sticky bottom bar.
 2. **Hero** — H1 (outcome), subhead, primary CTA → scheduler, secondary CTA → #work, three proof chips (e.g. "6 production systems in fintech", "AWS & Terraform certified", "Registered company · EU hours"). One real visual: a restrained diagram or screenshot of an agent pipeline with an eval gate, not a fake terminal.
-3. **Trust strip** — Clearco · Expensya · Blauwtrust Groep · Mastercard/Adyen integrations (as "worked with" tech, not clients) · Credly badge links · `{{UPWORK_BADGE_OR_JSS}}` if available.
+3. **Trust strip** — Clearco (Dec 2025 — present) · Expensya · Mastercard/Adyen integrations (as "worked with" tech, not clients) · Credly badge links · `{{UPWORK_BADGE_OR_JSS}}` if available.
 4. **Who this is for / what's broken** — 3–4 pain statements in the buyer's words (an agent that answers wrong 1 in 20 times; tickets synced by hand; a pilot nobody dares to ship; a payment flow tied to one vendor).
 5. **Offers (bento grid, 3 cards)** —
    - *Reliability Audit* — 30-minute call + written one-page report the client keeps. Free. Names one prioritized build with a price.
