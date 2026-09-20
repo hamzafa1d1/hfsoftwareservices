@@ -1,46 +1,47 @@
 # HF Software Services — one-page site
 
-Static, single-page consultant site for Hamza Faidi (HF Software Services).
-Plain HTML/CSS with one small inline script. No build step.
+Static, single-page consultant site for Hamza Faidi (HF Software Services), built from the Claude Design file in `design/HF Software Services.dc.html`. Plain HTML/CSS with one small progressive-enhancement script. No build step; every piece of content renders with JavaScript disabled.
 
 ## Local preview
 
 ```sh
-npx serve .
-# or
 python3 -m http.server 5173
 ```
 
-## Deploy to Vercel
+## Deploy
 
-This repo is a zero-config static site. Vercel will serve `index.html` directly.
+Pushes to `main` deploy to Vercel through `.github/workflows/deploy.yml`. `vercel.json` adds security headers and light caching.
 
-### Option A — Vercel CLI
+## Things to fill in
+
+Search the source for `TODO`:
+
+- `script.js` → `CONFIG.SCHEDULER_URL` (Cal.com / Calendly). Until set, the "Pick a slot" panel shows an email fallback.
+- `script.js` → `CONFIG.FORM_ENDPOINT` (Formspree, Basin, …). Until set, "Send the brief" opens a prefilled email.
+- `index.html` → offer cards: replace "quoted after the audit" with a price floor once decided.
+- `index.html` → WhatsApp link (commented out until a business number exists).
+- `index.html` → testimonials section is `hidden`; unhide and fill with real quotes only.
+- `scripts/build-upwork.py` → `UPWORK_PROFILE_URL`, then re-run the script.
+- Nav pill / sticky bar month ("October") — update as availability changes.
+
+## Upwork variant
+
+`upwork/index.html` is generated from `index.html` by `scripts/build-upwork.py`. It carries no email, phone, form or scheduler (Upwork forbids off-platform contact before a contract) and points every CTA at the Upwork profile. It is `noindex` and disallowed in `robots.txt`. Link **this** URL from the Upwork profile, never the root.
 
 ```sh
-npm i -g vercel
-vercel        # first run: link/create project
-vercel --prod # production deploy
+python3 scripts/build-upwork.py
 ```
 
-### Option B — Git import
+## Files
 
-1. Push to GitHub.
-2. In Vercel, **Add New… → Project → Import** this repo.
-3. Framework preset: **Other** (no build command, no output dir).
-4. Deploy. Then add the custom domain (`hfsoftware.dev`) in **Settings → Domains**.
-
-`vercel.json` adds security headers and light caching.
-
-## Things to swap before publishing
-
-Edit `index.html` and replace the placeholder values:
-
-- `mailto:hamza@hfsoftware.dev` — replace with your real domain email (do not ship a gmail address).
-- Calendly / booking link — currently the "Book a call" buttons fall back to the email; replace with your Calendly URL once you have one.
-- LinkedIn URL (`https://www.linkedin.com/in/hamzaelfaidi`) — verify it's current.
-- Credly profile URL (`https://www.credly.com/users/hamza-faidi.c38f32e3`) — ideally deep-link each badge to its individual verification page.
-- Canonical / OG URL (`https://hfsoftware.dev/`) — change if the live domain differs.
+- `index.html` — page markup + JSON-LD (Organization, Person, ProfilePage, Service/Offers, FAQPage)
+- `styles.css` — all styles; palette and type lifted from the design file (Archivo · Public Sans · IBM Plex Mono, paper `#FAF8F3`, ink `#1C1A17`, accent `#B8330F`)
+- `script.js` — footer year, optional scheduler embed, brief form handoff
+- `upwork/index.html` — generated contact-free variant
+- `hamza.webp`, `hamza-400.webp` — portrait (source in `design/hamza-source.png`)
+- `og.png` — 1200×630 Open Graph image
+- `design/` — the Claude Design export and its extracted template, kept as the design source of truth
+- `vercel.json`, `robots.txt`, `sitemap.xml`
 
 ## Redesign research & skills
 
@@ -55,11 +56,3 @@ Research for the conversion-focused redesign (goal: win AI-agent / agentic-dev c
 | `frontend-design` | Anthropic's aesthetic craft skill (vendored). |
 
 The design prompt is also published at `.github/prompts/portfolio-redesign/PROMPT.md`. Fill the `{{PLACEHOLDER}}` values (scheduler URL, prices, Upwork profile, contact) before running it.
-
-## Files
-
-- `index.html` — page markup + structured data + inline reveal-on-scroll script
-- `styles.css` — all styles (dark theme, Inter + JetBrains Mono)
-- `og.svg` — Open Graph image (1200×630)
-- `vercel.json` — security headers + cache rules
-- `robots.txt`, `sitemap.xml` — SEO basics

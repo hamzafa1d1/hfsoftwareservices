@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="0d6249f1-c8c1-45be-b82f-8971fe04de48"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HF Software Services — AI agents that survive production</title>
+<meta name="description" content="Hamza Faidi builds and tests AI agents that hold up in production: MCP integrations with the tools you already run, eval suites, monitoring, .NET/TypeScript/AWS delivery.">
+<link rel="canonical" href="https://www.hfsoftwareservices.com/">
+<meta property="og:title" content="AI agents that survive production. Not just the demo.">
+<meta property="og:url" content="https://www.hfsoftwareservices.com/">
+<meta property="og:image" content="https://www.hfsoftwareservices.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("4a77a229-9d1d-49f1-a44e-62373e4f051e") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("ff178099-d286-4e14-8478-f1c43222df5f") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("2e053938-bebe-4627-96d0-02f0a0b67815") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("4a77a229-9d1d-49f1-a44e-62373e4f051e") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("ff178099-d286-4e14-8478-f1c43222df5f") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("2e053938-bebe-4627-96d0-02f0a0b67815") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("4a77a229-9d1d-49f1-a44e-62373e4f051e") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("ff178099-d286-4e14-8478-f1c43222df5f") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url("2e053938-bebe-4627-96d0-02f0a0b67815") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("4eb5c604-7e00-4835-ab82-fd5f8ddf503d") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("566d67ec-01f6-4ae3-a80a-f14dc4b3d2e7") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("21f8b33a-34ed-45a5-b0f4-7856af3a52c4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("895cf800-10d2-4f10-8bcb-654d8a8b703a") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("045fc59d-c6d8-4d8c-b0cb-7225c30afdd3") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("57662fc7-4064-4b62-a80e-6725cd73f5c0") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5425ad2c-fc95-449b-8570-2a8d379d8e90") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("4bc45ddf-aedd-4cf3-9da9-7d0cfb339e9b") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("a8d76fbf-448f-4e71-a08a-8f1a1c7b21bf") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("725649c2-2dc2-4b1a-9149-1096d7d762d2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("0f18184e-4869-4718-b8f0-8258a817d05a") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("9b0589b8-05e2-4063-85f2-0533c3838afb") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("bf97ea6e-806a-465c-812c-1b9f5201536f") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("397cb1f6-bdb5-4be0-8462-b8fa45c64ee3") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("46d0476e-841a-44ba-b9ff-bb92af8293af") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fc7f8333-a001-4510-91e3-e9e95e36f6af") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("397cb1f6-bdb5-4be0-8462-b8fa45c64ee3") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("46d0476e-841a-44ba-b9ff-bb92af8293af") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fc7f8333-a001-4510-91e3-e9e95e36f6af") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("397cb1f6-bdb5-4be0-8462-b8fa45c64ee3") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("46d0476e-841a-44ba-b9ff-bb92af8293af") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fc7f8333-a001-4510-91e3-e9e95e36f6af") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  body { margin: 0; background: #FAF8F3; color: #1C1A17; font-family: "Public Sans", ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #1C1A17; text-decoration-color: #6B6458; text-underline-offset: 3px; }
+  a:hover { color: #B8330F; text-decoration-color: #B8330F; }
+  summary::-webkit-details-marker { display: none; }
+  :focus-visible { outline: 2px solid #B8330F; outline-offset: 3px; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","name":"HF Software Services","legalName":"HF Software Services SUARL","url":"https://www.hfsoftwareservices.com/","address":{"@type":"PostalAddress","addressLocality":"Tunis","addressCountry":"TN"}},
+{"@type":"Person","name":"Hamza Faidi","jobTitle":"Software Engineer","worksFor":{"@type":"Organization","name":"HF Software Services"},"knowsLanguage":["en","fr"],"alumniOf":"Sup'Com"},
+{"@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Hamza Faidi"}},
+{"@type":"Service","name":"AI agent engineering","provider":{"@type":"Organization","name":"HF Software Services"},"offers":[
+{"@type":"Offer","name":"Reliability Audit","price":"0","priceCurrency":"EUR"},
+{"@type":"Offer","name":"Agent Sprint"},
+{"@type":"Offer","name":"Fractional AI Engineer"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Who owns the code?","acceptedAnswer":{"@type":"Answer","text":"You do. Code lands in your repository under your account from day one."}},
+{"@type":"Question","name":"What happens if you're unavailable?","acceptedAnswer":{"@type":"Answer","text":"Every engagement has a named backup engineer and handoff docs kept current in your repository."}},
+{"@type":"Question","name":"How do you measure whether the agent works?","acceptedAnswer":{"@type":"Answer","text":"An eval suite runs on every change, with pass thresholds agreed before the build and a monitoring dashboard after release."}},
+{"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"Fixed-price sprints and monthly retainers, quoted after the audit call."}},
+{"@type":"Question","name":"Which stack and models do you use?","acceptedAnswer":{"@type":"Answer","text":".NET/C#, TypeScript/Node, AWS and Azure, Terraform, SQL Server, React/Angular. Models stay swappable behind an interface."}},
+{"@type":"Question","name":"Do you work through Upwork or direct?","acceptedAnswer":{"@type":"Answer","text":"Both. Upwork for escrow and milestones, or a direct MSA with a registered Tunisian SUARL that exports services."}}]}]}
+</script>
+</helmet>
+
+<div style="max-width: 100%; overflow-x: hidden; padding-bottom: {{ stickyPad }}">
+
+  <div style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px 16px; background: #1C1A17; color: #FAF8F3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase">
+    <span style="opacity: 0.6">Preview</span>
+    <button sc-camel-on-click="{{ showPublic }}" style="{{ publicTabStyle }}">Public site</button>
+    <button sc-camel-on-click="{{ showUpwork }}" style="{{ upworkTabStyle }}">/upwork variant</button>
+  </div>
+
+  <a href="#work" style="position: absolute; left: -9999px">Skip to work</a>
+
+  <header style="position: sticky; top: 0; z-index: 40; background: rgba(250, 248, 243, 0.82); backdrop-filter: blur(10px); border-bottom: 1px solid #DCD6CA">
+    <nav style="max-width: 1140px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 20px">
+      <a href="#top" style="font-family: Archivo, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap">HF Software Services</a>
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 22px; margin-left: 12px; min-width: 0; font-size: 14px; color: #5B554C">
+          <a href="#work" style="text-decoration: none">Work</a>
+          <a href="#offers" style="text-decoration: none">Offers</a>
+          <a href="#process" style="text-decoration: none">Process</a>
+          <a href="#faq" style="text-decoration: none">FAQ</a>
+        </div>
+      </sc-if>
+      <div style="flex: 1"></div>
+      <sc-if value="{{ showPill }}" hint-placeholder-val="{{ true }}">
+        <span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid #DCD6CA; border-radius: 999px; background: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #3D382F; white-space: nowrap">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: #B8330F; box-shadow: 0 0 0 3px rgba(184, 51, 15, 0.16)"></span>
+          Taking 1 new build in <span style="border-bottom: 1px dashed #B8330F; padding-bottom: 1px">{{ month }}</span>
+        </span>
+      </sc-if>
+      <a href="{{ ctaHref }}" style="flex-shrink: 0; display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 4px; background: #B8330F; color: #FFFFFF; font-weight: 600; font-size: 14.5px; text-decoration: none; white-space: nowrap" style-hover="background: #98290B">{{ ctaShort }}</a>
+    </nav>
+  </header>
+
+  <main id="top" style="max-width: 1140px; margin: 0 auto; padding: 0 24px">
+
+    <section style="padding: 72px 0 8px; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 56px; align-items: start">
+      <div>
+        <p style="margin: 0 0 22px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">Hamza Faidi · Tunis · UTC+1</p>
+        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(38px, 6.2vw, 68px); line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance">AI agents that survive production. Not just the demo.</h1>
+        <p style="margin: 26px 0 0; font-size: clamp(17px, 2vw, 20px); line-height: 1.55; color: #423C33; max-width: 40ch; text-wrap: pretty">Your agents get wired into the tools your team already runs — Jira, Confluence, your CRM, your payment provider — through MCP, then held to an eval suite and monitoring you can read. Delivered in .NET and TypeScript on AWS, owned by you.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px">
+          <a href="{{ ctaHref }}" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border-radius: 4px; background: #B8330F; color: #FFFFFF; font-weight: 600; font-size: 16.5px; text-decoration: none" style-hover="background: #98290B">{{ ctaLong }}</a>
+          <a href="#work" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 22px; border-radius: 4px; border: 1px solid #1C1A17; color: #1C1A17; font-weight: 600; font-size: 16.5px; text-decoration: none" style-hover="background: #F0ECE3">See case studies</a>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3D382F">
+          <span style="padding: 7px 12px; background: #F2EEE5; border-radius: 3px">6 production systems in fintech</span>
+          <span style="padding: 7px 12px; background: #F2EEE5; border-radius: 3px">AWS &amp; Terraform certified</span>
+          <span style="padding: 7px 12px; background: #F2EEE5; border-radius: 3px">Registered company · EU hours</span>
+        </div>
+      </div>
+
+      <figure style="margin: 0; background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 22px">
+        <figcaption style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: #6B6458; margin-bottom: 18px">How a change reaches production</figcaption>
+        <div style="display: grid; gap: 10px">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 10px">
+            <div style="border: 1px solid #DCD6CA; border-radius: 4px; padding: 12px 14px">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #6B6458">01 · trigger</div>
+              <div style="font-weight: 600; font-size: 15px; margin-top: 3px">Ticket, webhook or schedule</div>
+            </div>
+            <div style="height: 14px; border-left: 1px dashed #C9C1B2; margin-left: 20px"></div>
+            <div style="border: 1px solid #DCD6CA; border-radius: 4px; padding: 12px 14px">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #6B6458">02 · agent</div>
+              <div style="font-weight: 600; font-size: 15px; margin-top: 3px">Tool calls over MCP</div>
+              <div style="font-size: 13.5px; color: #5B554C; margin-top: 4px">Jira · Confluence · CRM · payments</div>
+            </div>
+            <div style="height: 14px; border-left: 1px dashed #C9C1B2; margin-left: 20px"></div>
+            <div style="border: 1px solid #1C1A17; border-radius: 4px; padding: 12px 14px; background: #F7F3EA">
+              <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline">
+                <div>
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #6B6458">03 · eval gate</div>
+                  <div style="font-weight: 600; font-size: 15px; margin-top: 3px">Regression suite must pass</div>
+                </div>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #B8330F; white-space: nowrap">fails → blocked</span>
+              </div>
+            </div>
+            <div style="height: 14px; border-left: 1px dashed #C9C1B2; margin-left: 20px"></div>
+            <div style="border: 1px solid #DCD6CA; border-radius: 4px; padding: 12px 14px">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #6B6458">04 · production</div>
+              <div style="font-weight: 600; font-size: 15px; margin-top: 3px">Monitored, alerting on drift</div>
+            </div>
+          </div>
+        </div>
+        <p style="margin: 18px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6B6458; line-height: 1.5">Replace with a screenshot of a real eval run — <span style="border-bottom: 1px dashed #B8330F">{{ heroScreenshotSlot }}</span></p>
+      </figure>
+    </section>
+
+    <section style="margin-top: 64px; border-top: 1px solid #DCD6CA; border-bottom: 1px solid #DCD6CA; padding: 22px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #5B554C">
+      <span style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: #6B6458">Shipped inside</span>
+      <span>Clearco</span><span style="color: #C9C1B2">·</span>
+      <span>Expensya</span><span style="color: #C9C1B2">·</span>
+      <span>Blauwtrust Groep</span><span style="color: #C9C1B2">·</span>
+      <span>Mastercard &amp; Adyen integrations</span><span style="color: #C9C1B2">·</span>
+      <a href="https://www.credly.com/" style="text-decoration: none; border-bottom: 1px solid #C9C1B2">Credly badges</a>
+      <span style="padding: 5px 9px; border: 1px dashed #B8330F; border-radius: 3px; color: #B8330F">{{ upworkBadgeSlot }}</span>
+    </section>
+
+    <section style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">01 — Who this is for</p>
+      <h2 style="margin: 0 0 34px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em; max-width: 26ch">You have something that works in a demo and nowhere else.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #DCD6CA; border: 1px solid #DCD6CA; border-radius: 6px; overflow: hidden">
+        <div style="background: #FAF8F3; padding: 24px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6B6458">A</p>
+          <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.5; color: #2A2620">An agent that answers wrong one time in twenty, and nobody can tell you which twenty.</p>
+        </div>
+        <div style="background: #FAF8F3; padding: 24px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6B6458">B</p>
+          <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.5; color: #2A2620">Tickets and docs kept in sync by hand, an hour a day, by someone you hired to build.</p>
+        </div>
+        <div style="background: #FAF8F3; padding: 24px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6B6458">C</p>
+          <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.5; color: #2A2620">A pilot nobody dares to ship, because no one agreed what "good enough" looks like.</p>
+        </div>
+        <div style="background: #FAF8F3; padding: 24px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6B6458">D</p>
+          <p style="margin: 8px 0 0; font-size: 16.5px; line-height: 1.5; color: #2A2620">A payment or data flow tied to one vendor, so every change is a migration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="offers" style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">02 — Offers</p>
+      <h2 style="margin: 0 0 34px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em">Three ways to start.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+
+        <article style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #1C1A17; border-radius: 6px; padding: 26px">
+          <div style="display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 6px">
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em">Reliability Audit</h3>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #B8330F">Free</span>
+          </div>
+          <p style="margin: 12px 0 18px; font-size: 16px; line-height: 1.5; color: #423C33">You leave the call knowing which single build is worth doing next, and what it costs.</p>
+          <ul style="margin: 0 0 18px; padding-left: 18px; font-size: 15px; line-height: 1.75; color: #423C33">
+            <li>30-minute call</li>
+            <li>One-page written report you keep</li>
+            <li>One prioritised build, named and priced</li>
+          </ul>
+          <p style="margin: 0 0 18px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6B6458">Timeline · this week</p>
+          <p style="margin: 0 0 22px; padding-top: 14px; border-top: 1px solid #E7E1D6; font-size: 14.5px; line-height: 1.5; color: #6B6458">Not for you if you want a quote without showing the system.</p>
+          <div style="flex: 1"></div>
+          <a href="{{ ctaHref }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 4px; background: #B8330F; color: #FFFFFF; font-weight: 600; font-size: 15px; text-decoration: none" style-hover="background: #98290B">{{ ctaShort }}</a>
+        </article>
+
+        <article style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 26px">
+          <div style="display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 6px">
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em">Agent Sprint</h3>
+            <span style="overflow-wrap: anywhere; font-family: 'IBM Plex Mono', monospace; font-size: 12px; border-bottom: 1px dashed #B8330F; color: #3D382F">From {{ sprintPrice }}</span>
+          </div>
+          <p style="margin: 12px 0 18px; font-size: 16px; line-height: 1.5; color: #423C33">One workflow, automated end to end, with the tests that prove it still works next quarter.</p>
+          <ul style="margin: 0 0 18px; padding-left: 18px; font-size: 15px; line-height: 1.75; color: #423C33">
+            <li>Fixed scope, fixed price</li>
+            <li>Eval suite with agreed thresholds</li>
+            <li>Monitoring dashboard</li>
+            <li>Handoff docs, your repo, your code</li>
+          </ul>
+          <p style="margin: 0 0 18px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6B6458">Timeline · 2 weeks</p>
+          <p style="margin: 0 0 22px; padding-top: 14px; border-top: 1px solid #E7E1D6; font-size: 14.5px; line-height: 1.5; color: #6B6458">Not for you if the scope is still moving when the sprint starts.</p>
+          <div style="flex: 1"></div>
+          <a href="{{ ctaHref }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 4px; border: 1px solid #1C1A17; color: #1C1A17; font-weight: 600; font-size: 15px; text-decoration: none" style-hover="background: #F0ECE3">Scope a sprint</a>
+        </article>
+
+        <article style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 26px">
+          <div style="display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 6px">
+            <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em">Fractional AI Engineer</h3>
+            <span style="overflow-wrap: anywhere; font-family: 'IBM Plex Mono', monospace; font-size: 12px; border-bottom: 1px dashed #B8330F; color: #3D382F">From {{ retainerPrice }}/mo</span>
+          </div>
+          <p style="margin: 12px 0 18px; font-size: 16px; line-height: 1.5; color: #423C33">Your agents stay watched and improved by the engineer who built them.</p>
+          <ul style="margin: 0 0 18px; padding-left: 18px; font-size: 15px; line-height: 1.75; color: #423C33">
+            <li>8–20 h/week</li>
+            <li>Monitoring and incident response</li>
+            <li>Continuous eval and improvement</li>
+            <li>Named backup engineer</li>
+          </ul>
+          <p style="margin: 0 0 18px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6B6458">Timeline · monthly, 30-day notice</p>
+          <p style="margin: 0 0 22px; padding-top: 14px; border-top: 1px solid #E7E1D6; font-size: 14.5px; line-height: 1.5; color: #6B6458">Not for you if you need someone in your standup every morning.</p>
+          <div style="flex: 1"></div>
+          <a href="{{ ctaHref }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 46px; border-radius: 4px; border: 1px solid #1C1A17; color: #1C1A17; font-weight: 600; font-size: 15px; text-decoration: none" style-hover="background: #F0ECE3">Discuss a retainer</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">03 — Case studies</p>
+      <h2 style="margin: 0 0 34px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em">Four systems, still running.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 16px">
+        <sc-for list="{{ cases }}" as="c" hint-placeholder-count="4">
+          <article style="background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 26px">
+            <p style="margin: 0 0 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #6B6458">{{ c.n }}</p>
+            <h3 style="margin: 0 0 20px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.28; letter-spacing: -0.015em">{{ c.title }}</h3>
+            <dl style="margin: 0; display: grid; gap: 14px">
+              <div>
+                <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B6458">Problem</dt>
+                <dd style="margin: 4px 0 0; font-size: 15.5px; line-height: 1.5; color: #423C33">{{ c.problem }}</dd>
+              </div>
+              <div>
+                <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B6458">What shipped</dt>
+                <dd style="margin: 4px 0 0; font-size: 15.5px; line-height: 1.5; color: #423C33">{{ c.shipped }}</dd>
+              </div>
+              <div style="padding: 12px 14px; background: #F7F3EA; border-radius: 4px">
+                <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B6458">Measured result</dt>
+                <dd style="margin: 4px 0 0; font-size: 15.5px; line-height: 1.5; font-weight: 600; color: #1C1A17">{{ c.result }}</dd>
+              </div>
+              <div>
+                <dt style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B6458">Stack</dt>
+                <dd style="margin: 4px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.55; color: #5B554C">{{ c.stack }}</dd>
+              </div>
+            </dl>
+          </article>
+        </sc-for>
+      </div>
+      <details style="margin-top: 16px; background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 20px 26px">
+        <summary style="display: flex; align-items: center; gap: 12px; cursor: pointer; list-style: none; font-family: Archivo, sans-serif; font-weight: 600; font-size: 17px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6B6458">+2</span> More work
+        </summary>
+        <div style="margin-top: 18px; display: grid; gap: 16px; font-size: 15.5px; line-height: 1.55; color: #423C33">
+          <p style="margin: 0; padding-top: 16px; border-top: 1px solid #E7E1D6"><strong style="font-weight: 600">Card renewal automation.</strong> Expiring corporate cards reissued and re-linked without an operator touching the batch.</p>
+          <p style="margin: 0; padding-top: 16px; border-top: 1px solid #E7E1D6"><strong style="font-weight: 600">Card suspension flow.</strong> Suspend, reinstate and audit trail exposed to support, so engineering stopped being the on-call.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="process" style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">04 — How an engagement runs</p>
+      <h2 style="margin: 0 0 34px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em">No surprises after the kickoff.</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px">
+        <li style="border-top: 2px solid #1C1A17; padding-top: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6B6458">Step 1</p>
+          <h3 style="margin: 6px 0 8px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px">Audit call</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #423C33">Thirty minutes on your system. You get the one-page report whether or not you hire.</p>
+        </li>
+        <li style="border-top: 2px solid #1C1A17; padding-top: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6B6458">Step 2</p>
+          <h3 style="margin: 6px 0 8px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px">Scoped proposal</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #423C33">Fixed price, fixed scope, named deliverables and the eval thresholds agreed up front.</p>
+        </li>
+        <li style="border-top: 2px solid #1C1A17; padding-top: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6B6458">Step 3</p>
+          <h3 style="margin: 6px 0 8px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px">Build in 2-week sprints</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #423C33">Demo at the end of each one, evals in CI, your repository from the first commit.</p>
+        </li>
+        <li style="border-top: 2px solid #1C1A17; padding-top: 16px">
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #6B6458">Step 4</p>
+          <h3 style="margin: 6px 0 8px; font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px">Deploy, monitor, hand over</h3>
+          <p style="margin: 0; font-size: 15.5px; line-height: 1.55; color: #423C33">Zero-downtime release, dashboards your team reads, docs that let them take it from here.</p>
+        </li>
+      </ol>
+      <p style="margin: 28px 0 0; padding: 16px 18px; background: #F2EEE5; border-radius: 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; line-height: 1.6; color: #3D382F">Replies within one business day, UTC+1 · Slack or email, your channel · written weekly update every Friday</p>
+    </section>
+
+    <section style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">05 — Testimonials</p>
+      <h2 style="margin: 0 0 12px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em">In their words.</h2>
+      <p style="margin: 0 0 30px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #B8330F">To collect from past clients — nothing here is written yet.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px">
+        <sc-for list="{{ testimonialSlots }}" as="t" hint-placeholder-count="3">
+          <blockquote style="margin: 0; border: 1px dashed #B9B1A3; border-radius: 6px; padding: 26px; background: rgba(255, 255, 255, 0.4)">
+            <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #6B6458">{{ t }}</p>
+            <footer style="margin-top: 42px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6B6458">Name · role · company</footer>
+          </blockquote>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">06 — About</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; align-items: start">
+        <div>
+          <h2 style="margin: 0 0 20px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em">Hamza Faidi</h2>
+          <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.6; color: #2A2620; max-width: 52ch">Four years shipping backend and cloud systems inside fintech and SaaS — Clearco, Expensya, Blauwtrust Groep — where a wrong number costs money and someone has to answer for it.</p>
+          <p style="margin: 0 0 16px; font-size: 17px; line-height: 1.6; color: #2A2620; max-width: 52ch">Since 2025 that work has been agents and LLM pipelines: MCP servers against Jira and Confluence, fraud detection in production, spec-driven delivery with tests as the contract.</p>
+          <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #2A2620; max-width: 52ch">You get one engineer, a registered company to invoice, and the same person on the call in month six.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #3D382F">
+            <span style="padding: 7px 11px; background: #F2EEE5; border-radius: 3px">Registered SUARL</span>
+            <span style="padding: 7px 11px; background: #F2EEE5; border-radius: 3px">UTC+1</span>
+            <span style="padding: 7px 11px; background: #F2EEE5; border-radius: 3px">EN C1 / FR</span>
+            <span style="padding: 7px 11px; background: #F2EEE5; border-radius: 3px">Milestone-based contracts</span>
+            <span style="padding: 7px 11px; background: #F2EEE5; border-radius: 3px">AWS / Terraform certified</span>
+            <span style="padding: 7px 11px; background: #F2EEE5; border-radius: 3px">Sup'Com engineering degree</span>
+          </div>
+        </div>
+        <div style="max-width: 300px">
+          <div style="aspect-ratio: 1 / 1; border: 1px solid #DCD6CA; border-radius: 6px; background: repeating-linear-gradient(135deg, #F2EEE5 0 8px, #EAE4D8 8px 16px); display: flex; align-items: flex-end; padding: 14px"></div>
+          <p style="margin: 10px 0 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.5; color: #6B6458">Drop hamza.png here · 400px square, AVIF/WebP ≤ 60 KB, explicit width/height</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">07 — FAQ</p>
+      <h2 style="margin: 0 0 30px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.025em">The six things people ask.</h2>
+      <div style="border-top: 1px solid #DCD6CA">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+          <details style="border-bottom: 1px solid #DCD6CA; padding: 20px 0">
+            <summary style="display: flex; gap: 16px; align-items: baseline; cursor: pointer; list-style: none">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6B6458; min-width: 22px">{{ f.n }}</span>
+              <span style="font-family: Archivo, sans-serif; font-weight: 600; font-size: 18px; letter-spacing: -0.01em">{{ f.q }}</span>
+            </summary>
+            <p style="margin: 12px 0 0 38px; font-size: 16px; line-height: 1.6; color: #423C33; max-width: 62ch">{{ f.a }}</p>
+          </details>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="contact" style="padding: 76px 0 0">
+      <p style="margin: 0 0 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6458">08 — Start here</p>
+      <h2 style="margin: 0 0 12px; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(30px, 4.2vw, 46px); line-height: 1.06; letter-spacing: -0.03em; max-width: 24ch">Bring the agent that almost works.</h2>
+      <p style="margin: 0 0 34px; font-size: 18px; line-height: 1.55; color: #423C33; max-width: 46ch">Thirty minutes, one written page, one prioritised build. No pitch deck.</p>
+
+      <sc-if value="{{ isUpwork }}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border: 1px solid #1C1A17; border-radius: 6px; padding: 34px; display: grid; gap: 18px; max-width: 560px">
+          <p style="margin: 0; font-size: 16.5px; line-height: 1.6; color: #423C33">Everything runs through Upwork: escrow, milestones, and a record both sides can point at.</p>
+          <a href="{{ upworkUrl }}" style="display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 26px; border-radius: 4px; background: #B8330F; color: #FFFFFF; font-weight: 600; font-size: 17px; text-decoration: none" style-hover="background: #98290B">Message me on Upwork</a>
+          <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #6B6458">This variant carries no email, phone, form or scheduler.</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isPublic }}" hint-placeholder-val="{{ true }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+          <div style="background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 26px">
+            <p style="margin: 0 0 16px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B6458">Pick a slot</p>
+            <div style="border: 1px dashed #B9B1A3; border-radius: 4px; min-height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px; background: repeating-linear-gradient(135deg, #FAF8F3 0 8px, #F2EEE5 8px 16px)">
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.6; color: #6B6458">Cal.com / Calendly inline embed<br>{{ schedulerUrl }}</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; font-size: 14.5px">
+              <a href="{{ mailtoHref }}" style="text-decoration: none; border-bottom: 1px solid #C9C1B2">{{ contactEmail }}</a>
+              <a href="{{ waHref }}" style="text-decoration: none; border-bottom: 1px solid #C9C1B2">WhatsApp {{ phone }}</a>
+            </div>
+          </div>
+
+          <form action="{{ formEndpoint }}" method="post" style="background: #FFFFFF; border: 1px solid #DCD6CA; border-radius: 6px; padding: 26px; display: grid; gap: 18px; align-content: start">
+            <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #6B6458">Or send the brief</p>
+            <label style="display: grid; gap: 7px; font-size: 14.5px; font-weight: 600">What's breaking?
+              <textarea name="problem" rows="3" required="required" style="font-family: 'Public Sans', sans-serif; font-size: 15.5px; font-weight: 400; padding: 11px 12px; border: 1px solid #C9C1B2; border-radius: 4px; background: #FDFCF9; color: #1C1A17; resize: vertical"></textarea>
+            </label>
+            <fieldset style="border: 0; padding: 0; margin: 0; display: grid; gap: 9px">
+              <legend style="padding: 0; font-size: 14.5px; font-weight: 600">Budget range</legend>
+              <sc-for list="{{ budgets }}" as="b" hint-placeholder-count="4">
+                <label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 15.5px; color: #423C33">
+                  <input type="radio" name="budget" value="{{ b }}" style="width: 17px; height: 17px; accent-color: #B8330F">{{ b }}
+                </label>
+              </sc-for>
+            </fieldset>
+            <label style="display: grid; gap: 7px; font-size: 14.5px; font-weight: 600">Timeline
+              <input name="timeline" type="text" placeholder="e.g. start in two weeks" style="font-family: 'Public Sans', sans-serif; font-size: 15.5px; font-weight: 400; min-height: 44px; padding: 0 12px; border: 1px solid #C9C1B2; border-radius: 4px; background: #FDFCF9; color: #1C1A17">
+            </label>
+            <label style="display: grid; gap: 7px; font-size: 14.5px; font-weight: 600">Email
+              <input name="email" type="email" required="required" style="font-family: 'Public Sans', sans-serif; font-size: 15.5px; font-weight: 400; min-height: 44px; padding: 0 12px; border: 1px solid #C9C1B2; border-radius: 4px; background: #FDFCF9; color: #1C1A17">
+            </label>
+            <button type="submit" style="min-height: 50px; border: 0; border-radius: 4px; background: #1C1A17; color: #FAF8F3; font-family: 'Public Sans', sans-serif; font-weight: 600; font-size: 16px; cursor: pointer" style-hover="background: #000000">Send the brief</button>
+          </form>
+        </div>
+      </sc-if>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px">
+        <a href="https://www.linkedin.com/" style="text-decoration: none; border-bottom: 1px solid #C9C1B2">LinkedIn</a>
+        <a href="https://www.credly.com/" style="text-decoration: none; border-bottom: 1px solid #C9C1B2">Credly</a>
+        <a href="https://github.com/" style="text-decoration: none; border-bottom: 1px solid #C9C1B2">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-top: 80px; border-top: 1px solid #DCD6CA; background: #F4F0E7">
+    <div style="max-width: 1140px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5B554C">
+      <span>HF Software Services SUARL · Tunis, Tunisia</span>
+      <span>© 2026</span>
+      <span>Built as a static site, no trackers</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 14px; background: rgba(250, 248, 243, 0.94); backdrop-filter: blur(10px); border-top: 1px solid #DCD6CA; display: flex; align-items: center; gap: 12px">
+      <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #3D382F; white-space: nowrap">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #B8330F"></span>1 slot · {{ month }}
+      </span>
+      <a href="{{ ctaHref }}" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 4px; background: #B8330F; color: #FFFFFF; font-weight: 600; font-size: 15.5px; text-decoration: none">{{ ctaShort }}</a>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;public&quot;,&quot;upwork&quot;],&quot;default&quot;:&quot;public&quot;,&quot;tsType&quot;:&quot;'public' | 'upwork'&quot;,&quot;section&quot;:&quot;Variant&quot;},&quot;month&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;sprintPrice&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;retainerPrice&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;schedulerUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;phone&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;formEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;},&quot;upworkProfileUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Placeholders&quot;}}">
+class Component extends DCLogic {
+  state = { variant: null, w: 1200 };
+
+  componentDidMount() {
+    this._onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._onResize);
+    this._onResize();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._onResize); }
+
+  ph(v, name) { return v != null && v !== '' ? v : '{{' + name + '}}'; }
+
+  tab(active) {
+    return 'min-height:26px;padding:0 10px;border-radius:3px;cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;border:1px solid ' +
+      (active ? '#FAF8F3' : 'rgba(250,248,243,0.35)') + ';background:' + (active ? '#FAF8F3' : 'transparent') +
+      ';color:' + (active ? '#1C1A17' : '#FAF8F3');
+  }
+
+  renderVals() {
+    const variant = this.state.variant || this.props.variant || 'public';
+    const isUpwork = variant === 'upwork';
+    const upworkUrl = this.ph(this.props.upworkProfileUrl, 'UPWORK_PROFILE_URL');
+    const w = this.state.w;
+    const email = this.ph(this.props.contactEmail, 'CONTACT_EMAIL');
+    const phone = this.ph(this.props.phone, 'E164_NUMBER');
+
+    return {
+      isUpwork, isPublic: !isUpwork, upworkUrl,
+      narrow: w < 760, wide: w >= 1000, showPill: w >= 1180,
+      stickyPad: w < 760 ? '86px' : '0px',
+      showPublic: () => this.setState({ variant: 'public' }),
+      showUpwork: () => this.setState({ variant: 'upwork' }),
+      publicTabStyle: this.tab(!isUpwork),
+      upworkTabStyle: this.tab(isUpwork),
+      month: this.ph(this.props.month, 'MONTH'),
+      sprintPrice: this.ph(this.props.sprintPrice, 'SPRINT_PRICE'),
+      retainerPrice: this.ph(this.props.retainerPrice, 'RETAINER_PRICE'),
+      schedulerUrl: this.ph(this.props.schedulerUrl, 'SCHEDULER_URL'),
+      formEndpoint: this.ph(this.props.formEndpoint, 'FORM_ENDPOINT'),
+      contactEmail: email,
+      phone,
+      mailtoHref: 'mailto:' + email,
+      waHref: 'https://wa.me/' + phone,
+      heroScreenshotSlot: '{{EVAL_RUN_SCREENSHOT}}',
+      upworkBadgeSlot: '{{UPWORK_BADGE_OR_JSS}}',
+      ctaShort: isUpwork ? 'Message on Upwork' : 'Book a reliability audit',
+      ctaLong: isUpwork ? 'Message me on Upwork' : 'Book a 30-minute reliability audit',
+      ctaHref: isUpwork ? upworkUrl : '#contact',
+      budgets: ['Under €5k', '€5k–15k', '€15k–40k', 'Retainer, not a project'],
+      testimonialSlots: ['{{TESTIMONIAL_1}}', '{{TESTIMONIAL_2}}', '{{TESTIMONIAL_3}}'],
+      cases: [
+        {
+          n: 'Case 01 · Clearco',
+          title: 'Legacy comp platform rebuilt with AI agents: Jira and Confluence kept in sync by MCP, zero manual ticket work',
+          problem: 'A compensation platform on aging foundations, with tickets and specs reconciled by hand between Jira and Confluence.',
+          shipped: 'Agents driving both tools over MCP, spec-driven delivery, regression evals gating every change.',
+          result: 'Manual ticket work eliminated · delivery speed {{VERIFIED_DELIVERY_METRIC}}',
+          stack: '.NET / C# · MCP · Jira & Confluence APIs · AWS · SQL Server'
+        },
+        {
+          n: 'Case 02 · Expensya',
+          title: 'Fraud detection on Mastercard corporate spend: LLM pipeline, manual reviews halved, €3,000+ recovered',
+          problem: 'Corporate card spend reviewed by analysts after the fact, with fraudulent claims found late or not at all.',
+          shipped: 'An LLM scoring pipeline in front of the review queue, thresholds tuned against labelled history.',
+          result: 'Manual reviews halved · €3,000+ recovered · accuracy {{ACCURACY_FIGURE}}',
+          stack: '.NET · LLM pipeline · Mastercard data · Azure · SQL Server'
+        },
+        {
+          n: 'Case 03 · Blauwtrust Groep',
+          title: 'SWIFT MT940 reconciliation: daily manual bank reconciliation eliminated across multiple banks',
+          problem: 'Finance reconciled MT940 statements from several banks by hand, every morning, before anything else could close.',
+          shipped: 'An ingestion and matching service parsing MT940 across banks, with exceptions surfaced rather than hunted.',
+          result: 'Daily manual reconciliation eliminated across multiple banks',
+          stack: 'C# · SWIFT MT940 · SQL Server · Azure'
+        },
+        {
+          n: 'Case 04 · Payments',
+          title: 'Provider-agnostic payments layer with Adyen: ~30% faster feature delivery',
+          problem: 'Payment features were tied to one provider, so every change meant a migration and a release freeze.',
+          shipped: 'An abstraction layer over Adyen with contract tests, letting providers be added without touching product code.',
+          result: '~30% faster feature delivery',
+          stack: 'TypeScript / Node · Adyen · Terraform · AWS'
+        }
+      ],
+      faqs: [
+        { n: '01', q: 'Who owns the code?', a: 'You do. Work lands in your repository, under your account, from the first commit. No licence, no hosted black box, no dependency on me to run it.' },
+        { n: '02', q: "What happens if you're unavailable?", a: 'Every engagement names a backup engineer who has access and context, and handoff docs are kept current in your repo rather than written at the end. Contracts are milestone-based, so you are never paying ahead of delivered work.' },
+        { n: '03', q: 'How do you measure whether the agent works?', a: 'An eval suite with cases drawn from your real data, thresholds agreed before the build, and a regression gate in CI that blocks a release when quality drops. After launch, a dashboard tracks the same numbers and alerts on drift.' },
+        { n: '04', q: 'What does it cost?', a: 'Fixed-price sprints and monthly retainers, quoted after the audit call so the number is attached to a defined scope. Starting figures are on the offer cards above; the audit itself is free.' },
+        { n: '05', q: 'Which stack and models do you use?', a: '.NET/C# and TypeScript/Node, AWS and Azure, Terraform, SQL Server, React or Angular on the front. Models sit behind an interface so you can change provider without rewriting the workflow.' },
+        { n: '06', q: 'Do you work through Upwork or direct?', a: 'Either. Upwork gives you escrow and milestone protection; direct gives you an MSA with a registered Tunisian SUARL that exports services and invoices cleanly.' }
+      ]
+    };
+  }
+}
+</script>
+
+
+</body></html>

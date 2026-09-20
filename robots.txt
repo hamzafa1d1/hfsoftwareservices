@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /upwork
+Disallow: /design/
 
-Sitemap: https://hfsoftware.dev/sitemap.xml
+Sitemap: https://www.hfsoftwareservices.com/sitemap.xml
