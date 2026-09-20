@@ -42,6 +42,20 @@ Edit `index.html` and replace the placeholder values:
 - Credly profile URL (`https://www.credly.com/users/hamza-faidi.c38f32e3`) — ideally deep-link each badge to its individual verification page.
 - Canonical / OG URL (`https://hfsoftware.dev/`) — change if the live domain differs.
 
+## Redesign research & skills
+
+Research for the conversion-focused redesign (goal: win AI-agent / agentic-dev clients via Upwork and referrals) lives as agent skills under `.agents/skills/` and is mirrored into `.claude/skills/` via symlinks so Claude Code picks them up automatically.
+
+| Skill | What it holds |
+| --- | --- |
+| `hf-portfolio-redesign` | Entry point. Audit of the live site (`references/current-site-audit.md`) and the ready-to-run design prompt (`references/design-prompt.md`). |
+| `ai-agent-dev-positioning` | Buyer psychology, headline formulas, offer ladder, pricing bands and 2026 Upwork demand data for AI-agent freelancers. |
+| `upwork-portfolio-conversion` | Section blueprint, case-study format, proof ranking, booking flow, Upwork ToS rules for linked sites. |
+| `landing-page-ux-conversion` | UI/UX + CRO rules with sources and a 38-point audit checklist. |
+| `frontend-design` | Anthropic's aesthetic craft skill (vendored). |
+
+The design prompt is also published at `.github/prompts/portfolio-redesign/PROMPT.md`. Fill the `{{PLACEHOLDER}}` values (scheduler URL, prices, Upwork profile, contact) before running it.
+
 ## Files
 
 - `index.html` — page markup + structured data + inline reveal-on-scroll script
