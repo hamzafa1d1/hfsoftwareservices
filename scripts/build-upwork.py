@@ -29,6 +29,8 @@ src = re.sub(r'\s*<a href="https://www\.linkedin\.com/[^"]*"[^>]*>LinkedIn</a>',
 assert "mailto:" not in src, "mailto survived"
 assert "wa.me" not in src, "WhatsApp survived"
 src = src.replace('<script src="/script.js" defer></script>', "")
+src = re.sub(r'\s*"https://www\.linkedin\.com/[^"]*",', "", src)  # JSON-LD sameAs
+assert "linkedin" not in src.lower(), "LinkedIn survived"
 
 # 4. metadata: canonical stays on the public page, keep this one out of search
 src = src.replace('<link rel="canonical" href="https://www.hfsoftwareservices.com/" />',
