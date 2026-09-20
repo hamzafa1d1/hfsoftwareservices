@@ -30,6 +30,8 @@ assert "mailto:" not in src, "mailto survived"
 assert "wa.me" not in src, "WhatsApp survived"
 src = src.replace('<script src="/script.js" defer></script>', "")
 src = re.sub(r'\s*"https://www\.linkedin\.com/[^"]*",', "", src)  # JSON-LD sameAs
+src = re.sub(r'\s*<p class="testi-note"[^>]*>.*?</p>', "", src, flags=re.S)  # "public on LinkedIn" note
+src = re.sub(r"\s*<!--.*?-->", "", src, flags=re.S)  # drop HTML comments (TODOs, section labels)
 assert "linkedin" not in src.lower(), "LinkedIn survived"
 
 # 4. metadata: canonical stays on the public page, keep this one out of search

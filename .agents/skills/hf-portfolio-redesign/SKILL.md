@@ -15,9 +15,19 @@ Single entry point for any work on the portfolio site in this repo. The goal is 
 - "audit the site" / "what's wrong with the current page"
 - "give me a design prompt for the site"
 
+## Facts about Hamza come from one place
+
+Every claim, date, metric and quote on the site must trace to the private evidence library **hamza-career-skills** (local: `~/Documents/Codex/2026-09-20/buil/outputs/hamza-career-skills`, GitHub: `hamzafa1d1/hamza-career-skills`, private). Read its `.agents/skills/hamza-personal-context/SKILL.md` first, then `references/deliverables.md` for claim IDs (CC01–CC16 platform work, EX01–EX05 fintech, PUB01–02 public) and `references/open-questions.md` for figures that must stay out of public copy. Rules that bind this site:
+
+- Dossier incidents (CC claims) are anonymised: "US HR SaaS platform", never the employer name. Employers appear only in chronology.
+- Do not publish: the ~79% fraud accuracy, the ~60% faster-delivery claim, "rebuilt platform" (the rebuild is ongoing), Blauwtrust (removed on the owner's instruction).
+- Quotes are verbatim LinkedIn recommendations with attribution, or nothing.
+- The MT940 case is not in the library and was dropped; do not reintroduce it without a source.
+
 ## Read first (in this order)
 
-1. `references/current-site-audit.md` — inventory of the live site, ranked findings, what to keep. Do not re-derive; extend it if you find something new.
+0. `references/buyer-walkthrough.md` — the persona pass that produced the current copy, and the owner-only items still open.
+1. `references/current-site-audit.md` — inventory of the pre-redesign site, ranked findings, what to keep. Historical; the rebuild shipped 2026-09-20.
 2. `../ai-agent-dev-positioning/SKILL.md` — who the buyer is, headline formulas, offer ladder, jargon to avoid.
 3. `../upwork-portfolio-conversion/SKILL.md` — section blueprint, proof elements, Upwork-specific behaviour and ToS constraints.
 4. `../landing-page-ux-conversion/SKILL.md` — UI/UX + CRO rules and the 40-point audit checklist.
