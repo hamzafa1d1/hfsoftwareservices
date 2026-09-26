@@ -22,4 +22,4 @@ python3 scripts/build-upwork.py
 
 ## Deployment
 
-Pushes to `main` deploy through `.github/workflows/deploy.yml` to Vercel. Pull requests create preview deployments. `vercel.json` supplies security headers. The site has no framework build step.
+Vercel’s GitHub integration deploys `main` to production and pull requests to preview. `.github/workflows/deploy.yml` validates the static pages and generated Upwork variant without a deployment secret. `vercel.json` supplies security headers. The site has no framework build step.
