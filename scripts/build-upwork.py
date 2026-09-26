@@ -1,44 +1,21 @@
 #!/usr/bin/env python3
-"""Generate /upwork/index.html from index.html.
+"""Build a contact-free portfolio variant for visitors arriving from Upwork."""
+from pathlib import Path
+import re
 
-Upwork forbids off-platform contact details on pages linked from a profile
-before a contract exists, so this variant strips the scheduler, form, email
-and phone, and points every CTA at the Upwork profile. Run after editing
-index.html:  python3 scripts/build-upwork.py
-"""
-import re, pathlib
-
-UPWORK_PROFILE_URL = "https://www.upwork.com/freelancers/hamzafaidi"  # TODO: confirm exact profile URL
-
-root = pathlib.Path(__file__).resolve().parents[1]
-src = (root / "index.html").read_text()
-
-# 1. swap the contact blocks
-src = re.sub(r"<!--@public-->.*?<!--/@public-->", "", src, flags=re.S)
-src = re.sub(r"<!--@upwork\s*(.*?)\s*@upwork-->", r"\1", src, flags=re.S)
-src = src.replace("UPWORK_PROFILE_URL", UPWORK_PROFILE_URL)
-
-# 2. every CTA goes to Upwork
-src = re.sub(r'href="#contact"( data-scheduler)?', f'href="{UPWORK_PROFILE_URL}" target="_blank" rel="noopener"', src)
-src = src.replace("Book a 30-minute reliability audit", "Message me on Upwork")
-src = src.replace("Book a reliability audit", "Message on Upwork")
-src = src.replace("Scope a sprint", "Message on Upwork").replace("Discuss a retainer", "Message on Upwork")
-
-# 3. no contact details anywhere (LinkedIn counts as a contact channel on Upwork)
-src = re.sub(r'\s*<a href="https://www\.linkedin\.com/[^"]*"[^>]*>LinkedIn</a>', "", src)
-assert "mailto:" not in src, "mailto survived"
-assert "wa.me" not in src, "WhatsApp survived"
-src = src.replace('<script src="/script.js" defer></script>', "")
-src = re.sub(r'\s*"https://www\.linkedin\.com/[^"]*",', "", src)  # JSON-LD sameAs
-src = re.sub(r'\s*<p class="testi-note"[^>]*>.*?</p>', "", src, flags=re.S)  # "public on LinkedIn" note
-src = re.sub(r"\s*<!--.*?-->", "", src, flags=re.S)  # drop HTML comments (TODOs, section labels)
-assert "linkedin" not in src.lower(), "LinkedIn survived"
-
-# 4. metadata: canonical stays on the public page, keep this one out of search
-src = src.replace('<link rel="canonical" href="https://www.hfsoftwareservices.com/" />',
-                  '<link rel="canonical" href="https://www.hfsoftwareservices.com/" />\n    <meta name="robots" content="noindex, nofollow" />')
-src = src.replace("<title>HF Software Services — AI agents that survive production</title>",
-                  "<title>HF Software Services — AI agents that survive production (Upwork)</title>")
-# relative asset paths already absolute (/styles.css etc.)
-(root / "upwork" / "index.html").write_text(src)
-print("wrote upwork/index.html", len(src), "bytes")
+root = Path(__file__).resolve().parents[1]
+source = (root / "index.html").read_text()
+source = re.sub(r"<!--@public-->.*?<!--/@public-->", "", source, flags=re.S)
+source = re.sub(r"<!--@upwork\s*(.*?)\s*@upwork-->", r"\1", source, flags=re.S)
+source = re.sub(r'<a class="inline-link".*?</a>', "", source, flags=re.S)
+source = re.sub(r'<div class="contact-social">.*?</div>', "", source, flags=re.S)
+source = re.sub(r',"sameAs":\[.*?\]', "", source)
+source = source.replace(" · LinkedIn recommendation, September 2026", " · Public recommendation, September 2026")
+source = "\n".join(line.rstrip() for line in source.splitlines()) + "\n"
+source = source.replace("<title>Hamza Faidi — .NET & React software engineer</title>", "<title>Hamza Faidi — software engineering portfolio</title>\n  <meta name=\"robots\" content=\"noindex, nofollow\">")
+assert "mailto:" not in source
+assert "hamza.faidi.software.eng@gmail.com" not in source
+assert "linkedin.com" not in source.lower()
+assert "upwork.com/freelancers/" not in source
+(root / "upwork" / "index.html").write_text(source)
+print("Built upwork/index.html")
