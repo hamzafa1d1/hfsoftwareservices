@@ -1,520 +1,78 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#FAF8F3" />
-    <title>HF Software Services — AI agents that survive production</title>
-    <meta
-      name="description"
-      content="Hamza Faidi builds and tests AI agents and the .NET/TypeScript systems around them: MCP integrations with the tools you already run, eval suites, monitoring, production delivery on AWS and Azure."
-    />
-    <link rel="canonical" href="https://www.hfsoftwareservices.com/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="HF Software Services" />
-    <meta property="og:title" content="AI agents that survive production. Not just the demo." />
-    <meta
-      property="og:description"
-      content="MCP integrations with the tools you already run, eval suites and monitoring you can read. Built in .NET and TypeScript, owned by you."
-    />
-    <meta property="og:url" content="https://www.hfsoftwareservices.com/" />
-    <meta property="og:image" content="https://www.hfsoftwareservices.com/og.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="AI agents that survive production. Not just the demo." />
-    <meta
-      name="twitter:description"
-      content="MCP integrations, eval suites and monitoring. Built in .NET and TypeScript, owned by you."
-    />
-    <meta name="twitter:image" content="https://www.hfsoftwareservices.com/og.png" />
-
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231C1A17'/%3E%3Ctext x='16' y='21' font-family='ui-monospace,Menlo,monospace' font-size='13' font-weight='700' text-anchor='middle' fill='%23FAF8F3'%3EHF%3C/text%3E%3C/svg%3E"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
-    />
-    <link rel="stylesheet" href="/styles.css" />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "name": "HF Software Services",
-            "legalName": "HF Software Services SUARL",
-            "url": "https://www.hfsoftwareservices.com/",
-            "address": { "@type": "PostalAddress", "addressLocality": "Tunis", "addressCountry": "TN" }
-          },
-          {
-            "@type": "Person",
-            "name": "Hamza Faidi",
-            "jobTitle": "Software Engineer",
-            "url": "https://www.hfsoftwareservices.com/",
-            "worksFor": { "@type": "Organization", "name": "HF Software Services" },
-            "knowsLanguage": ["en", "fr", "ar"],
-            "alumniOf": "Sup'Com",
-            "sameAs": [
-              "https://www.linkedin.com/in/hamzafaidi",
-              "https://www.credly.com/users/hamza-faidi.c38f32e3",
-              "https://github.com/hamzafa1d1"
-            ]
-          },
-          { "@type": "ProfilePage", "mainEntity": { "@type": "Person", "name": "Hamza Faidi" } },
-          {
-            "@type": "Service",
-            "name": "AI agent engineering",
-            "provider": { "@type": "Organization", "name": "HF Software Services" },
-            "offers": [
-              { "@type": "Offer", "name": "Reliability Audit", "price": "0", "priceCurrency": "EUR" },
-              { "@type": "Offer", "name": "Agent Sprint" },
-              { "@type": "Offer", "name": "Fractional AI Engineer" }
-            ]
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              { "@type": "Question", "name": "Who owns the code?", "acceptedAnswer": { "@type": "Answer", "text": "You do. Work lands in your repository, under your account, from the first commit. No licence, no hosted black box, no dependency on me to run it." } },
-              { "@type": "Question", "name": "What happens if you're unavailable?", "acceptedAnswer": { "@type": "Answer", "text": "Every engagement names a backup engineer who has access and context, and handoff docs are kept current in your repo rather than written at the end. Contracts are milestone-based, so you are never paying ahead of delivered work." } },
-              { "@type": "Question", "name": "How do you measure whether the agent works?", "acceptedAnswer": { "@type": "Answer", "text": "An eval suite with cases drawn from your real data, thresholds agreed before the build, and a regression gate in CI that blocks a release when quality drops. After launch, a dashboard tracks the same numbers and alerts on drift." } },
-              { "@type": "Question", "name": "What does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "Fixed-price sprints and monthly retainers, quoted after the audit call so the number is attached to a defined scope. The audit itself is free." } },
-              { "@type": "Question", "name": "Which stack and models do you use?", "acceptedAnswer": { "@type": "Answer", "text": ".NET/C# and TypeScript/Node, React or Angular on the front, SQL Server and PostgreSQL, AWS and Azure with Terraform. Models sit behind an interface so you can change provider without rewriting the workflow." } },
-              { "@type": "Question", "name": "Do you work through Upwork or direct?", "acceptedAnswer": { "@type": "Answer", "text": "Either. Upwork gives you escrow and milestone protection; direct gives you an MSA with a registered Tunisian SUARL that exports services and invoices cleanly." } }
-            ]
-          }
-        ]
-      }
-    </script>
-  </head>
-  <body>
-    <a class="skip" href="#work">Skip to work</a>
-
-    <header class="site-header">
-      <nav class="nav" aria-label="Primary">
-        <a class="brand" href="#top">HF Software Services</a>
-        <div class="nav__links">
-          <a href="#work">Work</a>
-          <a href="#offers">Offers</a>
-          <a href="#process">Process</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="nav__spacer"></div>
-        <span class="pill"><span class="pill__dot" aria-hidden="true"></span>Open for new work · <span class="pill__month">EU hours</span></span>
-        <a class="btn btn--primary btn--sm" href="#contact" data-scheduler>Book a reliability audit</a>
-      </nav>
-    </header>
-
-    <main id="top" class="wrap">
-      <!-- ── Hero ─────────────────────────────────────────────── -->
-      <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <p class="eyebrow">Hamza Faidi · Tunis · UTC+1</p>
-          <h1 id="hero-title">AI agents that survive production. Not just the demo.</h1>
-          <p class="hero__lede">
-            Your agents get wired into the tools your team already runs — Jira, Confluence, your CRM, your payment provider — through MCP, then held to an eval suite and monitoring you can read. Delivered in .NET and TypeScript on AWS or Azure, owned by you.
-          </p>
-          <div class="hero__ctas">
-            <a class="btn btn--primary" href="#contact" data-scheduler>Book a 30-minute reliability audit</a>
-            <a class="btn btn--ghost" href="#work">See case studies</a>
-          </div>
-          <div class="chips" aria-label="Proof">
-            <span class="chip">Payments &amp; card systems in production since 2022</span>
-            <span class="chip">AWS &amp; Terraform certified</span>
-            <span class="chip">Registered company · EU hours</span>
-          </div>
-        </div>
-
-        <figure class="pipeline">
-          <figcaption>How a change reaches production</figcaption>
-          <div class="pipeline__steps">
-            <div class="pstep">
-              <div class="pstep__k">01 · trigger</div>
-              <div class="pstep__t">Ticket, webhook or schedule</div>
-            </div>
-            <div class="pipeline__link" aria-hidden="true"></div>
-            <div class="pstep">
-              <div class="pstep__k">02 · agent</div>
-              <div class="pstep__t">Tool calls over MCP</div>
-              <div class="pstep__d">Jira · Confluence · CRM · payments</div>
-            </div>
-            <div class="pipeline__link" aria-hidden="true"></div>
-            <div class="pstep pstep--gate">
-              <div class="pstep__row">
-                <div>
-                  <div class="pstep__k">03 · eval gate</div>
-                  <div class="pstep__t">Regression suite must pass</div>
-                </div>
-                <span class="pstep__flag">fails → blocked</span>
-              </div>
-            </div>
-            <div class="pipeline__link" aria-hidden="true"></div>
-            <div class="pstep">
-              <div class="pstep__k">04 · production</div>
-              <div class="pstep__t">Monitored, alerting on drift</div>
-            </div>
-          </div>
-        </figure>
-      </section>
-
-      <!-- ── Trust strip ──────────────────────────────────────── -->
-      <section class="trust" aria-label="Shipped inside">
-        <span class="trust__label">Shipped inside</span>
-        <span>Clearco <span class="trust__since">· since Dec 2025</span></span><span class="trust__sep">·</span>
-        <span>Expensya <span class="trust__since">· 2022–2025, now Medius</span></span><span class="trust__sep">·</span>
-        <span>Mastercard, Adyen &amp; Swan integrations</span><span class="trust__sep">·</span>
-        <a href="https://www.credly.com/users/hamza-faidi.c38f32e3" target="_blank" rel="noopener">Credly badges</a>
-      </section>
-
-      <!-- ── 01 Who this is for ───────────────────────────────── -->
-      <section class="section" aria-labelledby="who-title">
-        <p class="kicker">01 — Who this is for</p>
-        <h2 id="who-title" class="h2 h2--narrow">You have something that works in a demo and nowhere else.</h2>
-        <div class="pains">
-          <div class="pain">
-            <p class="pain__k">A</p>
-            <p class="pain__t">An agent that answers wrong one time in twenty, and nobody can tell you which twenty.</p>
-          </div>
-          <div class="pain">
-            <p class="pain__k">B</p>
-            <p class="pain__t">Tickets and docs kept in sync by hand, an hour a day, by someone you hired to build.</p>
-          </div>
-          <div class="pain">
-            <p class="pain__k">C</p>
-            <p class="pain__t">A pilot nobody dares to ship, because no one agreed what "good enough" looks like.</p>
-          </div>
-          <div class="pain">
-            <p class="pain__k">D</p>
-            <p class="pain__t">A legacy .NET screen that times out, and a team afraid to touch it.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── 02 Offers ────────────────────────────────────────── -->
-      <section id="offers" class="section" aria-labelledby="offers-title">
-        <p class="kicker">02 — Offers</p>
-        <h2 id="offers-title" class="h2">Three ways to start.</h2>
-        <div class="offers">
-          <article class="offer offer--lead">
-            <div class="offer__head">
-              <h3>Reliability Audit</h3>
-              <span class="offer__price offer__price--free">Free</span>
-            </div>
-            <p class="offer__lede">You leave the call knowing which single build is worth doing next, and what it costs.</p>
-            <ul>
-              <li>30-minute call</li>
-              <li>One-page written report you keep</li>
-              <li>One prioritised build, named and priced</li>
-            </ul>
-            <p class="offer__time">Timeline · this week</p>
-            <p class="offer__not">Not for you if you want a quote without showing the system.</p>
-            <div class="offer__grow"></div>
-            <a class="btn btn--primary btn--card" href="#contact" data-scheduler>Book a reliability audit</a>
-          </article>
-
-          <article class="offer">
-            <div class="offer__head">
-              <h3>Agent Sprint</h3>
-              <!-- TODO: replace with a price floor, e.g. "From €4,500" -->
-              <span class="offer__price offer__price--tbd">Fixed price · quoted after the audit</span>
-            </div>
-            <p class="offer__lede">One workflow, automated end to end, with the tests that prove it still works next quarter.</p>
-            <ul>
-              <li>Fixed scope, fixed price</li>
-              <li>Eval suite with agreed thresholds</li>
-              <li>Monitoring dashboard</li>
-              <li>Handoff docs, your repo, your code</li>
-            </ul>
-            <p class="offer__time">Timeline · 2 weeks</p>
-            <p class="offer__not">Not for you if the scope is still moving when the sprint starts.</p>
-            <div class="offer__grow"></div>
-            <a class="btn btn--ghost btn--card" href="#contact">Scope a sprint</a>
-          </article>
-
-          <article class="offer">
-            <div class="offer__head">
-              <h3>Fractional AI Engineer</h3>
-              <!-- TODO: replace with a price floor, e.g. "From €3,000/mo" -->
-              <span class="offer__price offer__price--tbd">Monthly retainer · quoted after the audit</span>
-            </div>
-            <p class="offer__lede">Your agents and the .NET or TypeScript systems around them stay watched and improved by the engineer who built them.</p>
-            <ul>
-              <li>8–20 h/week</li>
-              <li>Monitoring and incident response</li>
-              <li>Continuous eval and improvement</li>
-              <li>Named backup engineer</li>
-            </ul>
-            <p class="offer__time">Timeline · monthly, 30-day notice</p>
-            <p class="offer__not">Not for you if you need someone in your standup every morning.</p>
-            <div class="offer__grow"></div>
-            <a class="btn btn--ghost btn--card" href="#contact">Discuss a retainer</a>
-          </article>
-        </div>
-      </section>
-
-      <!-- ── 03 Case studies ──────────────────────────────────── -->
-      <section id="work" class="section" aria-labelledby="work-title">
-        <p class="kicker">03 — Case studies</p>
-        <h2 id="work-title" class="h2">Four systems, still running.</h2>
-        <div class="cases">
-          <article class="case">
-            <p class="case__n">Case 01 · US HR SaaS platform · 2026</p>
-            <h3>Legacy compensation review screen: from 20-minute timeouts to about 20 seconds</h3>
-            <dl>
-              <div><dt>Problem</dt><dd>The worst approver view took up to 20 minutes, timed out and could crash on save. Nobody had measured where the time went.</dd></div>
-              <div><dt>What shipped</dt><dd>Read-only production diagnosis and controlled benchmarks, then query indexes, request-scoped formula memoization, deferred detail rendering and Playwright characterization tests around the old behaviour.</dd></div>
-              <div class="case__result"><dt>Measured result</dt><dd>Worst view completes in about 20 seconds · a representative query fell from 7,845 to 4 logical reads</dd></div>
-              <div class="case__stack"><dt>Stack</dt><dd>ASP.NET / VB.NET · SQL Server · Playwright · AWS · IIS</dd></div>
-            </dl>
-          </article>
-
-          <article class="case">
-            <p class="case__n">Case 02 · US HR SaaS platform · 2026</p>
-            <h3>AI-assisted delivery with quality gates: ticket to verified production fix, one engineer</h3>
-            <dl>
-              <div><dt>Problem</dt><dd>One engineer owning a legacy module needed investigation, delivery and verification that could be repeated safely, fast.</dd></div>
-              <div><dt>What shipped</dt><dd>An eight-stage workflow — gather, explore, plan, code, test, review, cleanup, ship — with 10+ repository-specific skills, subagents and safety hooks, portable across Claude Code, Copilot, Cursor and Codex. Scheduled PR review during work hours and a read-only production health scan.</dd></div>
-              <div class="case__result"><dt>Measured result</dt><dd>Used for production hotfixes with automated suites and live verification · health scan across 16 signals every 15 minutes</dd></div>
-              <div class="case__stack"><dt>Stack</dt><dd>Claude Code · MCP · GitHub Actions · Playwright · PowerShell · Slack</dd></div>
-            </dl>
-          </article>
-
-          <article class="case">
-            <p class="case__n">Case 03 · Corporate-card fintech · 2024–2025</p>
-            <h3>LLM-assisted fraud review on Mastercard corporate spend: 10,000+ transactions a day, manual reviews halved</h3>
-            <dl>
-              <div><dt>Problem</dt><dd>Suspicious card transactions were reviewed by hand, and fraud surfaced late or not at all.</dd></div>
-              <div><dt>What shipped</dt><dd>Multi-layer LLM analysis in front of the review queue, a .NET backend and an Angular review interface for the finance team.</dd></div>
-              <div class="case__result"><dt>Measured result</dt><dd>10,000+ transactions screened a day · manual reviews halved · €3,000+ in fraudulent charges recovered during the pilot</dd></div>
-              <div class="case__stack"><dt>Stack</dt><dd>.NET · Angular · Azure · SQL Server · LLM pipeline</dd></div>
-            </dl>
-          </article>
-
-          <article class="case">
-            <p class="case__n">Case 04 · Corporate-card fintech · 2023–2025</p>
-            <h3>Provider-agnostic payments layer with Adyen and Swan: idempotent, retryable webhooks</h3>
-            <dl>
-              <div><dt>Problem</dt><dd>Payment features were coupled to one provider, so adding or changing a provider meant touching product code.</dd></div>
-              <div><dt>What shipped</dt><dd>Contributed to a provider-agnostic webhook layer using Observer, Factory and Decorator patterns, with an idempotent, retryable event pipeline behind it.</dd></div>
-              <div class="case__result"><dt>Measured result</dt><dd>Reported ~30% faster feature delivery and ~20% faster provider onboarding</dd></div>
-              <div class="case__stack"><dt>Stack</dt><dd>C# / ASP.NET Core · Adyen · Swan · Azure · SQL Server</dd></div>
-            </dl>
-          </article>
-        </div>
-
-        <details class="more">
-          <summary><span class="mono">+4</span> More work</summary>
-          <div class="more__body">
-            <p><strong>Live schema migration, zero downtime.</strong> Authored and monitored the SQL migration jobs for a legacy-to-DDD transition under production load: zero downtime and under 2% CPU overhead at peak, for this migration.</p>
-            <p><strong>Virtual-card renewal automation.</strong> Scheduled worker over banking APIs with Azure Queue Storage and Logic Apps; monitored a rollout that renewed 100+ Mastercard virtual cards before expiry.</p>
-            <p><strong>Policy-based card suspension.</strong> Angular policy UI, ASP.NET Core APIs and Logic Apps orchestration replacing a manual support workflow for 1,000+ corporate users.</p>
-            <p><strong>System-design quiz, public.</strong> A chapter-based quiz MVP with explanations, live at <a href="https://www.sysdesigncoach.org/" target="_blank" rel="noopener">sysdesigncoach.org</a>.</p>
-          </div>
-        </details>
-      </section>
-
-      <!-- ── 04 Process ───────────────────────────────────────── -->
-      <section id="process" class="section" aria-labelledby="process-title">
-        <p class="kicker">04 — How an engagement runs</p>
-        <h2 id="process-title" class="h2">No surprises after the kickoff.</h2>
-        <ol class="steps">
-          <li class="step">
-            <p class="step__n">Step 1</p>
-            <h3>Audit call</h3>
-            <p>Thirty minutes on your system. You get the one-page report whether or not you hire.</p>
-          </li>
-          <li class="step">
-            <p class="step__n">Step 2</p>
-            <h3>Scoped proposal</h3>
-            <p>Fixed price, fixed scope, named deliverables and the eval thresholds agreed up front.</p>
-          </li>
-          <li class="step">
-            <p class="step__n">Step 3</p>
-            <h3>Build in 2-week sprints</h3>
-            <p>Demo at the end of each one, evals in CI, your repository from the first commit.</p>
-          </li>
-          <li class="step">
-            <p class="step__n">Step 4</p>
-            <h3>Deploy, monitor, hand over</h3>
-            <p>Zero-downtime release, dashboards your team reads, docs that let them take it from here.</p>
-          </li>
-        </ol>
-        <p class="norms">Replies within one business day, UTC+1 · Slack or email, your channel · written weekly update every Friday</p>
-      </section>
-
-      <!-- ── 05 What colleagues say — verbatim LinkedIn recommendations ── -->
-      <section class="section" aria-labelledby="testi-title">
-        <p class="kicker">05 — What colleagues say</p>
-        <h2 id="testi-title" class="h2">In their words.</h2>
-        <div class="testis">
-          <blockquote class="testi">
-            <p>“Within a short time, he'd learned the codebase well enough to troubleshoot and resolve issues efficiently and independently. We built a brand-new salary benchmarking feature together, and he consistently turned my requirements and prototypes into working functionality — even as we had to adjust requirements due to external dependencies mid-development.”</p>
-            <footer>Eric Guba · Senior Product Leader, HR Technology · worked with Hamza on the same team · September 2026</footer>
-          </blockquote>
-          <blockquote class="testi">
-            <p>“Despite being early in his career, he consistently showed a level of maturity and a holistic understanding of software development that went beyond his role. Hamza was curious, thoughtful, and always eager to see the bigger picture — not just writing code, but thinking about architecture, process, and user impact.”</p>
-            <footer>Łukasz Szymaniec · Fullstack Developer, Software Architect, Technical Leader · senior colleague on the same team · September 2025</footer>
-          </blockquote>
-        </div>
-        <p class="testi-note" style="margin: 18px 0 0; color: var(--muted)">Both recommendations are public on <a href="https://www.linkedin.com/in/hamzafaidi" target="_blank" rel="noopener">LinkedIn</a>.</p>
-      </section>
-
-      <!-- ── 06 About ─────────────────────────────────────────── -->
-      <section id="about" class="section" aria-labelledby="about-title">
-        <p class="kicker">06 — About</p>
-        <div class="about">
-          <div>
-            <h2 id="about-title" class="h2">Hamza Faidi</h2>
-            <p>Four years building backend and cloud systems where a wrong number costs money: corporate cards and payments at Expensya from 2022 to 2025, and a US HR compensation platform at Clearco since December 2025.</p>
-            <p>Since 2025 the day job has been agent-assisted delivery: a workflow that carries a ticket to a verified fix, scheduled review automation, characterization tests around legacy behaviour, and LLM features shipped inside products rather than demoed beside them.</p>
-            <p>You get one engineer, a registered company to invoice, and the same person on the call in month six.</p>
-            <div class="facts" aria-label="Facts">
-              <span class="fact">Registered SUARL</span>
-              <span class="fact">UTC+1</span>
-              <span class="fact">EN C1 · FR · AR</span>
-              <span class="fact">Milestone-based contracts</span>
-              <span class="fact">AWS SAA · Terraform Associate</span>
-              <span class="fact">Sup'Com engineering degree</span>
-              <span class="fact">Teaches C/C++ &amp; OOP at Sup'Com</span>
-            </div>
-          </div>
-          <figure class="portrait">
-            <img
-              src="/hamza-400.webp"
-              srcset="/hamza-400.webp 400w, /hamza.webp 800w"
-              sizes="(max-width: 760px) 80vw, 300px"
-              width="400"
-              height="400"
-              alt="Hamza Faidi"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Tunis · EU business hours · English, French and Arabic</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <!-- ── 07 FAQ ───────────────────────────────────────────── -->
-      <section id="faq" class="section" aria-labelledby="faq-title">
-        <p class="kicker">07 — FAQ</p>
-        <h2 id="faq-title" class="h2" style="margin-bottom: 30px">The six things people ask.</h2>
-        <div class="faq">
-          <details>
-            <summary><span class="mono">01</span><span class="q">Who owns the code?</span></summary>
-            <p>You do. Work lands in your repository, under your account, from the first commit. No licence, no hosted black box, no dependency on me to run it.</p>
-          </details>
-          <details>
-            <summary><span class="mono">02</span><span class="q">What happens if you're unavailable?</span></summary>
-            <p>Every engagement names a backup engineer who has access and context, and handoff docs are kept current in your repo rather than written at the end. Contracts are milestone-based, so you are never paying ahead of delivered work.</p>
-          </details>
-          <details>
-            <summary><span class="mono">03</span><span class="q">How do you measure whether the agent works?</span></summary>
-            <p>An eval suite with cases drawn from your real data, thresholds agreed before the build, and a regression gate in CI that blocks a release when quality drops. After launch, a dashboard tracks the same numbers and alerts on drift.</p>
-          </details>
-          <details>
-            <summary><span class="mono">04</span><span class="q">What does it cost?</span></summary>
-            <p>Fixed-price sprints and monthly retainers, quoted after the audit call so the number is attached to a defined scope. The audit itself is free.</p>
-          </details>
-          <details>
-            <summary><span class="mono">05</span><span class="q">Which stack and models do you use?</span></summary>
-            <p>.NET/C# and TypeScript/Node, React or Angular on the front, SQL Server and PostgreSQL, AWS and Azure with Terraform. Models sit behind an interface so you can change provider without rewriting the workflow.</p>
-          </details>
-          <details>
-            <summary><span class="mono">06</span><span class="q">Do you work through Upwork or direct?</span></summary>
-            <p>Either. Upwork gives you escrow and milestone protection; direct gives you an MSA with a registered Tunisian SUARL that exports services and invoices cleanly.</p>
-          </details>
-        </div>
-      </section>
-
-      <!-- ── 08 Contact ───────────────────────────────────────── -->
-      <section id="contact" class="section contact" aria-labelledby="contact-title">
-        <p class="kicker">08 — Start here</p>
-        <h2 id="contact-title" class="h2">Bring the agent that almost works.</h2>
-        <p class="contact__lede">Thirty minutes, one written page, one prioritised build. No pitch deck.</p>
-
-        <!--@public-->
-        <div class="contact__grid">
-          <div class="panel panel--lead">
-            <p class="panel__k">Pick a slot</p>
-            <div id="scheduler" class="scheduler">
-              <div class="scheduler__fallback">
-                <p>Send two times that suit you, EU business hours. You'll have a confirmed slot within one business day.</p>
-                <a class="btn btn--primary" href="mailto:hamza.faidi.software.eng@gmail.com?subject=Reliability%20audit%20%E2%80%94%20two%20times%20that%20suit%20me">Email to book</a>
-              </div>
-            </div>
-            <div class="contact__alt">
-              <a href="mailto:hamza.faidi.software.eng@gmail.com">hamza.faidi.software.eng@gmail.com</a>
-              <!-- TODO: add WhatsApp once you decide to publish a number: <a href="https://wa.me/216XXXXXXXX">WhatsApp</a> -->
-            </div>
-          </div>
-
-          <form
-            id="brief"
-            class="panel brief"
-            action="mailto:hamza.faidi.software.eng@gmail.com"
-            method="post"
-            enctype="text/plain"
-            data-email="hamza.faidi.software.eng@gmail.com"
-          >
-            <p class="panel__k">Or send the brief</p>
-            <label>What's breaking?
-              <textarea name="problem" rows="3" required></textarea>
-            </label>
-            <fieldset>
-              <legend>Budget range</legend>
-              <label class="radio"><input type="radio" name="budget" value="Under €5k" />Under €5k</label>
-              <label class="radio"><input type="radio" name="budget" value="€5k–15k" />€5k–15k</label>
-              <label class="radio"><input type="radio" name="budget" value="€15k–40k" />€15k–40k</label>
-              <label class="radio"><input type="radio" name="budget" value="Retainer, not a project" />Retainer, not a project</label>
-            </fieldset>
-            <label>Timeline
-              <input name="timeline" type="text" placeholder="e.g. start in two weeks" autocomplete="off" />
-            </label>
-            <label>Email
-              <input name="email" type="email" required autocomplete="email" />
-            </label>
-            <button class="btn btn--ink" type="submit">Send the brief</button>
-            <p class="brief__status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-        <!--/@public-->
-
-        <!--@upwork
-        <div class="upwork-box">
-          <p>Everything runs through Upwork: escrow, milestones, and a record both sides can point at.</p>
-          <a class="btn btn--primary" href="UPWORK_PROFILE_URL">Message me on Upwork</a>
-          <p class="note">This page carries no email, phone, form or scheduler.</p>
-        </div>
-        @upwork-->
-
-        <div class="links">
-          <a href="https://www.linkedin.com/in/hamzafaidi" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://www.credly.com/users/hamza-faidi.c38f32e3" target="_blank" rel="noopener">Credly</a>
-          <a href="https://github.com/hamzafa1d1" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="wrap">
-        <span>HF Software Services SUARL · Tunis, Tunisia</span>
-        <span>© <span id="year">2026</span> Hamza Faidi</span>
-        <span>Built as a static site, no trackers</span>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d2b">
+  <title>Hamza Faidi — .NET & React software engineer</title>
+  <meta name="description" content="Hamza Faidi builds dependable SaaS and payments software with .NET, React, SQL and cloud infrastructure. Explore selected work and get in touch.">
+  <link rel="canonical" href="https://www.hfsoftwareservices.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="HF Software Services">
+  <meta property="og:title" content="Hamza Faidi — software for complex, real-world work">
+  <meta property="og:description" content=".NET and React engineering across SaaS, payments and production systems. Selected work, approach and contact.">
+  <meta property="og:url" content="https://www.hfsoftwareservices.com/">
+  <meta property="og:image" content="https://www.hfsoftwareservices.com/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.hfsoftwareservices.com/og.png">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101d2b'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='36' font-weight='bold' fill='%23d8f48f'%3EH%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","name":"Hamza Faidi","url":"https://www.hfsoftwareservices.com/","jobTitle":"Software Engineer","homeLocation":{"@type":"Place","name":"Tunis, Tunisia"},"sameAs":["https://github.com/hamzafa1d1","https://www.linkedin.com/in/hamzafaidi"]},{"@type":"ProfessionalService","name":"HF Software Services","url":"https://www.hfsoftwareservices.com/","founder":{"@type":"Person","name":"Hamza Faidi"},"serviceType":"Software engineering"}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" id="top"><div class="container nav">
+    <a class="wordmark" href="#top" aria-label="Hamza Faidi, home"><span class="wordmark__icon">H<span class="wordmark__dot">.</span></span><span>Hamza Faidi</span></a>
+    <nav aria-label="Primary navigation" class="nav-links"><a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <details class="mobile-menu"><summary>Menu <span aria-hidden="true">⌄</span></summary><nav aria-label="Mobile navigation"><a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#about">About</a><a href="#contact">Contact</a></nav></details>
+    <!--@public--><a class="nav-cta" href="mailto:hamza.faidi.software.eng@gmail.com?subject=Project%20inquiry">Let's talk <span aria-hidden="true">↗</span></a><!--/@public-->
+    <!--@upwork <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a> @upwork-->
+  </div></header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title"><div class="container hero-grid">
+      <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-line"></span> Software engineer · Tunis, Tunisia</p>
+        <h1 id="hero-title">Software that holds up <em>when it matters.</em></h1>
+        <p class="hero-lede">I’m Hamza. I build and improve business-critical SaaS and payments systems, from .NET APIs and React interfaces to the data and delivery work behind them.</p>
+        <div class="hero-actions"><a class="button button--lime" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
+          <!--@public--><a class="text-link text-link--light" href="mailto:hamza.faidi.software.eng@gmail.com?subject=Project%20inquiry">Discuss a project <span aria-hidden="true">↗</span></a><!--/@public-->
+          <!--@upwork <a class="text-link text-link--light" href="#contact">Discuss a project <span aria-hidden="true">↗</span></a> @upwork-->
+        </div><div class="hero-tags" aria-label="Core areas"><span>.NET / C#</span><span>React</span><span>SQL & cloud</span><span>AI-assisted delivery</span></div>
       </div>
-    </footer>
+      <div class="hero-visual"><div class="portrait-frame"><img src="/hamza.webp" srcset="/hamza-400.webp 400w, /hamza.webp 800w" sizes="(max-width: 800px) 80vw, 440px" width="800" height="800" alt="Portrait of Hamza Faidi" fetchpriority="high"></div><div class="visual-note"><span class="visual-note__mark" aria-hidden="true">✳</span><span>Engineer by trade.<br>Curious by default.</span></div><span class="visual-corner" aria-hidden="true">01 / 04</span></div>
+    </div><div class="container hero-bottom"><span>Scroll to see selected work</span><span aria-hidden="true">↓</span></div></section>
 
-    <div class="sticky-cta" aria-hidden="false">
-      <span class="sticky-cta__slot"><span class="pill__dot" aria-hidden="true"></span>Open for work</span>
-      <a class="btn btn--primary" href="#contact" data-scheduler>Book a reliability audit</a>
-    </div>
+    <section class="proof-strip" aria-label="Professional background"><div class="container proof-grid"><p class="proof-intro">Experience across</p><div><strong>ClearCo</strong><span>HR technology · current role</span></div><div><strong>Expensya</strong><span>Corporate payments · 2022–2025</span></div><div><strong>SUP’COM</strong><span>Programming instructor · 2024–2025</span></div></div></section>
 
-    <script src="/script.js" defer></script>
-  </body>
+    <section class="section work-section" id="work" aria-labelledby="work-title"><div class="container"><div class="section-heading"><div><p class="section-label">01 / SELECTED WORK</p><h2 id="work-title">Built for the<br><em>real world.</em></h2></div><p>Selected projects from product teams handling complex workflows, live data and production change. Client work is anonymized.</p></div>
+      <div class="work-list">
+        <article class="work-card work-card--featured"><div class="work-card__top"><span class="work-card__index">01 / SaaS product delivery</span><span class="status">Shipped</span></div><div class="work-card__body"><div class="work-card__title"><h3>Employee skills, from interface to event ledger.</h3><p>Owned the add, move and remove flows across a React interface, API and PostgreSQL event ledger. Designed transactional and idempotent writes, then verified rejected paths left no partial data.</p></div><div class="work-card__aside"><span class="aside-label">What changed</span><strong>A complete, merged feature lane</strong><span>Front end · API · data · staging integration · QA</span></div></div><div class="work-card__footer"><span>React</span><span>TypeScript / Fastify</span><span>PostgreSQL</span><span>AWS</span></div></article>
+        <article class="work-card"><div class="work-card__top"><span class="work-card__index">02 / Production diagnosis</span><span class="status">Shipped</span></div><div class="work-card__body"><div class="work-card__title"><h3>Finding the bottleneck in a legacy compensation workflow.</h3><p>Traced a slow approver experience through production-safe investigation and controlled staging benchmarks. Corrected SQL indexes went to production; an application optimization was rolled back after release.</p></div><div class="work-card__aside"><span class="aside-label">The point</span><strong>Measure, ship, verify, correct</strong><span>Honest about what stayed in production</span></div></div><div class="work-card__footer"><span>SQL Server</span><span>ASP.NET</span><span>Playwright</span><span>AWS</span></div></article>
+        <article class="work-card"><div class="work-card__top"><span class="work-card__index">03 / Payments automation</span><span class="status">Delivered</span></div><div class="work-card__body"><div class="work-card__title"><h3>Renewing virtual cards before they expire.</h3><p>Designed and led an automated renewal flow using banking APIs, a scheduled worker and Azure orchestration. Monitored its rollout for corporate card users.</p></div><div class="work-card__aside"><span class="aside-label">Reported outcome</span><strong>100+ cards renewed</strong><span>Before expiry, during the rollout</span></div></div><div class="work-card__footer"><span>.NET</span><span>GraphQL</span><span>Azure Queue Storage</span><span>Logic Apps</span></div></article>
+        <article class="work-card"><div class="work-card__top"><span class="work-card__index">04 / Engineering workflow</span><span class="status">Merged kit</span></div><div class="work-card__body"><div class="work-card__title"><h3>Putting review gates around AI-assisted development.</h3><p>Built a reusable cross-tool setup from an existing team pilot, with a one-command install path, frozen plans and checked review gates. The goal: keep investigation, implementation and verification together.</p></div><div class="work-card__aside"><span class="aside-label">Delivered</span><strong>Reusable harness kit</strong><span>Planning · review · QA evidence</span></div></div><div class="work-card__footer"><span>AI coding tools</span><span>CI</span><span>GitHub Actions</span><span>Automated checks</span></div></article>
+      </div><a class="inline-link" href="https://github.com/hamzafa1d1" target="_blank" rel="noopener noreferrer">Explore public projects on GitHub <span aria-hidden="true">↗</span></a></div></section>
+
+    <section class="section expertise-section" id="expertise" aria-labelledby="expertise-title"><div class="container"><div class="section-heading section-heading--compact"><div><p class="section-label">02 / HOW I HELP</p><h2 id="expertise-title">Deep in the stack.<br><em>Clear on the outcome.</em></h2></div></div><div class="expertise-grid">
+      <article><span class="expertise-number">01</span><div class="expertise-glyph" aria-hidden="true">⌘</div><h3>Build product features</h3><p>Turn difficult workflows into usable software across API, interface and data layers. I’m backend-first and comfortable owning the full path to release.</p><span class="expertise-tags">.NET · React · TypeScript · PostgreSQL</span></article>
+      <article><span class="expertise-number">02</span><div class="expertise-glyph" aria-hidden="true">↗</div><h3>Improve live systems</h3><p>Find bottlenecks, repair fragile paths and make production behavior easier to observe. Start with evidence, then change the smallest thing that solves the problem.</p><span class="expertise-tags">SQL Server · AWS · Azure · Playwright</span></article>
+      <article><span class="expertise-number">03</span><div class="expertise-glyph" aria-hidden="true">✳</div><h3>Build better delivery loops</h3><p>Use AI tooling for investigation and implementation with plans, tests, review and runtime checks that make the result inspectable by the team.</p><span class="expertise-tags">Agent workflows · CI · QA evidence</span></article>
+    </div></div></section>
+
+    <section class="quote-band" aria-label="Recommendation"><div class="container quote-grid"><span class="quote-mark" aria-hidden="true">“</span><blockquote><p>Within a short time, he'd learned the codebase well enough to troubleshoot and resolve issues efficiently and independently.</p><footer>Eric Guba <span>· Senior Product Leader · LinkedIn recommendation, September 2026</span></footer></blockquote></div></section>
+
+    <section class="section about-section" id="about" aria-labelledby="about-title"><div class="container about-grid"><div><p class="section-label">03 / ABOUT</p><h2 id="about-title">A builder who stays<br><em>close to the details.</em></h2></div><div class="about-copy"><p>I’m a software engineer based in Tunis, working with remote product teams. My experience spans corporate payments, HR software, production diagnosis and new feature delivery.</p><p>I like the part of engineering where the messy details meet a clear result: tracing a query, preserving data through a migration, making an interface understandable, or checking that a release behaves as intended.</p><p>I also taught C, C++ and object-oriented programming to roughly 80 students at SUP’COM. Teaching sharpened how I explain tradeoffs and work with people across disciplines.</p><div class="credentials"><div><span>Education</span><strong>Engineering degree · SUP’COM</strong></div><div><span>Credentials</span><strong>AWS Solutions Architect – Associate<br>Terraform Associate</strong></div><div><span>Based in</span><strong>Tunis, Tunisia · Remote collaboration</strong></div></div></div></div></section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container contact-grid"><div><p class="section-label">04 / GET IN TOUCH</p><h2 id="contact-title">Have a complex problem?<br><em>Let’s make it workable.</em></h2><p>Share what you’re building, what’s slowing you down and what a useful outcome would look like. I’ll reply with a practical next step.</p></div><div class="contact-panel"><span class="contact-panel__asterisk" aria-hidden="true">✳</span>
+      <!--@public--><a class="contact-email" href="mailto:hamza.faidi.software.eng@gmail.com?subject=Project%20inquiry">hamza.faidi.software.eng@gmail.com <span aria-hidden="true">↗</span></a><p>Prefer a brief? Include the project, timeline and any relevant links in your email.</p><!--/@public-->
+      <!--@upwork <p class="contact-upwork">If you arrived through Upwork, send your project brief in our Upwork conversation.</p> @upwork-->
+      <div class="contact-social"><a href="https://github.com/hamzafa1d1" target="_blank" rel="noopener noreferrer">GitHub ↗</a><!--@public--><a href="https://www.linkedin.com/in/hamzafaidi" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><!--/@public--></div>
+    </div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><span>© <span id="year">2026</span> Hamza Faidi</span><span>Designed for clarity. Built to last.</span><a href="#top">Back to top ↑</a></div></footer>
+  <script src="/script.js" defer></script>
+</body>
 </html>
