@@ -1,6 +1,10 @@
-# HF Software Services portfolio
+# HF Software Services
 
 A static, accessible portfolio for Hamza Faidi. The site is plain HTML/CSS with a tiny script for the footer year; all content and navigation work without JavaScript.
+
+[Visit the portfolio](https://www.hfsoftwareservices.com/)
+
+Professional portfolio and contact site. Case studies summarize commercial work; this repository contains the website, not the source code of employer systems.
 
 ## Preview
 
