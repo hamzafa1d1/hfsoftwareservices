@@ -12,7 +12,9 @@ source = re.sub(r'<div class="contact-social">.*?</div>', "", source, flags=re.S
 source = re.sub(r',"sameAs":\[.*?\]', "", source)
 source = source.replace(" · LinkedIn recommendation, September 2026", " · Public recommendation, September 2026")
 source = "\n".join(line.rstrip() for line in source.splitlines()) + "\n"
-source = source.replace("<title>Hamza Faidi — .NET & React software engineer</title>", "<title>Hamza Faidi — software engineering portfolio</title>\n  <meta name=\"robots\" content=\"noindex, nofollow\">")
+old_title = "<title>Hamza Faidi — software engineer · .NET, React & AI-assisted delivery</title>"
+assert old_title in source
+source = source.replace(old_title, "<title>Hamza Faidi — software engineering portfolio</title>\n  <meta name=\"robots\" content=\"noindex, nofollow\">")
 assert "mailto:" not in source
 assert "hamza.faidi.software.eng@gmail.com" not in source
 assert "linkedin.com" not in source.lower()

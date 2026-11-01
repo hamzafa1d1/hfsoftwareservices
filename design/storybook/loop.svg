@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="t d">
+  <title id="t">The delivery loop</title>
+  <desc id="d">Nine steps on a ring: Brainstorm, Plan, Approve, Build, Review, QA, Ship, Human review, Retro. Approve and Human review are human gates. Review can send work back to Build.</desc>
+  <rect width="640" height="640" fill="#0B0F14"/>
+  <circle cx="320" cy="320" r="220" fill="none" stroke="#263241" stroke-width="2"/>
+  <circle cx="320" cy="320" r="220" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-dasharray="4 10" opacity=".6"/>
+  <!-- back-edge Review -> Build -->
+  <path d="M 395 527 Q 420 440 511 430" fill="none" stroke="#F5A524" stroke-width="2" stroke-dasharray="6 6"/>
+  <g font-family="Geist Mono, ui-monospace, monospace" font-size="15" fill="#E8E2D4" text-anchor="middle">
+    <!-- angles start at top, 40deg apart -->
+    <g><circle cx="320" cy="100" r="11" fill="#2DD4BF"/><text x="320" y="78">BRAINSTORM</text></g>
+    <g><circle cx="461" cy="151" r="11" fill="#2DD4BF"/><text x="500" y="140">PLAN</text></g>
+    <g><circle cx="537" cy="282" r="11" fill="#0B0F14" stroke="#E8E2D4" stroke-width="3"/><circle cx="537" cy="282" r="17" fill="none" stroke="#E8E2D4" stroke-width="1.5"/><text x="590" y="287">APPROVE</text></g>
+    <g><circle cx="511" cy="430" r="11" fill="#2DD4BF"/><text x="560" y="450">BUILD</text></g>
+    <g><circle cx="395" cy="527" r="11" fill="#2DD4BF"/><text x="420" y="562">REVIEW</text></g>
+    <g><circle cx="245" cy="527" r="11" fill="#2DD4BF"/><text x="222" y="562">QA</text></g>
+    <g><circle cx="129" cy="430" r="11" fill="#2DD4BF"/><text x="80" y="450">SHIP</text></g>
+    <g><circle cx="103" cy="282" r="11" fill="#0B0F14" stroke="#E8E2D4" stroke-width="3"/><circle cx="103" cy="282" r="17" fill="none" stroke="#E8E2D4" stroke-width="1.5"/><text x="60" y="250">HUMAN</text><text x="60" y="268">REVIEW</text></g>
+    <g><circle cx="179" cy="151" r="11" fill="#2DD4BF"/><text x="140" y="140">RETRO</text></g>
+  </g>
+  <text x="320" y="312" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="30" font-weight="700" fill="#F4F1EA">Ticket → production</text>
+  <text x="320" y="342" text-anchor="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="13" fill="#9AA7B6">◎ HUMAN GATE   ┅ CONCERNS → BACK TO BUILD</text>
+</svg>

@@ -30,7 +30,7 @@ for file in (ROOT / "index.html", ROOT / "upwork/index.html"):
     page = Page()
     page.feed(source)
     assert all(not link.startswith("#") or link[1:] in page.ids for link in page.links), file
-    assert all(image.get("alt") for image in page.images), file
+    assert all("alt" in image for image in page.images), file  # alt="" is valid for decorative images
     assert all((ROOT / link.lstrip("/")).exists() for link in page.links if link.startswith("/") and not link.startswith("//")), file
     assert all((ROOT / image["src"].lstrip("/")).exists() for image in page.images), file
     structured = re.search(r'<script type="application/ld\+json">(.*?)</script>', source, re.S)
