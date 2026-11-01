@@ -1,5 +1,4 @@
-// Site motion + 3D "dispatch" scene. Bundled by tools/ (esbuild) into assets/site.min.js.
-// Spec: design/storybook/DESIGN.md
+// 3D "dispatch" scene: a ticket travels through nine gates as you scroll. Loaded lazily by main.js.
 import {
   WebGLRenderer, Scene, PerspectiveCamera, Color, Fog, Group, Mesh, BoxGeometry, PlaneGeometry,
   MeshStandardMaterial, MeshPhysicalMaterial, MeshBasicMaterial, CanvasTexture, SRGBColorSpace,
@@ -7,109 +6,16 @@ import {
 } from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
-import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-window.__siteReady = true;
-gsap.registerPlugin(ScrollTrigger);
-gsap.ticker.lagSmoothing(0);
-
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const INK = '#0e0f10', GROUND = '#e4e6e8', SIGNAL = '#ff4f12', MUTED = '#4a4f55';
 const GATES = ['Brainstorm', 'Plan', 'Approve', 'Build', 'Review', 'QA', 'Ship', 'Human review', 'Retro'];
 const HUMAN = new Set([2, 7]);
+let reduce = false;
 
-initHeader();
-if (!reduce) initMotion();
-document.fonts.load('800 80px Archivo').catch(() => {}).finally(() => initScene());
-
-/* ---------------- header: hide on scroll down ---------------- */
-function initHeader() {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-  let last = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    header.classList.toggle('is-hidden', y > last && y > 200);
-    last = y;
-  }, { passive: true });
-}
-
-/* ---------------- page motion ---------------- */
-function initMotion() {
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-  tl.fromTo('.hero .line > span', { y: 0, yPercent: 110 }, { y: 0, yPercent: 0, duration: 1.3, stagger: 0.09 })
-    .fromTo('.hero__foot', { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1 }, 0.55);
-
-  gsap.utils.toArray('.reveal-lines').forEach((h) => {
-    gsap.fromTo(h.querySelectorAll('.line > span'), { yPercent: 110 }, {
-      yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.09,
-      scrollTrigger: { trigger: h, start: 'top 85%' },
-    });
-  });
-
-  gsap.utils.toArray('.gate-step').forEach((step) => {
-    gsap.fromTo(step.children, { x: -70, opacity: 0 }, {
-      x: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08,
-      scrollTrigger: { trigger: step, start: 'top 62%', end: 'bottom 38%', toggleActions: 'play reverse play reverse' },
-    });
-  });
-
-  gsap.fromTo('.kit__body > *', { y: 36, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.09,
-    scrollTrigger: { trigger: '.kit__body', start: 'top 80%' },
-  });
-
-  gsap.fromTo('.doc > *', { clipPath: 'inset(0 0 100% 0)', y: 24 }, {
-    clipPath: 'inset(0 0 0% 0)', y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.11,
-    scrollTrigger: { trigger: '.doc', start: 'top 75%' },
-  });
-  gsap.fromTo('.doc__checks li', { x: -30, opacity: 0 }, {
-    x: 0, opacity: 1, duration: 0.6, ease: 'back.out(1.6)', stagger: 0.18,
-    scrollTrigger: { trigger: '.doc__checks', start: 'top 85%' },
-  });
-
-  gsap.utils.toArray('.case').forEach((c) => {
-    const flip = c.classList.contains('case--flip');
-    gsap.fromTo(c.querySelector('.case__num'), { xPercent: flip ? 28 : -28, scale: 0.72 }, {
-      xPercent: 0, scale: 1, ease: 'none',
-      scrollTrigger: { trigger: c, start: 'top bottom', end: 'center 55%', scrub: 0.8 },
-    });
-    gsap.fromTo(c.querySelectorAll('.case__text > *'), { y: 40, opacity: 0 }, {
-      y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.07,
-      scrollTrigger: { trigger: c, start: 'top 70%' },
-    });
-  });
-
-  gsap.utils.toArray('.marquee__line').forEach((line) => {
-    const dir = Number(line.dataset.dir) || 1;
-    gsap.fromTo(line, { xPercent: dir > 0 ? -32 : 0 }, {
-      xPercent: dir > 0 ? 0 : -32, ease: 'none',
-      scrollTrigger: { trigger: '.modules', start: 'top bottom', end: 'bottom top', scrub: 0.6 },
-    });
-  });
-  gsap.fromTo('.modules__cols > *', { y: 50, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.modules__cols', start: 'top 85%' },
-  });
-
-  gsap.utils.toArray('.list').forEach((list) => {
-    gsap.fromTo(list.querySelectorAll('li'), { x: 60, opacity: 0 }, {
-      x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.08,
-      scrollTrigger: { trigger: list, start: 'top 75%' },
-    });
-  });
-
-  gsap.fromTo('.about__photo img', { scale: 1.22 }, {
-    scale: 1, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true },
-  });
-  gsap.fromTo('.quote', { y: 40, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.quote', start: 'top 85%' },
-  });
-  gsap.fromTo('.contact__row > *', { y: 30, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.contact__row', start: 'top 90%' },
-  });
+export function initScene(opts) {
+  reduce = !!(opts && opts.reduce);
+  return document.fonts.load('800 80px Archivo').catch(() => {}).then(() => buildScene());
 }
 
 /* ---------------- 3D scene ---------------- */
@@ -136,16 +42,26 @@ function sAt(p) {
 }
 const inConcerns = (p) => p > 4.82 / 9 && p < 5.32 / 9;
 
-function initScene() {
+function buildScene() {
+  const lowPower = window.matchMedia('(max-width: 900px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
   const stage = document.getElementById('stage');
   const canvas = document.getElementById('scene');
   if (!stage || !canvas) return;
 
   let renderer;
   try {
-    renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+    renderer = new WebGLRenderer({ canvas, antialias: !lowPower || window.devicePixelRatio < 2, powerPreference: lowPower ? 'low-power' : 'high-performance' });
   } catch (e) { return; }
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  // Software WebGL (SwiftShader, llvmpipe) can't draw this scene smoothly and would block the main
+  // thread; keep the poster instead. ?webgl=force overrides this for screenshot tests.
+  const gl = renderer.getContext();
+  const info = gl.getExtension('WEBGL_debug_renderer_info');
+  const gpu = String(info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+  if (/swiftshader|llvmpipe|software|basic render/i.test(gpu) && !/[?&]webgl=force/.test(location.search)) {
+    renderer.dispose();
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, lowPower ? 1.5 : 1.75));
   renderer.toneMapping = NeutralToneMapping;
   renderer.toneMappingExposure = 1.05;
   renderer.shadowMap.enabled = true;
@@ -162,7 +78,7 @@ function initScene() {
   const key = new DirectionalLight(0xffffff, 2.2);
   key.position.set(5, 9, 4);
   key.castShadow = true;
-  key.shadow.mapSize.set(2048, 2048);
+  key.shadow.mapSize.set(lowPower ? 1024 : 2048, lowPower ? 1024 : 2048);
   key.shadow.camera.left = -8; key.shadow.camera.right = 8; key.shadow.camera.top = 8; key.shadow.camera.bottom = -8;
   key.shadow.camera.near = 1; key.shadow.camera.far = 30;
   key.shadow.radius = 6; key.shadow.bias = -0.0004;
@@ -293,7 +209,7 @@ function initScene() {
     camera.aspect = w / h;
     narrow = w <= 900;
     if (!narrow) camera.setViewOffset(w, h, -w * 0.3, 0, w, h);
-    else camera.setViewOffset(w, h, 0, h * 0.3, w, h);
+    else camera.setViewOffset(w, h, 0, h * 0.27, w, h);
     camera.updateProjectionMatrix();
   }
   window.addEventListener('resize', resize);
@@ -341,7 +257,7 @@ function initScene() {
     drawTicket(stamp, s < -0.2 ? 0 : passed, hot);
 
     const near = MathUtils.clamp(-s / 0.75, 0, 1);           // closer framing while the hero is on screen
-    const side = narrow ? 3.6 : 5.4 - near * 1.7;
+    const side = narrow ? 6.4 : 5.4 - near * 1.7;
     const ahead = narrow ? 0 : 0.3 - near * 0.2;
     camera.position.set(pathX(s - 0.6) + side + pxs * 0.9, (narrow ? 1.7 : 2.3 - near * 0.6) - pys * 0.5, pathZ(s - 0.6) + (narrow ? 1.6 : 0));
     camera.lookAt(pathX(s + ahead) + (narrow ? 0 : 0.3), -0.15, pathZ(s + ahead));
@@ -351,9 +267,15 @@ function initScene() {
     renderer.render(scene, camera);
   }
 
+  // Render on demand: every frame while the ticket, camera or pointer is moving, otherwise
+  // ~20 fps for the idle float. Nothing renders while the stage is off-screen or the tab is hidden.
+  let lastDraw = 0;
+  function busy() {
+    return Math.abs(target - p) > 0.0004 || Math.abs(px - pxs) > 0.002 || Math.abs(py - pys) > 0.002 || inConcerns(p);
+  }
   function loop(t) {
     if (!visible || document.hidden) { running = false; return; }
-    frameAt(t / 1000);
+    if (busy() || t - lastDraw > 50) { frameAt(t / 1000); lastDraw = t; }
     requestAnimationFrame(loop);
   }
   function start() { if (!running && !reduce) { running = true; requestAnimationFrame(loop); } }

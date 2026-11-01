@@ -50,7 +50,7 @@ No gradients anywhere. No shadows on resting elements.
 
 ## The 3D scene
 
-Three.js (pinned 0.187.0), bundled and tree-shaken into `assets/site.min.js` by esbuild. The bundle includes GSAP 3.15.0 + ScrollTrigger.
+Three.js (pinned 0.187.0), bundled and tree-shaken into `assets/js/ (main.js loads first; scene.js with three.js is fetched when the page is idle)` by esbuild. The bundle includes GSAP 3.15.0 + ScrollTrigger.
 
 - **Gates**: nine door-like frames receding into fog along a gentle S-curve. Approve and Human review are double frames (human gates). Each gate carries its name.
 - **Ticket**: a rounded slab with a printed face (canvas texture), the same ticket as the PR exhibit. Its stamp changes as it passes gates: *Plan frozen*, *Concerns*, *Pass*, *Evidence attached*, *PR open*, *Merged*, *Shipped*.

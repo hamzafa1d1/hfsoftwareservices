@@ -1,4 +1,5 @@
 /* HF Software Services — "Dispatch". Source of truth: design/storybook/DESIGN.md */
+@font-face{font-family:"Archivo";font-style:normal;font-weight:400 800;font-stretch:62% 100%;font-display:swap;src:url(/assets/fonts/archivo-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root{
   --ground:#e4e6e8;--ground-2:#d8dbde;--paper:#f6f7f8;--white:#fff;
   --ink:#0e0f10;--ink-2:#1b1d20;--signal:#ff4f12;
@@ -67,7 +68,7 @@ strong{font-weight:700}
 .hero a{pointer-events:auto}
 .hero h1{max-width:12ch}
 .hero__foot{display:grid;grid-template-columns:minmax(0,38rem) auto;gap:32px 48px;align-items:end;justify-content:space-between}
-.hero__lede{font-size:1.1875rem;max-width:38rem}
+.hero__lede{font-size:1.1875rem}
 .hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;pointer-events:auto}
 @media (max-width:900px){.hero__foot{grid-template-columns:1fr}.hero{padding-bottom:32px}}
 
@@ -161,8 +162,31 @@ strong{font-weight:700}
 .site-footer{background:var(--ink);color:var(--muted-on-ink);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:24px var(--m) 32px;font-size:.9375rem}
 .site-footer a{min-height:44px;display:inline-flex;align-items:center}
 
-/* hero entrance pre-state, only while the motion script is expected (removed after 3.5 s if it never loads) */
+
+/* ---------- review additions ---------- */
+.hero__copy{display:grid;gap:14px;max-width:38rem}
+.hero__proof{font-weight:700;font-size:1rem}
+.followup{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-top:clamp(100px,12vw,180px);padding:32px;background:var(--ink-2)}
+.followup p{font-weight:700;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.2;max-width:28ch}
+.faq{background:var(--ground);padding:clamp(120px,14vw,220px) var(--m);display:grid;grid-template-columns:repeat(12,1fr);gap:48px var(--m);align-items:start}
+.faq h2{grid-column:1 / span 4;position:sticky;top:110px}
+.faq__list{grid-column:6 / span 7;display:grid;gap:4px}
+.faq details{background:var(--ground-2)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:44px;padding:22px 24px;font-weight:700;font-size:1.25rem;line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:800;font-size:1.6rem;line-height:1;transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 24px 24px;max-width:60ch}
+.faq summary:hover{background:#cfd3d6}
+.site-footer a{text-decoration:none}
+.site-footer a:hover{color:var(--ground);text-decoration:underline}
+@media (max-width:900px){.faq h2,.faq__list{grid-column:1 / -1}.faq h2{position:static}}
+
+/* hero entrance: pure CSS, so the headline paints without waiting for any script */
 @media (prefers-reduced-motion:no-preference){
-  .js .hero .line>span{transform:translateY(110%)}
-  .js .hero__foot{opacity:0}
+  .hero .line>span{animation:line-in 1.15s var(--ease) both}
+  .hero .line:nth-child(2)>span{animation-delay:.09s}
+  .hero__foot{animation:rise-in .9s var(--ease) .45s both}
 }
+@keyframes line-in{from{transform:translateY(105%)}to{transform:none}}
+@keyframes rise-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
