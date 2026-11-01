@@ -1,5 +1,8 @@
 # Implementation plan — storybook redesign
 
+> **v2 (2026-11-01, later the same day):** v1's look was rejected as AI-generic. The visual layer was rebuilt to `DESIGN.md` ("Dispatch"): Archivo only, concrete/ink/signal-orange palette, a full-bleed Three.js scene with a ticket travelling through nine gates, and GSAP ScrollTrigger motion. The content, claims and section order below still hold. Changes to the technical decisions in §2: 3D is now WebGL (three 0.187.0) bundled with GSAP 3.15.0 into `assets/site.min.js` via `tools/` (esbuild, `npm run build:scene`), 186 KB gzipped, loaded as a module after first paint; `assets/poster.webp` is the no-JS / no-WebGL fallback.
+
+
 Version 1.0 · 2026-11-01 · branch `design/storybook`
 
 Inputs: [STORYBOOK.md](STORYBOOK.md) (narrative and motion), [design-system.md](design-system.md) (tokens and components), and the work summary PDF for Jun–Oct 2026. The PDF is stored privately as source **P1** in `hamza-career-skills`, with claims **CC17–CC28**.

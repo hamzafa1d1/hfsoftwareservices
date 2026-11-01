@@ -16,7 +16,7 @@ Open `http://localhost:5173`. The live domain is `https://www.hfsoftwareservices
 
 ## Content and evidence
 
-Public copy follows the private `hamza-career-skills` evidence library. Employer names appear only in the chronology strip. Client case studies are anonymized, and the legacy performance case distinguishes the shipped SQL indexes from an application change that was rolled back. The 100+ card count is scoped to one monitored rollout. Claims added from the Jun–Oct 2026 work summary are CC17–CC28 (source P1). The page design and its rationale live in `design/storybook/` (storybook, implementation plan, design system). The 3D loop in the hero is pure CSS transforms, with no WebGL library. Update claims from the evidence library before publishing new results.
+Public copy follows the private `hamza-career-skills` evidence library. Employer names appear only in the chronology strip. Client case studies are anonymized, and the legacy performance case distinguishes the shipped SQL indexes from an application change that was rolled back. The 100+ card count is scoped to one monitored rollout. Claims added from the Jun–Oct 2026 work summary are CC17–CC28 (source P1). The page design and its rationale live in `design/storybook/` (storybook, implementation plan, design system). The 3D scene (Three.js) and all motion (GSAP) live in `src/scene.js` and are bundled to `assets/site.min.js`; after editing it run `cd tools && npm ci && npm run build:scene`. The site itself still has no build step. Design rules: `design/storybook/DESIGN.md`. Update claims from the evidence library before publishing new results.
 
 `/upwork/` is a generated, noindex variant without direct contact links. Regenerate it after changing `index.html`:
 

@@ -1,0 +1,13 @@
+{
+  "name": "hf-portfolio-tools",
+  "private": true,
+  "description": "Build step for the 3D scene only. The site itself stays static.",
+  "scripts": {
+    "build:scene": "NODE_PATH=./node_modules esbuild ../src/scene.js --bundle --minify --format=esm --target=es2020 --outfile=../assets/site.min.js --legal-comments=none"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "gsap": "3.15.0",
+    "three": "0.187.0"
+  }
+}
