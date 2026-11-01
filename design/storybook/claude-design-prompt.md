@@ -1,45 +1,30 @@
-# Claude Design prompt — "From ticket to production"
+# Claude Design prompt — "From ticket to production" (v0.2)
 
-Paste into Claude Design in three rounds (guides recommend narrow prompts: build one section, then the next). Attach `design/storybook/STORYBOOK.md` and `hamza-400.webp`. Fill the `[PDF]` slots after the ClearCo PDF is processed. When happy, export with **Hand off to Claude Code** so the result lands back in this repo for the evidence check.
+Use this to explore visual variations in Claude Design. The coded version on branch `design/storybook` is the baseline. Attach `STORYBOOK.md`, `design-system.md`, `loop.svg` and `hamza-400.webp`. Paste one round at a time. Export with **Hand off to Claude Code**, so every claim gets checked against the evidence library before it ships.
 
 ---
 
-## Round 1 — system, hero and the Loop
+## Round 1 — hero and the 3D loop
 
-You are designing a one-page portfolio for Hamza Faidi, a software engineer in Tunis who works with remote SaaS teams on .NET, React and SQL systems and uses an AI-assisted delivery workflow with quality gates. The page tells one story: **work goes through a gated loop before it reaches production.**
+Design the hero of a one-page portfolio for Hamza Faidi, a software engineer in Tunis who works on .NET, React and SQL systems for remote SaaS teams. The page's story: **every change goes through a gated, AI-assisted loop before it reaches production.**
 
-The visual idea is **the Loop**: a ring of 8 nodes labelled Gather, Explore, Plan, Code, Test, Review, Cleanup, Ship. Build it as a lightweight 3D object (Three.js, procedural geometry only: thin tube ring + 8 small spheres + mono text labels in HTML overlay; no textures, no models, no bloom). It rotates slowly. On load a single glowing token travels the ring once; at Test it flashes amber (#F59E0B), travels back to Code, then passes through teal (#14B8A6) to Ship. Pointer moves tilt the ring at most 6°. Provide an SVG version of the same ring as the default; the 3D replaces it only when WebGL is available and the user hasn't asked for reduced motion.
+Visual: **the Loop**, nine nodes on a ring, rendered in 3D with CSS transforms (no WebGL library): Brainstorm, Plan, Approve, Build, Review, QA, Ship, Human review, Retro. Approve and Human review are human gates (double outline). A dashed amber (#F5A524) arc runs from Review back to Build, labelled "concerns → back to build". The ring is tilted about 62°, spins slowly (40 s per turn), and labels always face the viewer. A teal (#2DD4BF) token orbits; on its first pass it flashes amber at Review and drops back to Build. Pointer tilt ±6°. With reduced motion, everything is static.
 
-Hero (dark ink #0B0F14, ring right on desktop, below the text on mobile):
+Copy:
 - Eyebrow (mono): "Software engineer · Tunis · EU hours"
 - H1: "Software that holds up in production."
-- Sub: "I work on .NET, React and SQL systems for remote SaaS teams. I use AI agents to investigate and build, then tests, review and runtime checks to prove the result."
-- Buttons: "Book a call" (primary, teal) · "See the work"
-- Three proof chips: "20 min → ~20 s on a legacy screen" · "16 production signals every 15 min" · "AWS & Terraform certified"
+- Sub: "AI agents do the legwork in my process. Frozen plans, read-only reviewers, a separate QA agent and a human sign-off decide what ships."
+- Buttons: "Start a conversation" (teal) · "See how I ship"
+- Strip (Jun–Oct 2026): "45+ tickets shipped to production · 15 epics owned · 35+ technical documents · 3 product modules in ~7 weeks"
 
-Type: characterful grotesk for display (try Geist or Instrument Sans), Inter Tight for body, JetBrains Mono for labels and numbers. Colours: ink #0B0F14, paper #F6F3EE, teal pass #14B8A6, amber fail #F59E0B (amber only means "failed check"). All text ≥ 4.5:1 contrast.
-
-Do not use: purple gradients, glassmorphism, particle fields, cursor followers, robots, neon circuits, logos of companies, fake terminals or fake dashboards.
+Palette: ink #0B0F14, paper #F4F1EA, teal pass #2DD4BF, amber fail #F5A524 (amber only means a check failed). Type: Bricolage Grotesque (display), Geist (body), Geist Mono (labels and numbers). Avoid: purple gradients, glassmorphism, particles, robots, neon circuits, fake terminals, company logos.
 
 ## Round 2 — the chapters
 
-Continue the page on warm paper. A small copy of the ring sticks to the left edge on desktop and lights the stage each chapter belongs to (CSS `position: sticky`, no scroll hijacking).
-
-1. **The problem** — three cards: "A legacy screen times out and nobody knows why." / "Customers find incidents before you do." / "AI writes code fast, and nobody trusts it."
-2. **The Loop, explained** — one line per stage, three gates underneath: Automated tests · Engineering review · Runtime verification. Scope strip: "8 stages · 10+ custom skills · 4 coding tools". `[PDF: stage examples]`
-3. **Case — 20 minutes to 20 seconds** (tag Explore → Test). Problem → What I did → Result → Stack. Two separate result cards: "Worst review screen: up to 20 min / timeouts → ~20 s" and "Representative query: 7,845 → 4 logical reads". A timer counts 20:00 → 0:20 once on entry.
-4. **Night shift** (dark band; background transitions to ink as it scrolls in). "16 signals · every 15 minutes". Read-only health scan → team Slack summary. Certificate-expiry checks that flagged a shared certificate before it expired. A 4×4 dot grid pulses as an illustration, labelled "illustration".
-5. **Review on a schedule** (tag Review). Cross-repository PR review every 15 minutes in working hours, deduplicated against GitHub state; Playwright characterization baselines for legacy behaviour.
-6. **Earlier: payments that kept running** — 2×2 calm grid: "100+ virtual cards renewed before expiry" · "Live schema migration: reported 0 downtime, < 2% CPU overhead at peak" · "Card-suspension policies for 1,000+ corporate users" · "Contributed to a provider-agnostic payments refactor with idempotent webhooks".
-7. **Now** — "I lead the technical direction of an ongoing compensation-platform rebuild."
-
-Case studies say "US HR SaaS platform" or "corporate payments platform", never an employer name. Motion: reveals of 12 px + fade, 400–600 ms, staggered 60 ms, using CSS scroll-driven animations inside `@supports (animation-timeline: view())`. Everything is visible without the animation.
+Build chapters 2–7 from `STORYBOOK.md` §4 exactly as written: Method with a sticky mini-ring, the PR exhibit, four case chapters with loop-stage tags (the fourth is a dark "night shift" band), three modules, "also on the bench", earlier payments work. Keep every qualifier ("staging", "in review", "on dev", "shadow mode", "reported"). Use no names of customers, colleagues, vendors, repos or tickets.
 
 ## Round 3 — trust and close
 
-- Recommendation from Eric Guba (Senior Product Leader, LinkedIn, Sept 2026), verbatim: "Within a short time, he'd learned the codebase well enough to troubleshoot and resolve issues efficiently and independently."
-- About: photo, three sentences, facts strip (Engineering degree · SUP'COM; AWS Solutions Architect – Associate; Terraform Associate; taught C/C++/OOP to ~80 students; Tunis, remote).
-- How we'd work: Audit call → Fixed-scope proposal → Build in short cycles through the Loop → Handover with tests and runbooks. "Replies within one business day, UTC+1."
-- Close: the ring lights its last node, Ship, and stops. Headline "Tell me what's slow, fragile or stuck." Book a call + email hamza.faidi.software.eng@gmail.com.
+Recommendation (verbatim): "Within a short time, he'd learned the codebase well enough to troubleshoot and resolve issues efficiently and independently." — Eric Guba, Senior Product Leader, LinkedIn recommendation, September 2026. About with photo and a chronology strip (ClearCo, HR technology, since Dec 2025 · Expensya, corporate payments, 2022–2025 · SUP'COM, programming instructor, 2024–2025). Four-step engagement. Closing CTA "Tell me what's slow, fragile or stuck.", where the loop's token lands on Ship and stops.
 
-Responsive at 375 px and 1440 px. Honour `prefers-reduced-motion` (no rotation, no counters, final values shown). Keep the 3D bundle under ~60 KB gzipped and load it after the page is interactive.
+Responsive at 375 and 1440 px; content complete without JavaScript; WCAG AA contrast.

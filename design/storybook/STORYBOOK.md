@@ -1,129 +1,84 @@
 # Portfolio storybook — "From ticket to production"
 
-Status: draft v0.1 (2026-11-01). Waiting on the ClearCo contributions PDF. Anything marked `[PDF]` gets filled or replaced from that document.
+Status: **v0.2 (2026-11-01)**, rewritten from the Jun–Oct 2026 work summary (private source P1, claims CC17–CC28 in `hamza-career-skills`). See [IMPLEMENTATION.md](IMPLEMENTATION.md) for the build plan and [design-system.md](design-system.md) for tokens and motion.
 
 ## 1. The story in one line
 
-> I take messy production problems through a gated, AI-assisted delivery loop and ship fixes you can check.
+> I ship production software through a gated, AI-assisted loop, and every change carries its own proof.
 
-The whole page is that loop. Each section is one stage of the pipeline, and each case study shows the loop working on a real problem. The visitor scrolls through the same pipeline the work goes through.
+The page is that loop. The visitor scrolls through the same nine steps a change goes through, then sees the loop working on real (anonymised) problems.
 
-Why this story: the PDF focuses on AI SDLC work. The evidence library supports *AI-assisted engineering with quality gates* (CC12, CC13, CC10). It does **not** support "I build customer-facing AI agents" as a shipped product line. So the story sells a delivery method with proof, not an agent product.
+What P1 lets us say, and what it doesn't:
+- ✅ AI agents research, plan, code, review and QA; a person approves at two gates; reviewers are read-only; QA is a different agent from the coder; plans freeze.
+- ✅ Hamza wrote the loop down, adapted it for payroll-grade rules, packaged it as a one-command kit for five AI tools, and used it to build three modules in about seven weeks.
+- ❌ Hamza invented the loop (it started as a team pilot). ❌ Daily releases, ~45% cost savings or cycle-time gains as results (they are targets or estimates).
 
-## 2. Who reads it, and what they decide
+## 2. Readers
 
-| Reader | Arrives from | Has ~10 s to decide | Fear the story must answer |
-|---|---|---|---|
-| Engineering manager / CTO at a SaaS | Upwork proposal, LinkedIn | "Can this person own a module alone?" | AI code nobody checked |
-| Founder / ops lead | Referral | "Will this ship, and will it still work in month six?" | Demo that never reaches production |
-| Recruiter for contract roles | LinkedIn | "Senior enough? Remote-ready?" | Vague claims |
+| Reader | Decides in ~10 s | Fear the story answers |
+|---|---|---|
+| Engineering manager / CTO, SaaS | Can he own a module alone and safely? | AI code nobody checked |
+| Founder / ops lead | Will it ship and keep working? | Demo that never reaches production |
+| Contract recruiter | Senior? Remote-ready? | Vague claims |
 
-## 3. Visual idea (one idea, used everywhere)
+## 3. The visual idea: the Loop
 
-**The Loop.** An 8-node ring: Gather → Explore → Plan → Code → Test → Review → Cleanup → Ship. A failed Test sends a short amber pulse back to Code. That ring is:
+Nine nodes on a ring, shown in 3D in the hero:
 
-- the 3D hero object,
-- the progress indicator down the left edge on desktop,
-- the stage label on every case study ("this case lived mostly in **Test → Review**"),
-- the favicon and OG image.
+**Brainstorm → Plan → Approve ◎ → Build → Review → QA → Ship → Human review ◎ → Retro → (back to Brainstorm)**
 
-One idea, repeated, reads as confidence. No second 3D object anywhere else.
+◎ = human gate. A dashed amber arc runs Review → Build ("concerns → back to build"). Amber means only that.
 
-### Look
+The ring appears four times: the 3D hero, a sticky mini-ring in the Method chapter, a stage tag on each case, and the closing animation, where the token lands on Ship.
 
-- Base: deep ink `#0B0F14` for the 3D hero and one dark "production" chapter. The rest stays warm paper `#F6F3EE` with ink text. The page goes dark → light → one dark band → light. Production is shown as night; documentation as daylight.
-- Accent: one signal teal `#14B8A6` (pass), one amber `#F59E0B` (failed check, used only for that meaning). Both checked at ≥ 4.5:1 against their background, or used only for non-text marks.
-- Type: a display grotesk with character (e.g. *Space Grotesk* → swap for *Geist* or *Instrument Sans* if it feels generic), body *Inter Tight* or system, mono *JetBrains Mono* for stage labels and numbers only.
-- Texture: hairline grid, numbered stages in mono, real numbers set large.
+## 4. Chapters
 
-## 4. Chapters (scroll order)
+### 0 — Hero (dark)
+- **H1:** "Software that holds up in production."
+- **Sub:** "I'm Hamza, a software engineer working on .NET, React and SQL systems for remote SaaS teams. AI agents do the legwork in my process. Frozen plans, read-only reviewers, a separate QA agent and a human sign-off decide what ships."
+- **CTA:** Start a conversation · See how I ship
+- **Visual:** the 3D loop, rotating slowly, with the token's amber detour on its first pass.
 
-Each chapter: **beat** (what the reader should feel), **content**, **motion**, **evidence**.
+### 1 — Numbers (dark strip, "Jun–Oct 2026")
+45+ tickets shipped to production · 15 epics owned · 35+ technical documents · 3 product modules in ~7 weeks. *(CC17, CC26)*
 
-### Ch 0 — Hero: the Loop at rest
-- **Beat:** "This person ships things, and checks them."
-- **Content:** H1 option A "Software that holds up in production." / option B "AI-assisted delivery, with every change checked." Sub: "I'm Hamza, a software engineer working on .NET, React and SQL systems for remote SaaS teams. I use AI agents to investigate and build, and tests, review and runtime checks to prove the result." CTA: Book a call · See the work. Chips: *20 min → ~20 s on a legacy screen* · *16 production signals every 15 min* · *AWS & Terraform certified*.
-- **Motion:** 3D ring slowly rotates (≈ 0.05 rad/s). On load one token travels the ring once; at Test it flashes amber, returns to Code, then passes. Pointer tilt ±6°. Paused when tab hidden or out of view.
-- **Fallback:** the same ring as inline SVG, static, with the stage labels. This is what loads first; WebGL replaces it only after idle.
-- **Evidence:** CC01, CC10, credentials.
+### 2 — The Loop, step by step (`#method`)
+Sticky mini-ring on the left; nine step cards on the right, each with an action and its output file (brainstorm.md → plan.md (frozen) → dev record → review verdict → evidence.md → PR → merge → LEARNINGS.md). Then three "why it holds" cards:
+- **Rules for money and tenants:** exact decimals, no hand-written tenant filters, a pure calculation engine, DB-change safety.
+- **Independence enforced by tools:** reviewers get read/run access only. CI caught a one-word edit that would have given a reviewer write access.
+- **No false green:** a fresh install once printed "All checks passed" with 29 unresolved placeholders. Now 76/76 adoption checks pass.
 
-### Ch 1 — The problem, in the reader's words
-- **Beat:** "He has seen my situation."
-- **Content:** three short cards. "A legacy screen times out and nobody knows why." "Incidents are reported by customers first." "AI writes code fast, and nobody trusts it."
-- **Motion:** cards rise 12 px and fade in, staggered 60 ms (CSS `animation-timeline: view()`, visible by default in browsers without support).
-- **Evidence:** framing only; each card links to the case that answers it.
+Kit strip: *one command · 5 AI tools · plan freeze in tools, pre-commit and CI*. Honest line: *"Gate is advisory until branch protection is on; speed gains not yet measured."* *(CC24)*
 
-### Ch 2 — The Loop, explained (the AI SDLC chapter)
-- **Beat:** "There is a method, and it has gates."
-- **Content:** the eight stages, each one line. Three gates under the ring: *Automated tests*, *Engineering review*, *Runtime verification*. Scope strip: "8 stages · 10+ custom skills · 4 coding tools". `[PDF]` add concrete stage examples, hooks and subagents named in the PDF.
-- **Motion:** sticky ring on the left (CSS `position: sticky`, no scroll-jacking). As each stage paragraph enters view, its node lights teal. The Test stage shows the amber loop-back once.
-- **Copy rule:** say "AI-assisted engineering workflow used for production fixes". No speed-up percentage, no "autonomous", no "zero defects".
-- **Evidence:** CC12, CC13.
+### 3 — Exhibit: what a PR looks like (`#evidence`)
+A PR card reconstructed from a real one, with names removed. **Problem:** admins outside a form's approval route couldn't see in-flight forms. **Result:** 7 forms visible instead of 1. **Tests:** 14 new; the main test fails without the fix; suite 511 passed / 0 failed. **Scope:** one area, no DB change. *(CC25)*
 
-### Ch 3 — Case: 20 minutes to 20 seconds
-- **Stage tag:** Explore → Test.
-- **Beat:** "He measures before he changes things."
-- **Content:** Problem → What I did → Result → Stack. Two separate result cards: *Worst review screen: up to 20 min / timeouts → ~20 s* and *Representative query: 7,845 → 4 logical reads*. Note they are two different measurements.
-- **Motion:** a timer counts from 20:00 down to 0:20 once when the card enters view (reduced motion: shows the final value). The two cards never share an axis.
-- **Evidence:** CC01.
+### 4 — Cases (`#work`), each tagged with its loop stage
+1. **Slow screens, four root causes** (Explore → Review). Requests up to 217 s. Re-keyed indexes: reads 7,845 → as few as 4 (staging). Warm app pool: cold loads 5–7 s → about 1 s. *(CC20)*
+2. **Security audit, verified twice** (Review → QA). 24 verified findings, 8 critical. Tenant isolation hardened across 46 code paths with 27 tests. A global filter was rejected with evidence. *(CC21)*
+3. **Feature, end to end: bulk salary benchmarking** (Plan → Ship). 9 stories, all in production. Plus the title-matching fix: about a third of titles returned no data; 12/12 QA scenarios passed. *(CC18, CC19)*
+4. **Night shift (dark band): incidents into prevention.** Health checks: 16 signals every 15 minutes, posting to Slack. SSO restored for 8 tenants; expiry + mismatch alerts added. *(CC10, CC22)*
 
-### Ch 4 — Night shift: watching production (dark band)
-- **Stage tag:** Ship → (back to) Gather.
-- **Beat:** "He looks after things after release."
-- **Content:** "16 signals · every 15 minutes", read-only health scan → Slack summary. SSO certificate expiry check that flagged a shared certificate before it expired. Deployment race reproduced and fixed. `[PDF]` incident timeline details if approved for public use.
-- **Motion:** a 4×4 grid of 16 dots blinking in a slow 15-step cycle (an abstract heartbeat, not real data, labelled "illustration"). Page background goes dark through a scroll-linked colour transition.
-- **Evidence:** CC10, CC08, CC09.
+### 5 — Built with the loop (`#modules`)
+Three HR product modules in ~7 weeks: skills profile + validation (done), 1:1s (16 stories built and QA'd in 9 days; calendar sync; HR sees whether 1:1s happen, not what was said), development plans from skill gaps (on dev). *(CC26)*
 
-### Ch 5 — Case: review that runs on a schedule
-- **Stage tag:** Review.
-- **Beat:** "AI is in the loop, and so are checks."
-- **Content:** scheduled cross-repo PR review every 15 minutes in working hours, deduplicated against GitHub state; Playwright characterization baselines for legacy behaviour. `[PDF]` more detail.
-- **Motion:** a stacked list of PR cards, each gets a "reviewed" tick as it enters view.
-- **Copy rule:** do not claim manual approval on every automated review.
-- **Evidence:** CC13.
+### 6 — Also on the bench
+Rebuild discovery: ~209K backend lines, 554 tables, 37 features mapped, 6-stage ingestion design (CC23) · Co-built agentic ticket triage on .NET 10 + Microsoft Agent Framework, shadow-mode rollout (CC27) · Toolchain migration, build ~8 min → ~80 s, in review (CC28).
 
-### Ch 6 — Earlier: payments that kept running
-- **Stage tag:** Ship.
-- **Beat:** "He did this before AI tools, in money systems."
-- **Content:** compact 2×2 grid. *100+ virtual cards renewed before expiry* (EX01). *Live schema migration, reported 0 downtime and < 2% CPU overhead at peak* (EX04). *Card suspension policies for 1,000+ corporate users* (EX05). *Contributed to a provider-agnostic payments refactor, idempotent webhooks* (EX03). LLM-assisted fraud screening, described without the 79% figure (EX02).
-- **Motion:** none beyond the shared reveal. This chapter is calm on purpose.
+### 7 — Earlier: payments that kept running
+100+ cards renewed before expiry (EX01) · live schema migration, reported 0 downtime and < 2% CPU overhead (EX04) · suspension policies for 1,000+ corporate users (EX05) · idempotent provider-agnostic webhooks (EX03).
 
-### Ch 7 — What I'm building now
-- **Stage tag:** Plan.
-- **Content:** "I lead the technical direction of an ongoing compensation-platform rebuild: architecture decisions, data model, calculation-engine strategy." The word *ongoing* is required.
-- **Evidence:** CC14, CC15.
-
-### Ch 8 — People who worked with me
-- Verbatim LinkedIn recommendations only (Eric Guba plus any others readable in full). No paraphrases.
-
-### Ch 9 — How we'd work together
-- Audit call → fixed-scope proposal → build in short cycles with the Loop → handover with tests and runbooks. Reply time "within one business day, UTC+1".
-
-### Ch 10 — Close
-- The ring completes its last node (Ship) and stops. CTA: "Tell me what's slow, fragile or stuck." Scheduler + email. `/upwork` variant keeps the single "Message me on Upwork" CTA.
+### 8–11 — Recommendation, About, How we'd work, Contact
+Verbatim quote; chronology strip (employers appear only here); four-step engagement; closing loop lands on **Ship**.
 
 ## 5. Motion and 3D rules
+1. Content first: every word is in HTML and readable without JS.
+2. One 3D object, built with CSS 3D transforms (no WebGL library, 0 KB dependencies).
+3. Scroll effects use CSS scroll-driven animations under `@supports`; Firefox stable gets the static page.
+4. No scroll-jacking, no auto-advancing carousels, no cursor followers.
+5. `prefers-reduced-motion: reduce` freezes everything and shows final values.
 
-1. **Content first.** All text renders in HTML without JavaScript. Motion adds, never reveals.
-2. **One WebGL canvas, hero only.** Three.js (pinned version, tree-shaken ES module) or a hand-written WebGL/OGL scene. Budget: ≤ 60 KB gzipped JS for the 3D, no textures, procedural geometry (tubes + spheres), ≤ 1 draw call per material. Load with `requestIdleCallback` after LCP. If WebGL is unavailable, or `prefers-reduced-motion: reduce` is set, or `navigator.connection.saveData` is true, keep the SVG.
-3. **Scroll effects in CSS.** Use scroll-driven animations (`animation-timeline: view()` / `scroll()`), wrapped in `@supports (animation-timeline: view())`. Chrome/Edge and Safari 26+ support them. Firefox stable still has them behind a flag, so Firefox users get the static layout. A tiny IntersectionObserver fallback is optional.
-4. **No scroll-jacking**, no pinned sections taller than one viewport, no auto-advancing carousels, no cursor followers.
-5. **Durations:** reveals 400–600 ms, `cubic-bezier(.2,.7,.2,1)`; counters ≤ 1.2 s; nothing loops in the reading area except the 16-dot heartbeat, which stops after 3 cycles.
-6. **Budgets:** LCP < 2.5 s, CLS < 0.1, INP < 200 ms on a mid-range phone; Lighthouse mobile Perf ≥ 90, A11y ≥ 95.
-
-## 6. Evidence guardrails (bind every chapter)
-
-- Employer names appear only in the chronology/about strip. Case studies say "US HR SaaS platform" / "corporate payments platform".
-- Never publish: the ~79% fraud accuracy, the ~60% faster delivery claim, "rebuilt platform", Blauwtrust, MT940, ticket IDs, hosts, exploit or auth mechanics.
-- Keep qualifiers: "reported", "about", "up to", "during the rollout", "ongoing".
-- Internal development agents ≠ customer-facing AI agents. Say which one each time.
-- New facts from the PDF need a claim ID added to `hamza-career-skills` before they go on the page.
-
-## 7. Open items
-
-| Item | Needed from |
-|---|---|
-| ClearCo contributions PDF, to fill `[PDF]` slots and add claims | Hamza |
-| Choose H1 A or B (or let the PDF decide) | Hamza |
-| Scheduler URL, sprint/retainer price floor | Hamza (still open from the September pass) |
-| OK to show the 3D hero on `/upwork` (Upwork reviewers are often on mobile) | Hamza |
+## 6. Evidence guardrails
+- No customer, colleague, vendor, repo or ticket names. No exploit mechanics (injection location, superuser, backdoors).
+- Keep the qualifiers: "staging", "in review", "on dev", "shadow mode", "reported", "about".
+- Retired: "20 min → 20 s" (superseded by the CC20 measured figures, pending Hamza's OK), 79% fraud accuracy, 60% faster delivery, Blauwtrust, MT940.
