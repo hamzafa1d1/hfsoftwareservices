@@ -48,9 +48,20 @@ No gradients anywhere. No shadows on resting elements.
 - Each adjacent section uses a different composition: full-bleed 3D → pinned split → document → giant numbers on ink → kinetic lines on signal → two-column list → portrait + quote → closing action on ink.
 - Buttons are square, decided once. Nav: wordmark, three links, one action, solid ground colour.
 
+## Iteration 3 (2026-11-08): e2e audit fixes
+
+A full scroll audit (desktop 1440 px, phone 390 px, a frame every half screen) found the "glitchy" feel came from structure, not bugs:
+
+- The camera scraped past gate posts, so black or white bars filled half the screen. **Now:** a 30° lens from further out, level with the ticket.
+- Step names appeared two or three times (3D label, HTML heading, the next step half-visible). **Now:** no 3D labels; each step is one solid card with a nine-segment progress rail, scrubbed in and out so only one card is ever on screen. Steps are 80% of a screen.
+- Step and hero text sat on improvised grey highlight boxes and, on phones, ran over the ticket. **Now:** solid card and a solid hero panel on phones.
+- Giant case numbers drifted sideways into each other and "15min" meant nothing. **Now:** they grow in place and carry a caption ("worst request in two days of logs"); the monitoring figure is 16 signals.
+- The modules marquee repeated each name four times and cut words at both edges. **Now:** three rows, name, status, description.
+- Anchor links land below the header; list items rise instead of entering from off-screen; on phones About shows its heading before the photo.
+
 ## The 3D scene
 
-Three.js (pinned 0.187.0), bundled and tree-shaken into `assets/site.min.js` by esbuild. The bundle includes GSAP 3.15.0 + ScrollTrigger.
+Three.js (pinned 0.187.0), bundled and tree-shaken into `assets/js/ (main.js loads first; scene.js with three.js is fetched when the page is idle)` by esbuild. The bundle includes GSAP 3.15.0 + ScrollTrigger.
 
 - **Gates**: nine door-like frames receding into fog along a gentle S-curve. Approve and Human review are double frames (human gates). Each gate carries its name.
 - **Ticket**: a rounded slab with a printed face (canvas texture), the same ticket as the PR exhibit. Its stamp changes as it passes gates: *Plan frozen*, *Concerns*, *Pass*, *Evidence attached*, *PR open*, *Merged*, *Shipped*.
