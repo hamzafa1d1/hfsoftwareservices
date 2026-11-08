@@ -59,6 +59,16 @@ A full scroll audit (desktop 1440 px, phone 390 px, a frame every half screen) f
 - The modules marquee repeated each name four times and cut words at both edges. **Now:** three rows, name, status, description.
 - Anchor links land below the header; list items rise instead of entering from off-screen; on phones About shows its heading before the photo.
 
+## Iteration 4 (2026-11-08): arrows instead of gates
+
+The gate frames read as walls the ticket had to squeeze through. The process is flow, so the scene is now arrows:
+
+- **Arrow road:** a stream of small chevrons flows along a curved route on the floor, seen from a high three-quarter camera, and speeds up while moving between phases.
+- **Phase markers:** one big chevron per phase: light ahead, black once passed, lifted while current. Approve and Human review are double chevrons, the human sign-offs.
+- **Review:** when the journey settles on Review, its arrow turns signal orange, an orange U-turn arrow grows out of it, and the ticket rides it back to Build before coming forward and passing ("Review pass").
+- **Less scrolling:** the journey holds in place and each scroll settles on the next phase (GSAP snap). Nine phases take 100svh + 8 × 42svh instead of 740svh. A phase bar (desktop: names; phone: previous/next) jumps straight to any phase.
+- **Fallbacks unchanged:** no JS or reduced motion keeps the plain list of nine cards.
+
 ## The 3D scene
 
 Three.js (pinned 0.187.0), bundled and tree-shaken into `assets/js/ (main.js loads first; scene.js with three.js is fetched when the page is idle)` by esbuild. The bundle includes GSAP 3.15.0 + ScrollTrigger.
