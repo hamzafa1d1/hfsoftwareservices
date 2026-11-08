@@ -42,11 +42,15 @@ function initMotion() {
     });
   });
 
-  gsap.utils.toArray('.gate-step').forEach((step) => {
-    gsap.fromTo(step.children, { x: -70, opacity: 0 }, {
-      x: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08,
-      scrollTrigger: { trigger: step, start: 'top 62%', end: 'bottom 38%', toggleActions: 'play reverse play reverse' },
-    });
+  gsap.utils.toArray('.gate-step').forEach((step, i, all) => {
+    const card = step.querySelector('.gate-card');
+    const tl = gsap.timeline({ scrollTrigger: { trigger: step, start: i === 0 ? 'top top' : 'top bottom', end: 'bottom top', scrub: 0.4 } });
+    // in by 38%, hold, gone by 72% of the step's pass, so two cards never share the screen
+    if (i > 0) tl.fromTo(card, { opacity: 0, y: 60 }, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.38 });
+    else tl.to(card, { opacity: 1, duration: 0.38 });
+    tl.to(card, { opacity: 1, duration: 0.12 });
+    if (i < all.length - 1) tl.to(card, { opacity: 0, y: -50, ease: 'power2.in', duration: 0.22 }).to(card, { opacity: 0, duration: 0.28 });
+    else tl.to(card, { opacity: 1, duration: 0.5 });
   });
 
   gsap.fromTo('.kit__body > *', { y: 36, opacity: 0 }, {
@@ -64,9 +68,10 @@ function initMotion() {
   });
 
   gsap.utils.toArray('.case').forEach((c) => {
-    const flip = c.classList.contains('case--flip');
-    gsap.fromTo(c.querySelector('.case__num'), { xPercent: flip ? 28 : -28, scale: 0.72 }, {
-      xPercent: 0, scale: 1, ease: 'none',
+    const num = c.querySelector('.case__num');
+    num.style.transformOrigin = c.classList.contains('case--flip') ? '100% 100%' : '0% 100%';
+    gsap.fromTo(num, { scale: 0.8, opacity: 0.6 }, {
+      scale: 1, opacity: 1, ease: 'none',
       scrollTrigger: { trigger: c, start: 'top bottom', end: 'center 55%', scrub: 0.8 },
     });
     gsap.fromTo(c.querySelectorAll('.case__text > *'), { y: 40, opacity: 0 }, {
@@ -75,21 +80,19 @@ function initMotion() {
     });
   });
 
-  gsap.utils.toArray('.marquee__line').forEach((line) => {
-    const dir = Number(line.dataset.dir) || 1;
-    gsap.fromTo(line, { xPercent: dir > 0 ? -32 : 0 }, {
-      xPercent: dir > 0 ? 0 : -32, ease: 'none',
-      scrollTrigger: { trigger: '.modules', start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+  gsap.utils.toArray('.module-row').forEach((row) => {
+    gsap.fromTo(row.querySelector('.module-row__name'), { xPercent: 10, opacity: 0 }, {
+      xPercent: 0, opacity: 1, ease: 'none',
+      scrollTrigger: { trigger: row, start: 'top bottom', end: 'top 55%', scrub: 0.5 },
     });
-  });
-  gsap.fromTo('.modules__cols > *', { y: 50, opacity: 0 }, {
-    y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.1,
-    scrollTrigger: { trigger: '.modules__cols', start: 'top 85%' },
+    gsap.fromTo(row.querySelector('.module-row__body'), { y: 40, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: row, start: 'top 75%' },
+    });
   });
 
   gsap.utils.toArray('.list').forEach((list) => {
-    gsap.fromTo(list.querySelectorAll('li'), { x: 60, opacity: 0 }, {
-      x: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.08,
+    gsap.fromTo(list.querySelectorAll('li'), { y: 30, opacity: 0 }, {
+      y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.08,
       scrollTrigger: { trigger: list, start: 'top 75%' },
     });
   });

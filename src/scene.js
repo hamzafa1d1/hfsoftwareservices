@@ -2,7 +2,7 @@
 import {
   WebGLRenderer, Scene, PerspectiveCamera, Color, Fog, Group, Mesh, BoxGeometry, PlaneGeometry,
   MeshStandardMaterial, MeshPhysicalMaterial, MeshBasicMaterial, CanvasTexture, SRGBColorSpace,
-  NeutralToneMapping, PMREMGenerator, PCFSoftShadowMap, Vector3, AmbientLight, DirectionalLight, MathUtils,
+  NeutralToneMapping, PMREMGenerator, PCFSoftShadowMap, AmbientLight, DirectionalLight, MathUtils,
 } from 'three';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
@@ -29,7 +29,23 @@ const pathX = (s) => Math.sin(s * 0.85) * 1.1;
 const pathZ = (s) => -s * 6;
 
 // Scroll progress p (0..1 over the journey) → position s along the gates, with the Review kick-back.
-const WAY = [[0, -0.75], [1 / 9, 0], [2 / 9, 1], [3 / 9, 2], [4 / 9, 3], [4.8 / 9, 4], [5.08 / 9, 3.15], [5.4 / 9, 4.05], [6 / 9, 5], [7 / 9, 6], [8 / 9, 7], [1, 8]];
+// Built from the real step positions (see measureWay), so the ticket reaches gate k
+// exactly when step k's card is centred, whatever the step heights are.
+let WAY = [[0, -0.75], [1, 8]];
+let CONCERNS = [0.5, 0.55];
+function measureWay() {
+  const j = document.querySelector('.journey');
+  const steps = [...j.querySelectorAll('.gate-step')];
+  const vh = window.innerHeight, len = j.offsetHeight, start = j.offsetTop - vh;
+  const pk = steps.map((st) => Math.min(1, Math.max(0, (st.offsetTop + j.offsetTop + st.offsetHeight / 2 - vh / 2 - start) / len)));
+  const d = pk[5] - pk[4];
+  WAY = [[0, -0.75]];
+  for (let k = 0; k <= 3; k++) WAY.push([pk[k], k]);
+  WAY.push([pk[4] - 0.3 * d, 4], [pk[4] + 0.02 * d, 3.15], [pk[4] + 0.3 * d, 4.05]);
+  for (let k = 5; k <= 8; k++) WAY.push([pk[k], k]);
+  WAY.push([1, 8]);
+  CONCERNS = [pk[4] - 0.27 * d, pk[4] + 0.27 * d];
+}
 function sAt(p) {
   for (let i = 1; i < WAY.length; i++) {
     if (p <= WAY[i][0]) {
@@ -40,7 +56,7 @@ function sAt(p) {
   }
   return WAY[WAY.length - 1][1];
 }
-const inConcerns = (p) => p > 4.82 / 9 && p < 5.32 / 9;
+const inConcerns = (p) => p > CONCERNS[0] && p < CONCERNS[1];
 
 function buildScene() {
   const lowPower = window.matchMedia('(max-width: 900px)').matches || (navigator.hardwareConcurrency || 8) <= 4;
@@ -70,7 +86,7 @@ function buildScene() {
 
   const scene = new Scene();
   scene.background = new Color(GROUND);
-  scene.fog = new Fog(GROUND, 10, 34);
+  scene.fog = new Fog(GROUND, 14, 44);
   const pmrem = new PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   scene.environmentIntensity = 0.55;
@@ -84,8 +100,7 @@ function buildScene() {
   key.shadow.radius = 6; key.shadow.bias = -0.0004;
   scene.add(key, key.target);
 
-  const camera = new PerspectiveCamera(40, 1, 0.1, 80);
-  const labels = [];
+  const camera = new PerspectiveCamera(30, 1, 0.1, 120);
 
   // floor: a slightly darker tone step so the gates stand on something
   const floor = new Mesh(new PlaneGeometry(60, 140), new MeshStandardMaterial({ color: '#d6d9dc', roughness: 1 }));
@@ -109,32 +124,12 @@ function buildScene() {
     g.add(top, bot, l, r);
     return g;
   }
-  function label(text, i) {
-    const [c, x] = textCanvas(1024, 220);
-    x.fillStyle = HUMAN.has(i) ? INK : 'rgba(0,0,0,0)';
-    if (HUMAN.has(i)) x.fillRect(0, 0, 1024, 220);
-    x.fillStyle = HUMAN.has(i) ? '#fbfbfb' : INK;
-    x.font = '800 150px Archivo, Arial Narrow, sans-serif';
-    x.fontStretch = 'condensed';
-    x.textBaseline = 'middle';
-    x.textAlign = 'center';
-    x.fillText(text, 512, 118, 980);
-    const tex = new CanvasTexture(c);
-    tex.colorSpace = SRGBColorSpace;
-    tex.anisotropy = 4;
-    const LW = W * 0.62;
-    const m = new Mesh(new PlaneGeometry(LW, LW * 220 / 1024), new MeshBasicMaterial({ map: tex, transparent: true }));
-    m.position.y = H / 2 + 0.42;
-    return m;
-  }
   GATES.forEach((name, i) => {
     const g = new Group();
     const main = frame(i === 4 ? reviewMat : HUMAN.has(i) ? whiteMat : inkMat);
     g.add(main);
     if (HUMAN.has(i)) { const second = frame(whiteMat); second.position.z = -0.7; g.add(second); }
-    const lab = label(name, i);
-    g.add(lab);
-    labels.push(lab);
+
     g.position.set(pathX(i), CY, pathZ(i));
     g.rotation.y = -Math.atan2(Math.cos(i * 0.85) * 0.94, 6);
     scene.add(g);
@@ -189,7 +184,6 @@ function buildScene() {
   scene.add(scan);
 
   /* state */
-  const tmp = new Vector3();
   let target = 0, p = 0, px = 0, py = 0, pxs = 0, pys = 0, visible = true, running = false, narrow = false;
   if (!reduce) {
     ScrollTrigger.create({
@@ -212,8 +206,9 @@ function buildScene() {
     else camera.setViewOffset(w, h, 0, h * 0.27, w, h);
     camera.updateProjectionMatrix();
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', () => { resize(); measureWay(); });
   resize();
+  measureWay();
 
   let lastT = 0;
   function frameAt(time) {
@@ -249,7 +244,7 @@ function buildScene() {
     if (s >= 1.9) stamp = 'Plan frozen';
     if (s >= 2.9) stamp = 'Built';
     if (hot) stamp = 'Concerns';
-    else if (s >= 3.95 && p > 5.3 / 9) stamp = 'Review pass';
+    else if (s >= 3.95 && p > CONCERNS[1]) stamp = 'Review pass';
     if (s >= 4.9) stamp = 'Evidence attached';
     if (s >= 5.9) stamp = 'PR open';
     if (s >= 6.9) stamp = 'Merged';
@@ -257,11 +252,10 @@ function buildScene() {
     drawTicket(stamp, s < -0.2 ? 0 : passed, hot);
 
     const near = MathUtils.clamp(-s / 0.75, 0, 1);           // closer framing while the hero is on screen
-    const side = narrow ? 6.4 : 5.4 - near * 1.7;
+    const side = narrow ? 9.5 : 9 - near * 2.6;
     const ahead = narrow ? 0 : 0.3 - near * 0.2;
-    camera.position.set(pathX(s - 0.6) + side + pxs * 0.9, (narrow ? 1.7 : 2.3 - near * 0.6) - pys * 0.5, pathZ(s - 0.6) + (narrow ? 1.6 : 0));
+    camera.position.set(pathX(s - 0.35) + side + pxs * 0.9, (narrow ? 3.4 : 3.6 - near * 1.1) - pys * 0.5, pathZ(s - 0.35) + (narrow ? 2.4 : 1.4));
     camera.lookAt(pathX(s + ahead) + (narrow ? 0 : 0.3), -0.15, pathZ(s + ahead));
-    for (const lab of labels) { lab.lookAt(camera.position.x, lab.getWorldPosition(tmp).y, camera.position.z); }
     key.position.set(ticket.position.x + 5, 9, ticket.position.z + 4);
     key.target.position.copy(ticket.position);
     renderer.render(scene, camera);

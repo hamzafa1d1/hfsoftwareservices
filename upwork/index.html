@@ -56,15 +56,15 @@
       <section class="journey" id="journey" aria-labelledby="journey-title">
         <h2 id="journey-title" class="visually-hidden">How a change reaches production</h2>
         <ol class="gates">
-          <li class="gate-step" data-gate="0"><h3>Brainstorm</h3><p>Engineers, product and design explore the problem together while research agents fan out. AI is a tool in the room, not the driver.</p><p class="gate-step__out">Leaves behind brainstorm.md</p></li>
-          <li class="gate-step" data-gate="1"><h3>Plan</h3><p>A planner agent writes acceptance criteria tied to test fixtures. Data model, sequence diagram, API schema and a decision record come before any code.</p><p class="gate-step__out">Leaves behind plan.md</p></li>
-          <li class="gate-step" data-gate="2"><h3>Approve</h3><p>A person approves the plan and it freezes. Changing it later is an explicit, logged replan. The freeze is enforced in the AI tools, a pre-commit hook and CI.</p><p class="gate-step__out">Human gate. The plan is now read-only</p></li>
-          <li class="gate-step" data-gate="3"><h3>Build</h3><p>A fresh coder agent builds one milestone at a time against the frozen plan, under binding rules for money, tenants, the calculation engine and the database.</p><p class="gate-step__out">Leaves behind code and a dev record</p></li>
-          <li class="gate-step gate-step--review" data-gate="4"><h3>Review</h3><p>A read-only reviewer returns pass, concerns or fail against the plan. Security, reliability and database lenses are mandatory where the risk is. Concerns go back to Build.</p><p class="gate-step__out">Reviewers can read and run code, never change it</p></li>
-          <li class="gate-step" data-gate="5"><h3>QA</h3><p>A separate QA agent, never the one that wrote the code, runs the verify gate and replays the acceptance criteria.</p><p class="gate-step__out">Leaves behind evidence.md</p></li>
-          <li class="gate-step" data-gate="6"><h3>Ship</h3><p>Coder, reviewer and QA run as isolated sub-agents, then the pull request opens with a short plain-language body, screenshots and evidence.</p><p class="gate-step__out">Opens the pull request</p></li>
-          <li class="gate-step" data-gate="7"><h3>Human review</h3><p>Named reviewers approve, CI goes green, and only then does it merge and deploy. No silent merges.</p><p class="gate-step__out">Human gate. Merged and deployed to staging</p></li>
-          <li class="gate-step" data-gate="8"><h3>Retro</h3><p>A redacted digest of the session turns friction into proposed changes to skills and agents. A person approves them. Fix the skill, not the output.</p><p class="gate-step__out">Leaves behind LEARNINGS.md</p></li>
+          <li class="gate-step" data-gate="0"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><h3>Brainstorm</h3><p>Engineers, product and design explore the problem together while research agents fan out. AI is a tool in the room, not the driver.</p><p class="gate-step__out">Leaves behind brainstorm.md</p></div></li>
+          <li class="gate-step" data-gate="1"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><h3>Plan</h3><p>A planner agent writes acceptance criteria tied to test fixtures. Data model, sequence diagram, API schema and a decision record come before any code.</p><p class="gate-step__out">Leaves behind plan.md</p></div></li>
+          <li class="gate-step" data-gate="2"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></span><h3>Approve</h3><p>A person approves the plan and it freezes. Changing it later is an explicit, logged replan. The freeze is enforced in the AI tools, a pre-commit hook and CI.</p><p class="gate-step__out">Human gate. The plan is now read-only</p></div></li>
+          <li class="gate-step" data-gate="3"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span><h3>Build</h3><p>A fresh coder agent builds one milestone at a time against the frozen plan, under binding rules for money, tenants, the calculation engine and the database.</p><p class="gate-step__out">Leaves behind code and a dev record</p></div></li>
+          <li class="gate-step gate-step--review" data-gate="4"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span><h3>Review</h3><p>A read-only reviewer returns pass, concerns or fail against the plan. Security, reliability and database lenses are mandatory where the risk is. Concerns go back to Build.</p><p class="gate-step__out">Reviewers can read and run code, never change it</p></div></li>
+          <li class="gate-step" data-gate="5"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><h3>QA</h3><p>A separate QA agent, never the one that wrote the code, runs the verify gate and replays the acceptance criteria.</p><p class="gate-step__out">Leaves behind evidence.md</p></div></li>
+          <li class="gate-step" data-gate="6"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><h3>Ship</h3><p>Coder, reviewer and QA run as isolated sub-agents, then the pull request opens with a short plain-language body, screenshots and evidence.</p><p class="gate-step__out">Opens the pull request</p></div></li>
+          <li class="gate-step" data-gate="7"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><h3>Human review</h3><p>Named reviewers approve, CI goes green, and only then does it merge and deploy. No silent merges.</p><p class="gate-step__out">Human gate. Merged and deployed to staging</p></div></li>
+          <li class="gate-step" data-gate="8"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><h3>Retro</h3><p>A redacted digest of the session turns friction into proposed changes to skills and agents. A person approves them. Fix the skill, not the output.</p><p class="gate-step__out">Leaves behind LEARNINGS.md</p></div></li>
         </ol>
       </section>
     </div>
@@ -103,7 +103,7 @@
       <p class="work__intro">From a US HR SaaS platform that holds pay data for around 115 customer organisations. Client work is anonymised.</p>
 
       <article class="case">
-        <p class="case__num" aria-hidden="true">217s</p>
+        <div class="case__figure"><p class="case__num" aria-hidden="true">217 s</p><p class="case__cap">worst request in two days of logs</p></div>
         <div class="case__text">
           <h3>Four root causes behind a 217-second request</h3>
           <p>Managers reported crashes on save and blank screens. Two days of production logs (8,512 requests) showed 69 requests over a minute. Working read-only in production, I found four stacked causes: missing indexes, a memory-capped 32-bit app pool, an idle timeout causing cold starts, and an outdated database compatibility level.</p>
@@ -113,7 +113,7 @@
       </article>
 
       <article class="case case--flip">
-        <p class="case__num" aria-hidden="true">24</p>
+        <div class="case__figure"><p class="case__num" aria-hidden="true">24</p><p class="case__cap">verified security findings</p></div>
         <div class="case__text">
           <h3>A security audit, verified twice</h3>
           <p>A first pass found 11 issues. I ran a second, multi-agent audit with independent verification: 24 verified findings, 8 of them critical, and four earlier claims corrected. I raised 15 ranked remediation tickets and fixed the critical ones. I tested a global filter as a shortcut and rejected it once I’d shown it would fail silently.</p>
@@ -123,7 +123,7 @@
       </article>
 
       <article class="case">
-        <p class="case__num" aria-hidden="true">9/9</p>
+        <div class="case__figure"><p class="case__num" aria-hidden="true">9/9</p><p class="case__cap">stories shipped to production</p></div>
         <div class="case__text">
           <h3>Every job title priced against the market</h3>
           <p>Bulk salary benchmarking, end to end: nine stories, all in production. It groups a company’s job titles, matches each against market data in the background and estimates a P10–P90 range. Admins review, approve, export and refresh. Afterwards, I found why a third of titles returned no data: the “confidence” score was just a position in a search list. Matching moved to a real scoring API and passed all 12 QA scenarios.</p>
@@ -132,7 +132,7 @@
       </article>
 
       <article class="case case--flip">
-        <p class="case__num" aria-hidden="true">15min</p>
+        <div class="case__figure"><p class="case__num" aria-hidden="true">16</p><p class="case__cap">production signals, checked every 15 minutes</p></div>
         <div class="case__text">
           <h3>Customers used to find problems first</h3>
           <p>A read-only health scan now checks 16 signals every 15 minutes and posts compact alerts to the team’s Slack. When an upstream signing certificate changed, I restored single sign-on for the 8 affected customer organisations, wrote a rollover runbook, and added expiry and mismatch alerts. An expiry-only check would have missed that outage.</p>
@@ -145,15 +145,10 @@
     <!-- MODULES: kinetic lines on signal -->
     <section class="modules" id="modules" aria-labelledby="modules-title">
       <h2 id="modules-title" class="display display--md">Three modules in seven weeks.</h2>
-      <div class="marquee" aria-hidden="true">
-        <p class="marquee__line" data-dir="-1">Skills profile — Skills profile — Skills profile — Skills profile</p>
-        <p class="marquee__line" data-dir="1">1:1 meetings — 1:1 meetings — 1:1 meetings — 1:1 meetings</p>
-        <p class="marquee__line" data-dir="-1">Development plans — Development plans — Development plans</p>
-      </div>
-      <div class="modules__cols">
-        <div><h3>Skills profile</h3><p>Employees add skills from a live catalogue and request validation from a reviewer across five levels. Done, and now feeding the other two modules.</p></div>
-        <div><h3>1:1 meetings</h3><p>Shared agendas, private notes, action items that become tasks, Microsoft 365 and Google Calendar sync. HR sees whether 1:1s happen, not what was said. Sixteen stories built and QA’d in nine days.</p></div>
-        <div><h3>Development plans</h3><p>Private drafts, publishing to a manager, feedback and history. Plans can be built from the skill gaps for a target role. On the dev environment now.</p></div>
+      <div class="module-rows">
+        <article class="module-row"><h3 class="module-row__name">Skills profile</h3><div class="module-row__body"><p class="module-row__status">Done</p><p>Employees add skills from a live catalogue and request validation from a reviewer across five levels. The skills data now feeds the other two modules.</p></div></article>
+        <article class="module-row"><h3 class="module-row__name">1:1 meetings</h3><div class="module-row__body"><p class="module-row__status">Four outcome epics done</p><p>Shared agendas, private notes, action items that become tasks, Microsoft 365 and Google Calendar sync. HR sees whether 1:1s happen, not what was said. Sixteen stories built and QA’d in nine days.</p></div></article>
+        <article class="module-row"><h3 class="module-row__name">Development plans</h3><div class="module-row__body"><p class="module-row__status">On the dev environment</p><p>Private drafts, publishing to a manager, feedback and history. Plans can be built from the skill gaps for a target role.</p></div></article>
       </div>
       <p class="modules__note">Built after joining a new product team in September, through the process above. TypeScript, React, PostgreSQL, AWS.</p>
     </section>
