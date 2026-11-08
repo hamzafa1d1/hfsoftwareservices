@@ -9,6 +9,7 @@ gsap.ticker.lagSmoothing(0);
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 initHeader();
+initJourney();
 if (!reduce) initMotion();
 
 // three.js is ~150 KB gzipped: fetch it only after the page has loaded and the browser is idle,
@@ -40,17 +41,6 @@ function initMotion() {
       yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.09,
       scrollTrigger: { trigger: h, start: 'top 85%' },
     });
-  });
-
-  gsap.utils.toArray('.gate-step').forEach((step, i, all) => {
-    const card = step.querySelector('.gate-card');
-    const tl = gsap.timeline({ scrollTrigger: { trigger: step, start: i === 0 ? 'top top' : 'top bottom', end: 'bottom top', scrub: 0.4 } });
-    // in by 38%, hold, gone by 72% of the step's pass, so two cards never share the screen
-    if (i > 0) tl.fromTo(card, { opacity: 0, y: 60 }, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.38 });
-    else tl.to(card, { opacity: 1, duration: 0.38 });
-    tl.to(card, { opacity: 1, duration: 0.12 });
-    if (i < all.length - 1) tl.to(card, { opacity: 0, y: -50, ease: 'power2.in', duration: 0.22 }).to(card, { opacity: 0, duration: 0.28 });
-    else tl.to(card, { opacity: 1, duration: 0.5 });
   });
 
   gsap.fromTo('.kit__body > *', { y: 36, opacity: 0 }, {
@@ -109,3 +99,54 @@ function initMotion() {
   });
 }
 
+
+/* ---------------- journey: pinned phases, one flick per phase ---------------- */
+// Without JS or with reduced motion the nine phases stay a plain readable list.
+// Otherwise the journey holds still while scrolling moves through the phases, each scroll
+// settles on the nearest phase, and the phase buttons jump straight to one.
+function initJourney() {
+  const j = document.querySelector('.journey');
+  if (!j) return;
+  window.__journeyF = -0.8;
+  if (reduce) return;
+  const steps = [...j.querySelectorAll('.gate-step')];
+  const nav = j.querySelector('.phase-nav');
+  const btns = [...j.querySelectorAll('[data-phase]')];
+  const prev = j.querySelector('[data-go="prev"]'), next = j.querySelector('[data-go="next"]');
+  const last = steps.length - 1;
+  j.classList.add('is-pinned');
+  if (nav) nav.hidden = false;
+
+  let active = -1;
+  function setActive(i) {
+    if (i === active) return;
+    active = i;
+    steps.forEach((st, k) => st.classList.toggle('is-active', k === i));
+    btns.forEach((b, k) => b.setAttribute('aria-current', k === i ? 'step' : 'false'));
+    if (prev) prev.disabled = i <= 0;
+    if (next) next.disabled = i >= last;
+  }
+  setActive(0);
+
+  // snapping lives on this trigger; the position itself is computed straight from scrollY,
+  // so it is right even when a scroll lands exactly on a boundary
+  const pin = ScrollTrigger.create({
+    trigger: j, start: 'top top', end: 'bottom bottom',
+    snap: { snapTo: 1 / last, duration: { min: 0.25, max: 0.6 }, delay: 0.06, ease: 'power2.inOut' },
+  });
+  function update() {
+    const y = window.scrollY, vh = window.innerHeight;
+    let f;
+    if (y < pin.start) f = -0.8 + 0.8 * Math.max(0, Math.min(1, (y - (pin.start - vh)) / vh));   // ticket rolls in under the hero
+    else f = Math.max(0, Math.min(1, (y - pin.start) / Math.max(1, pin.end - pin.start))) * last;
+    window.__journeyF = f;
+    setActive(Math.max(0, Math.round(f)));
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  ScrollTrigger.addEventListener('refresh', update);
+  update();
+  const goTo = (i) => window.scrollTo({ top: pin.start + (pin.end - pin.start) * (Math.max(0, Math.min(last, i)) / last), behavior: 'smooth' });
+  btns.forEach((b) => b.addEventListener('click', () => goTo(Number(b.dataset.phase))));
+  if (prev) prev.addEventListener('click', () => goTo(active - 1));
+  if (next) next.addEventListener('click', () => goTo(active + 1));
+}

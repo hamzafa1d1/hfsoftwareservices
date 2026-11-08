@@ -54,6 +54,7 @@
 
       <section class="journey" id="journey" aria-labelledby="journey-title">
         <h2 id="journey-title" class="visually-hidden">How a change reaches production</h2>
+        <div class="journey__pin">
         <ol class="gates">
           <li class="gate-step" data-gate="0"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><h3>Brainstorm</h3><p>Engineers, product and design explore the problem together while research agents fan out. AI is a tool in the room, not the driver.</p><p class="gate-step__out">Leaves behind brainstorm.md</p></div></li>
           <li class="gate-step" data-gate="1"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><h3>Plan</h3><p>A planner agent writes acceptance criteria tied to test fixtures. Data model, sequence diagram, API schema and a decision record come before any code.</p><p class="gate-step__out">Leaves behind plan.md</p></div></li>
@@ -65,6 +66,12 @@
           <li class="gate-step" data-gate="7"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><h3>Human review</h3><p>Named reviewers approve, CI goes green, and only then does it merge and deploy. No silent merges.</p><p class="gate-step__out">Human gate. Merged and deployed to staging</p></div></li>
           <li class="gate-step" data-gate="8"><div class="gate-card"><span class="gate-card__rail" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><h3>Retro</h3><p>A redacted digest of the session turns friction into proposed changes to skills and agents. A person approves them. Fix the skill, not the output.</p><p class="gate-step__out">Leaves behind LEARNINGS.md</p></div></li>
         </ol>
+        <nav class="phase-nav" aria-label="Delivery phases" hidden>
+          <button class="phase-nav__arrow" type="button" data-go="prev" aria-label="Previous phase">←</button>
+          <ol class="phase-nav__list"><li><button type="button" data-phase="0">Brainstorm</button></li><li><button type="button" data-phase="1">Plan</button></li><li><button type="button" data-phase="2">Approve</button></li><li><button type="button" data-phase="3">Build</button></li><li><button type="button" data-phase="4">Review</button></li><li><button type="button" data-phase="5">QA</button></li><li><button type="button" data-phase="6">Ship</button></li><li><button type="button" data-phase="7">Human review</button></li><li><button type="button" data-phase="8">Retro</button></li></ol>
+          <button class="phase-nav__arrow" type="button" data-go="next" aria-label="Next phase">→</button>
+        </nav>
+        </div>
       </section>
     </div>
 
