@@ -47,7 +47,7 @@
       ]
     },
     {
-      "source": "/(hamza.webp|hamza-400.webp|script.js)",
+      "source": "/script.js",
       "headers": [
         {
           "key": "Cache-Control",
