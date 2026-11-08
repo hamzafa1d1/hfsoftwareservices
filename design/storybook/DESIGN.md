@@ -59,6 +59,15 @@ A full scroll audit (desktop 1440 px, phone 390 px, a frame every half screen) f
 - The modules marquee repeated each name four times and cut words at both edges. **Now:** three rows, name, status, description.
 - Anchor links land below the header; list items rise instead of entering from off-screen; on phones About shows its heading before the photo.
 
+## Iteration 5 (2026-11-08): simpler page, one 3D object, high-level content
+
+Feedback: still not smooth enough and hard to follow, with too much detail. This iteration supersedes the journey sections below.
+
+- **3D:** one object in the hero only: a glossy ink ribbon shaped as an infinity loop (the delivery loop), with signal-orange arrows gliding along it. It runs on its own clock, sways gently, follows the pointer and tilts away as the hero scrolls out. Nothing is pinned, snapped or scroll-scrubbed.
+- **Structure:** hero → How I can help (six use cases, one line and one proof each) → The flow (four steps with the two human gates) → When I join your project (four benefits) → Skills (six groups and credentials) → Selected results (four numbers) → About → Questions → Contact.
+- **Length:** about 8,000 px on desktop instead of about 15,000.
+- **Motion:** one reveal style (rise and fade, staggered within a group), a line that draws through the four flow steps, and a slow portrait zoom.
+
 ## Iteration 4 (2026-11-08): arrows instead of gates
 
 The gate frames read as walls the ticket had to squeeze through. The process is flow, so the scene is now arrows:
